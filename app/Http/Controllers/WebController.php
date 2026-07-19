@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 
 class WebController
 {
-    public function home () {
+    public function home() {
         return view("home");
     }
 
-    public function contact () {
+    public function contact() {
         return view("contact");
     }
 
@@ -19,15 +19,15 @@ class WebController
         dd($input);
     }
 
-    public function blog ($slug) {
+    public function blog($slug) {
         return view("blog");
     }
 
-    public function service ($slug) {
+    public function service($slug) {
         return view("service");
     }
 
-    public function about () {
+    public function about() {
         return view("about");
     }
 }
