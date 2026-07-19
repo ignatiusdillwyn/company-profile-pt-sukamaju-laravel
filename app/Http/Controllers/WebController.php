@@ -14,6 +14,11 @@ class WebController
         return view("contact");
     }
 
+    public function contactHandle(Request $request) {
+        $input = $request->all();
+        dd($input);
+    }
+
     public function blog ($slug) {
         return view("blog");
     }
