@@ -10,10 +10,7 @@ return new class extends Migration
     {
         Schema::create('table_articles', function (Blueprint $table) {
             $table->integer('id')->primary();
-
-            // ✅ DEKLARASIKAN dulu kolom user_id
-            $table->integer('user_id')->nullable(false);
-            // ✅ BARU buat foreign key
+            $table->integer('user_id');
             $table->foreign('user_id')
                 ->references('id')
                 ->on('table_users')
