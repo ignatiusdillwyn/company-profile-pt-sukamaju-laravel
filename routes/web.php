@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController;
+use App\Http\Controllers\AuthController;    
+use App\Http\Controllers\Admin\DashboardController;
 
-
-Route::get('/', [WebController::class, 'home'])->name('home');
+Route::get('/home', [WebController::class, 'home'])->name('home');
 
 // Blog Page
 Route::get('/blog', [WebController::class, 'blog'])->name('blog');
@@ -23,11 +24,25 @@ Route::post('/contact/save', [WebController::class, 'contactHandle'])->name('con
 
 
 // Content Management System (CMS) Routes
-Route::get('/admin', function () {
-    return redirect()->route('auth.login');
-    // return view('cms.dashboard');
-})->name('cms.dashboard');
+// Route::get('/admin', function () {
+//     return redirect()->route('auth.login');
+//     // return view('admin.dashboard');
+// })->name('admin.dashboard');
 
-Route::get('/admin/login', function () {
-    return view('auth.login');
-})->name('auth.login');
+// Route::get('/admin/login', function () {
+//     return view('auth.login');
+// })->name('auth.login');
+
+Route::prefix(env('APP_ADMIN_SECTION', 'admin'))->name('admin.')->group(function () {
+
+    // Authentication - HARUS bisa diakses SEBELUM login, jadi TIDAK
+    // dibungkus middleware 'admin'
+    Route::get('/login', [AuthController::class, 'loginRender'])->name('login');
+    Route::post('/login', [AuthController::class, 'loginHandle'])->name('login.handle');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    // Halaman yang WAJIB login -> dibungkus middleware 'admin'
+    Route::middleware('admin')->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    });
+});
