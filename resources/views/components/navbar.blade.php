@@ -16,19 +16,19 @@
                         <a class="nav-link active" href="#home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#features">Features</a>
+                        <a class="nav-link" href="/service">Service</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
+                        <a class="nav-link" href="/blog">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                        <a class="nav-link" href="/contact  ">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
+                        <a class="nav-link" href="/about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-primary btn-sm ms-lg-3 text-white" href="#">
+                        <a class="btn btn-primary btn-sm ms-lg-3 text-white" href="/contact">
                             Get Started
                         </a>
                     </li>
