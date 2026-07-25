@@ -102,4 +102,4 @@
 
 <body>
     
-@include('layouts.navbar')
+@include('components.navbar')

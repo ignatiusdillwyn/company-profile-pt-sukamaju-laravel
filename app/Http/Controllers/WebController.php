@@ -19,12 +19,20 @@ class WebController
         dd($input);
     }
 
-    public function blog($slug) {
+    public function blog() {
         return view("blog");
     }
 
-    public function service($slug) {
+    public function blogDetail($slug) {
+        return view("blog-detail");
+    }
+
+    public function service() {
         return view("service");
+    }
+
+    public function serviceDetail($slug) {
+        return view("service-detail");
     }
 
     public function about() {
