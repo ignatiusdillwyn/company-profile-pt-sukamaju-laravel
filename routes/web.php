@@ -5,7 +5,7 @@ use App\Http\Controllers\WebController;
 use App\Http\Controllers\AuthController;    
 use App\Http\Controllers\Admin\DashboardController;
 
-Route::get('/home', [WebController::class, 'home'])->name('home');
+Route::get('/', [WebController::class, 'home'])->name('home');
 
 // Blog Page
 Route::get('/blog', [WebController::class, 'blog'])->name('blog');
