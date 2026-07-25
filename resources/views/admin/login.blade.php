@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('admin.layout')
 @section('content')
 <h1>Admin Login</h1>
 <!-- <p><code style="display:inline">GET {{ url('/admin/login') }}</code> &mdash; AuthController@loginRender (tidak dilindungi middleware)</p> -->
