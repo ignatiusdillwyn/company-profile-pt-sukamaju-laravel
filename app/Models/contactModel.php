@@ -8,13 +8,8 @@ class contactModel extends Model
 {
     public function createContact()
     {
-        $data = 'ini create contact';
+        $data = 'ini create contacts as request form';
         return $data;
     }
 
-    public function getAllContact()
-    {
-        $data = 'ini get all contacts';
-        return $data;
-    }
 }
