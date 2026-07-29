@@ -5,9 +5,34 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\userModel;
 
 class AuthController
 {
+    protected $userModel;
+
+    public function __construct()
+    {
+        $this->userModel = new userModel();
+    }
+
+    public function registerRender()
+    {
+        // $data = $this->userModel->createUser('halo');
+        // return redirect()->intended(route('admin.dashboard'));
+
+        return view('admin.register');
+    }
+
+    public function registerHandle(Request $request)
+    {
+        // dd($request->all());
+        $data = $request->all();
+        $this->userModel->createUser($data);
+        // return redirect()->intended(route('admin.login'));
+        return view('admin.login');
+    }
+
     // GET /admin/login - menampilkan form login
     public function loginRender()
     {

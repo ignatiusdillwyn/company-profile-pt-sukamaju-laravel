@@ -3,13 +3,36 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class userModel extends Model
 {
-    public function createUser()
+    public function createUser($request)
     {
-        $data = 'ini create user';
-        return $data;
+        // $data = DB::select('CALL _createUser(?,?,?,?,?,?,?)', [
+        //     'ignatius dillwyn',
+        //     'ignadillwyn@gmail.com',
+        //     '123456',
+        //     'admin',
+        //     true,
+        //     Carbon::now(),
+        //     Carbon::now()
+        // ]);
+
+        $data = DB::select('CALL _createUser(?,?,?,?,?,?,?)', [
+            $request['name'],
+            $request['email'],
+            $request['password'],
+            $request['role'],
+            true,
+            Carbon::now(),
+            Carbon::now()
+        ]);
+
+        // dd($data);
+
+        return 'Success create user';
     }
 
     public function getAllUsers()
