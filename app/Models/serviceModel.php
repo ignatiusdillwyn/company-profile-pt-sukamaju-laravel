@@ -3,18 +3,27 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class serviceModel extends Model
 {
     public function getAllServices()
     {
-        $data = 'ini get all services';
+        $data = DB::select('CALL _getAllServices()');
         return $data;
     }
 
-    public function getServicebySlug()
+    public function getServicebySlug($slug)
     {
-        $data = 'ini get service by slug';
+        $serviceSlug = (string) $slug;
+        $data = DB::select('CALL _getArticleBySlug(?)', [$serviceSlug]);
+        return $data;
+    }
+
+    public function getServicebyId($id)
+    {
+        $serviceId = (int) $id;
+        $data = DB::select('CALL _getArticleById(?)', [$serviceId]);
         return $data;
     }
 

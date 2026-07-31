@@ -3,42 +3,58 @@
 namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request; // Import the Request class
+use Illuminate\Support\Facades\DB; // Import the DB facade
+use Illuminate\Support\Str; // Import the Str facade
+use Carbon\Carbon; // Import the Carbon class
 
 class serviceModel extends Model
 {
-    public function createService()
+    public function createService(Request $request)
     {
-        $data = 'ini create service';
+        $slug = '';
+        if ($request['title']) {
+            $title = $request['title'];
+            $slug = Str::slug($title); // "ini-judul-artikel"
+        }
+
+        $data = DB::select('CALL _createArticle(?,?,?,?,?,?,?,?)', [
+            $request['user_id'] ?? '',
+            'service',
+            $request['title'] ?? '',
+            $slug ?? '',
+            $request['content'] ?? '',
+            true,
+            Carbon::now(),
+            Carbon::now()
+        ]);
         return $data;
     }
 
-    public function getAllServices()
+    public function updateService(Request $request)
     {
-        $data = 'ini get all services';
+        $slug = '';
+        if ($request['title']) {
+            $title = $request['title'];
+            $slug = Str::slug($title); // "ini-judul-artikel"
+        }
+
+        $data = DB::select('CALL _updateArticle(?,?,?,?,?,?,?)', [
+            $request['article_id'],
+            'service',
+            $request['title'],
+            $slug,
+            $request['content'],
+            $request['is_published'],
+            Carbon::now()
+        ]);
         return $data;
     }
 
-    public function getServicebyId()
+    public function deleteService($id)
     {
-        $data = 'ini get service by id';
-        return $data;
-    }
-
-    public function getServicebySlug()
-    {
-        $data = 'ini get service by slug';
-        return $data;
-    }
-
-    public function updateService()
-    {
-        $data = 'ini update service';
-        return $data;
-    }
-
-    public function deleteService()
-    {
-        $data = 'ini delete service';
+        $articleId = (int) $id;
+        $data = DB::select('CALL _deleteArticleById(?)', [$articleId]);
         return $data;
     }
 }

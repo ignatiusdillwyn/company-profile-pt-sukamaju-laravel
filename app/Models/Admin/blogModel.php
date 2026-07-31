@@ -3,42 +3,58 @@
 namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request; // Import the Request class
+use Illuminate\Support\Facades\DB; // Import the DB facade
+use Illuminate\Support\Str; // Import the Str facade
+use Carbon\Carbon; // Import the Carbon class
 
 class blogModel extends Model
 {
-    public function createBlog()
+    public function createBlog(Request $request)
     {
-        $data = 'ini create blog';
+        $slug = '';
+        if ($request['title']) {
+            $title = $request['title'];
+            $slug = Str::slug($title); // "ini-judul-artikel"
+        }
+
+        $data = DB::select('CALL _createArticle(?,?,?,?,?,?,?,?)', [
+            $request['user_id'] ?? '',
+            'blog',
+            $request['title'] ?? '',
+            $slug ?? '',
+            $request['content'] ?? '',
+            true,
+            Carbon::now(),
+            Carbon::now()
+        ]);
         return $data;
     }
 
-    public function getAllBlogs()
+    public function updateBlog(Request $request)
     {
-        $data = 'ini get all blog';
+        $slug = '';
+        if ($request['title']) {
+            $title = $request['title'];
+            $slug = Str::slug($title); // "ini-judul-artikel"
+        }
+
+        $data = DB::select('CALL _updateArticle(?,?,?,?,?,?,?)', [
+            $request['article_id'],
+            'blog',
+            $request['title'],
+            $slug,
+            $request['content'],
+            $request['is_published'],
+            Carbon::now()
+        ]);
         return $data;
     }
 
-    public function getBlogbyId()
+    public function deleteBlog($id)
     {
-        $data = 'ini get blog by id';
-        return $data;
-    }
-
-    public function getBlogbySlug()
-    {
-        $data = 'ini get blog by slug';
-        return $data;
-    }
-
-    public function updateBlog()
-    {
-        $data = 'ini get update blog';
-        return $data;
-    }
-
-    public function deleteBlog()
-    {
-        $data = 'ini delete blog';
+        $articleId = (int) $id;
+        $data = DB::select('CALL _deleteArticleById(?)', [$articleId]);
         return $data;
     }
 }

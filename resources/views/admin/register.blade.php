@@ -80,7 +80,8 @@
                                    name="email" 
                                    placeholder="Enter your email address"
                                    value="{{ old('email') }}"
-                                   required />
+                                   required
+                                   />
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
