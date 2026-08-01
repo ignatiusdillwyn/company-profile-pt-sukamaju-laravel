@@ -1,35 +1,83 @@
-@extends('admin.layout')
-@section('content')
-<h1>Admin Login</h1>
-<!-- <p><code style="display:inline">GET {{ url('/admin/login') }}</code> &mdash; AuthController@loginRender (tidak dilindungi middleware)</p> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
 
-@if (session('error'))
-<div class="box" style="background:#fdecea; border-color:#c0392b;">{{ session('error') }}</div>
-@endif
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- OverlayScrollbars -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.16.0/styles/overlayscrollbars.min.css">
+    <!-- AdminLTE 4 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.1.0/dist/css/adminlte.min.css">
+</head>
+<body class="login-page bg-body-secondary">
+    <main class="login-box">
+        <h1 class="login-logo">
+            <a href="{{ route('admin.login') }}"><b>Admin</b>LTE</a>
+        </h1>
 
-@if ($errors->any())
-<div class="box" style="background:#fdecea; border-color:#c0392b;">
-    <ul style="margin:0;">
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Sign in untuk memulai sesi Anda</p>
 
-<form action="{{ route('admin.login.handle') }}" method="POST" class="box">
-    @csrf
-    <p>
-        <label>Email</label><br>
-        <input type="email" name="email" value="{{ old('email') }}" style="width:100%;padding:6px;">
-    </p>
-    <p>
-        <label>Password</label><br>
-        <input type="password" name="password" style="width:100%;padding:6px;">
-    </p>
-    <button type="submit">Login</button>
-</form>
+                @if (session('error'))
+                    <div class="alert alert-danger">{{ session('error') }}</div>
+                @endif
 
-<p><small>Demo akun: <code style="display:inline">admin@course-net.test</code> / <code style="display:inline">admin123</code>
-        (dibuat lewat <code style="display:inline">AdminUserSeeder</code>)</small></p>
-@endsection
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form action="{{ route('admin.login.handle') }}" method="POST">
+                    @csrf
+
+                    <div class="input-group mb-3">
+                        <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email">
+                        <div class="input-group-text">
+                            <span class="bi bi-envelope"></span>
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="password" name="password" class="form-control" placeholder="Password">
+                        <div class="input-group-text">
+                            <span class="bi bi-lock-fill"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4 offset-8">
+                            <button type="submit" class="btn btn-primary d-grid w-100">Sign In</button>
+                        </div>
+                    </div>
+                </form>
+
+                <p class="mb-1">
+                    <a href="{{ route('admin.register') }}">Register</a>
+                </p>
+
+                <p class="text-center text-muted small mt-3 mb-0">
+                    Demo akun: <code>admin@course-net</code> / <code>test123</code>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bootstrap 5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- OverlayScrollbars -->
+    <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.16.0/browser/overlayscrollbars.browser.es5.min.js"></script>
+    <!-- AdminLTE 4 -->
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@4.1.0/dist/js/adminlte.min.js"></script>
+</body>
+</html>

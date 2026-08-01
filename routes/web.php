@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\AuthController;    
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ArticleController;
 
 Route::get('/', [WebController::class, 'home'])->name('home');
 
@@ -37,5 +38,13 @@ Route::prefix(env('APP_ADMIN_SECTION', 'admin'))->name('admin.')->group(function
     // Halaman yang WAJIB login -> dibungkus middleware 'admin'
     Route::middleware('admin')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+        Route::get('/users', [UserController::class, 'indexRender'])->name('user-index');
+
+        Route::get('/article', [ArticleController::class, 'indexRender'])->name('article-index');
+        Route::get('/article/create', [ArticleController::class, 'createRender'])->name('article-create');
+        Route::post('/article/save', [ArticleController::class, 'createHandle'])->name('article-save');
+        Route::get('/article/edit/{id}', [ArticleController::class, 'editRender'])->name('article-edit');
+        Route::post('/article/update/{id}', [ArticleController::class, 'editHandle'])->name('article-update');
     });
 });
