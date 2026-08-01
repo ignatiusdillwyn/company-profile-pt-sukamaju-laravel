@@ -24,7 +24,7 @@ class userModel extends Model
             $request['name'] ?? '',
             $request['email'] ?? '',
             $request['password'] ?? '',
-            $request['role'],
+            'author',
             true,
             Carbon::now(),
             Carbon::now()
