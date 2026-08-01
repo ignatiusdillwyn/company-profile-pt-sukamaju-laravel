@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="col-lg-6 text-center mt-5 mt-lg-0">
-                <img src="https://via.placeholder.com/500x400/667eea/FFFFFF?text=Hero+Image"
+                <img src="https://placehold.co/600x400"
                     alt="Hero Image" class="img-fluid rounded-4 shadow-lg" />
             </div>
         </div>
@@ -103,7 +103,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="card card-hover h-100 shadow-sm">
                     <div class="card-body text-center p-4">
-                        <img src="https://via.placeholder.com/80/667eea/FFFFFF?text=Web"
+                        <img src="https://placehold.co/600x400"
                             alt="Web Development" class="mb-3 rounded-circle" />
                         <h5 class="card-title">Web Development</h5>
                         <p class="card-text text-muted">Custom websites built with modern technologies.</p>
@@ -114,7 +114,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="card card-hover h-100 shadow-sm">
                     <div class="card-body text-center p-4">
-                        <img src="https://via.placeholder.com/80/764ba2/FFFFFF?text=App"
+                        <img src="https://placehold.co/600x400"
                             alt="Mobile App" class="mb-3 rounded-circle" />
                         <h5 class="card-title">Mobile App Development</h5>
                         <p class="card-text text-muted">Cross-platform mobile apps for iOS &amp; Android.</p>
@@ -125,7 +125,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="card card-hover h-100 shadow-sm">
                     <div class="card-body text-center p-4">
-                        <img src="https://via.placeholder.com/80/ff6b6b/FFFFFF?text=AI"
+                        <img src="https://placehold.co/600x400"
                             alt="AI Solutions" class="mb-3 rounded-circle" />
                         <h5 class="card-title">AI Solutions</h5>
                         <p class="card-text text-muted">Artificial intelligence &amp; machine learning integration.</p>
@@ -149,7 +149,7 @@
             <div class="col-md-4">
                 <div class="card card-hover h-100 p-4 shadow-sm border-0">
                     <div class="d-flex align-items-center mb-3">
-                        <img src="https://via.placeholder.com/80/667eea/FFFFFF?text=JD"
+                        <img src="https://placehold.co/600x400"
                             alt="John Doe" class="testimonial-img me-3" />
                         <div>
                             <h6 class="fw-bold mb-0">John Doe</h6>
@@ -173,7 +173,7 @@
             <div class="col-md-4">
                 <div class="card card-hover h-100 p-4 shadow-sm border-0">
                     <div class="d-flex align-items-center mb-3">
-                        <img src="https://via.placeholder.com/80/764ba2/FFFFFF?text=SM"
+                        <img src="https://placehold.co/600x400"
                             alt="Jane Smith" class="testimonial-img me-3" />
                         <div>
                             <h6 class="fw-bold mb-0">Jane Smith</h6>
@@ -197,7 +197,7 @@
             <div class="col-md-4">
                 <div class="card card-hover h-100 p-4 shadow-sm border-0">
                     <div class="d-flex align-items-center mb-3">
-                        <img src="https://via.placeholder.com/80/ff6b6b/FFFFFF?text=MK"
+                        <img src="hhttps://placehold.co/600x400"
                             alt="Mike Johnson" class="testimonial-img me-3" />
                         <div>
                             <h6 class="fw-bold mb-0">Mike Johnson</h6>

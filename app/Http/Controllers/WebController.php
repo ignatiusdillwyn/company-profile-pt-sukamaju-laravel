@@ -40,7 +40,8 @@ class WebController
 
     public function blog() {
         $data = $this->blogModel->getAllBlogs();
-        return view("blog");
+        return view("blog", compact('data'));
+
     }
 
     public function blogDetail($slug) {
@@ -49,7 +50,7 @@ class WebController
 
     public function service() {
         $data = $this->serviceModel->getAllServices();
-        return view("service");
+        return view("service", compact('data'));
     }
 
     public function serviceDetail($slug) {
@@ -57,7 +58,7 @@ class WebController
     }
 
     public function about() {
-        $data = $this->serviceModel->getAllAbout();
+        // $data = $this->serviceModel->getAllAbout();
         return view("about");
     }
 }

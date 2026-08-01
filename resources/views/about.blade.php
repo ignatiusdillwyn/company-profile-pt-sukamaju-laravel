@@ -47,7 +47,7 @@
                 </a>
             </div>
             <div class="col-lg-6">
-                <img src="{{ asset('images/about-us.jpg') }}" 
+                <img src="https://placehold.co/600x400" 
                      alt="About Us" class="about-image img-fluid" 
                      onerror="this.src='https://via.placeholder.com/600x400/667eea/FFFFFF?text=Our+Team'" />
             </div>
@@ -244,7 +244,7 @@
             <div class="col-lg-3 col-md-6">
                 <div class="team-card">
                     <div class="team-img-wrapper">
-                        <img src="https://via.placeholder.com/400x400/667eea/FFFFFF?text=CEO" 
+                        <img src="https://placehold.co/600x400" 
                              alt="John Doe" class="team-img" />
                         <div class="team-social">
                             <a href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -261,7 +261,7 @@
             <div class="col-lg-3 col-md-6">
                 <div class="team-card">
                     <div class="team-img-wrapper">
-                        <img src="https://via.placeholder.com/400x400/764ba2/FFFFFF?text=CTO" 
+                        <img src="https://placehold.co/600x400" 
                              alt="Jane Smith" class="team-img" />
                         <div class="team-social">
                             <a href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -278,7 +278,7 @@
             <div class="col-lg-3 col-md-6">
                 <div class="team-card">
                     <div class="team-img-wrapper">
-                        <img src="https://via.placeholder.com/400x400/ff6b6b/FFFFFF?text=PM" 
+                        <img src="https://placehold.co/600x400" 
                              alt="Mike Johnson" class="team-img" />
                         <div class="team-social">
                             <a href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -295,7 +295,7 @@
             <div class="col-lg-3 col-md-6">
                 <div class="team-card">
                     <div class="team-img-wrapper">
-                        <img src="https://via.placeholder.com/400x400/ffa502/FFFFFF?text=Dev" 
+                        <img src="https://placehold.co/600x400" 
                              alt="Sarah Lee" class="team-img" />
                         <div class="team-social">
                             <a href="#"><i class="fab fa-linkedin-in"></i></a>
