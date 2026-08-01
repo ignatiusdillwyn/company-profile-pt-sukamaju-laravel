@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ContentSeeder extends Seeder
 {
@@ -81,7 +82,7 @@ class ContentSeeder extends Seeder
           $item['created_at'],
           $item['updated_at']
         );  
-        \Log::info('Konten dengan judul "' . $item['title'] . '" berhasil ditambahkan.');
+        Log::info('Konten dengan judul "' . $item['title'] . '" berhasil ditambahkan.');
       }
     }
 }
