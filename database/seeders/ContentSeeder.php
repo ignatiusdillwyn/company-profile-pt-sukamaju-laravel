@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Log;
 class ContentSeeder extends Seeder
 {
 
+  private $content;
+
   public function __construct()
   {
     // Pastikan model ContentModel sudah di-load sebelum digunakan
