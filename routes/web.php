@@ -23,16 +23,6 @@ Route::get('/contact', [WebController::class, 'contact'])->name('contact');
 Route::post('/contact/save', [WebController::class, 'contactHandle'])->name('contact.save');
 
 
-// Content Management System (CMS) Routes
-// Route::get('/admin', function () {
-//     return redirect()->route('auth.login');
-//     // return view('admin.dashboard');
-// })->name('admin.dashboard');
-
-// Route::get('/admin/login', function () {
-//     return view('auth.login');
-// })->name('auth.login');
-
 Route::prefix(env('APP_ADMIN_SECTION', 'admin'))->name('admin.')->group(function () {
 
     Route::get('/register', [AuthController::class, 'registerRender'])->name('register');
