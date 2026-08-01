@@ -1,0 +1,87 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class ContentSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+      $data = [
+        [
+          'user_id' => 1,
+          'article_type'  => 'blog',
+          'title'         => 'Judul Konten 1',
+          'slug'          => 'judul-konten-1',
+          'image'         => '/assets/image1.jpg',
+          'content'       => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.</p><p>Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit.</p><p>Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>',
+          'is_published'  => true,
+          'created_at'    => now(),
+          'updated_at'    => now()
+        ],
+        [
+          'user_id'       => 1,
+          'article_type'  => 'blog',
+          'title'         => 'Judul Konten 2',
+          'slug'          => 'judul-konten-2',
+          'image'         => '/assets/image2.jpg',
+          'content'       => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.</p>',
+          'is_published'  => true,
+          'created_at'    => now(),
+          'updated_at'    => now()
+        ],
+        [
+          'user_id'       => 1,
+          'article_type'  => 'service',
+          'title'         => 'Judul Konten 3',
+          'slug'          => 'judul-konten-3',
+          'image'         => '/assets/image3.jpg',
+          'content'       => '<p>Isi konten 3</p>',
+          'is_published'  => true,
+          'created_at'    => now(),
+          'updated_at'    => now()
+        ],
+        [
+          'user_id'       => 1,
+          'article_type'  => 'service',
+          'title'         => 'Judul Konten 4',
+          'slug'          => 'judul-konten-4',
+          'image'         => '/assets/image4.jpg',
+          'content'       => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.</p>',
+          'is_published'  => true,
+          'created_at'    => now(),
+          'updated_at'    => now()
+        ],
+        [
+          'user_id'       => 1,
+          'article_type'  => 'service',
+          'title'         => 'Judul Konten 5',
+          'slug'          => 'judul-konten-5',
+          'image'         => '/assets/image5.jpg',
+          'content'       => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.</p>',
+          'is_published'  => true,
+          'created_at'    => now(),
+          'updated_at'    => now()
+        ]
+      ];
+
+      $contentModel = new \App\Models\ContentModel();
+      foreach ($data as $item) {
+        $contentModel->create(
+          $item['title'],
+          $item['slug'],
+          $item['content'],
+          $item['user_id'],
+          $item['created_at'],
+          $item['updated_at']
+        );  
+        \Log::info('Konten dengan judul "' . $item['title'] . '" berhasil ditambahkan.');
+      }
+    }
+}
