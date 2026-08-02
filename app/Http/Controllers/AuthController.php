@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Admin\userModel;
 
 class AuthController
@@ -40,7 +40,6 @@ class AuthController
         return view('admin.login');
     }
 
-    // POST /admin/login - memproses form login
     public function loginHandle(Request $request)
     {
         $credentials = $request->validate([
@@ -48,22 +47,29 @@ class AuthController
             'password' => 'required|string',
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+        $user = $this->userModel->findByEmail($credentials['email']);
 
-            return redirect()->intended(route('admin.dashboard'));
+        if (! $user || ! $user->is_active || ! Hash::check($credentials['password'], $user->password)) {
+            return back()
+                ->withErrors(['email' => 'Email atau password salah.'])
+                ->onlyInput('email');
         }
 
-        return back()
-            ->withErrors(['email' => 'Email atau password salah.'])
-            ->onlyInput('email');
+        $request->session()->regenerate();
+        $request->session()->put('admin_user', [
+            'id'       => $user->id,
+            'fullname' => $user->fullname,
+            'email'    => $user->email,
+            'role'     => $user->role,
+        ]);
+
+        return redirect()->intended(route('admin.dashboard'));
     }
 
     // POST /admin/logout
     public function logout(Request $request)
     {
-        Auth::logout();
-
+        $request->session()->forget('admin_user');
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

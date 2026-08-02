@@ -60,7 +60,7 @@
         </div>
         <div class="card-body">
             <p class="mb-0">
-                Selamat datang, <b>{{ $user->name }}</b> ({{ $user->email }})! Anda berhasil melewati middleware 'admin'.
+                Selamat datang, <b>{{ $user['fullname'] }}</b> ({{ $user['email'] }})! Anda berhasil melewati middleware 'admin'.
             </p>
         </div>
     </div>

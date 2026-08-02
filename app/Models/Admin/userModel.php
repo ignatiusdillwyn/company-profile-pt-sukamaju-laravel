@@ -35,6 +35,13 @@ class userModel extends Model
         return 'Success create user';
     }
 
+    // Cari user berdasarkan email di tabel table_users - dipakai untuk login
+    // via Query Builder (bukan Eloquent), sesuai tabel yang diisi createUser().
+    public function findByEmail($email)
+    {
+        return DB::table('table_users')->where('email', $email)->first();
+    }
+
     public function updateUser()
     {
         $data = 'ini update user';

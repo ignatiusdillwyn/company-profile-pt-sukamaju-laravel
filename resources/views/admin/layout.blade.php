@@ -34,14 +34,14 @@
                     <li class="nav-item dropdown user-menu">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="bi bi-person-circle fs-5"></i>
-                            <span class="d-none d-md-inline ms-1">{{ optional(auth()->user())->name ?? 'Admin' }}</span>
+                            <span class="d-none d-md-inline ms-1">{{ session('admin_user.fullname', 'Admin') }}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li class="user-header text-bg-primary">
                                 <i class="bi bi-person-circle" style="font-size: 3rem;"></i>
                                 <p>
-                                    {{ optional(auth()->user())->name ?? 'Admin' }}
-                                    <small>{{ optional(auth()->user())->email }}</small>
+                                    {{ session('admin_user.fullname', 'Admin') }}
+                                    <small>{{ session('admin_user.email') }}</small>
                                 </p>
                             </li>
                             <li class="user-footer">
