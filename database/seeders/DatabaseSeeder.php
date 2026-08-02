@@ -22,5 +22,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@coursenet',
             'password' => bcrypt('test123'), // Ganti dengan password yang diinginkan
         ]);
+
+        $this->call(ArticleSeeder::class);
+        $this->call(ContactSeeder::class);
     }
 }
