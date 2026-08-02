@@ -15,9 +15,19 @@ class ArticleController
     $this->article = new ArticleModel();
   }
 
-  public function indexRender()
+  public function indexRender(Request $request)
   {
-    return view('admin.article.index');
+
+    $type = $request->query('article_type', false);
+    
+    $articles = $this->article->getAllArticlesByArticleType($type);
+dd($articles);
+    $data = [
+      'type'      => $type,
+      'articles'  => $articles
+    ];
+    
+    return view('admin.article.index', $data);
   }
 
   public function createRender()
