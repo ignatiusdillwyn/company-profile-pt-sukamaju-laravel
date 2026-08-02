@@ -17,6 +17,7 @@ class ContactController
   public function contactList(Request $request)
   {
     $getContacts = $this->contact->getAllContacts();
+    
     $data = [
       'contacts' => $getContacts
     ];
