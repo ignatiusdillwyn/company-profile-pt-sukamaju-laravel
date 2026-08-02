@@ -87,13 +87,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.article-index') }}" class="nav-link {{ request()->routeIs('admin.article*') ? 'active' : '' }}">
+                                    <a href="{{ route('admin.article-index', ['article_type' => 'service']) }}" class="nav-link {{ request()->routeIs('admin.article*') && request('article_type', 'service') === 'service' ? 'active' : '' }}">
                                         <i class="nav-icon bi bi-1-square"></i>
                                         <p>List Service</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.article-index') }}" class="nav-link {{ request()->routeIs('admin.article*') ? 'active' : '' }}">
+                                    <a href="{{ route('admin.article-index', ['article_type' => 'blog']) }}" class="nav-link {{ request()->routeIs('admin.article*') && request('article_type') === 'blog' ? 'active' : '' }}">
                                         <i class="nav-icon bi bi-journal-text"></i>
                                         <p>List Blog</p>
                                     </a>
@@ -102,14 +102,14 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link {{ request()->routeIs('admin.contact*') ? 'active' : '' }}">
+                            <a href="{{ route('admin.contact-list') }}" class="nav-link {{ request()->routeIs('admin.contact-list*') ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-envelope"></i>
                                 <p>Contacts</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link {{ request()->routeIs('admin.contact*') ? 'active' : '' }}">
+                            <a href="{{ route('admin.user-index-cms') }}" class="nav-link {{ request()->routeIs('admin.user-index-cms*') ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-people"></i>
                                 <p>Users</p>
                             </a>
