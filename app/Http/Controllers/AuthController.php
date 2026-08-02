@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Admin\userModel;
+use App\Models\Admin\UserModel;
 
 class AuthController
 {
@@ -13,7 +13,7 @@ class AuthController
 
     public function __construct()
     {
-        $this->userModel = new userModel();
+        $this->userModel = new UserModel();
     }
 
     public function registerRender()
