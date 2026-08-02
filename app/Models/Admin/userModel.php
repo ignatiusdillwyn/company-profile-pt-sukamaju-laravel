@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class userModel extends Model
+class UserModel extends Model
 {
     public function createUser($request)
     {
@@ -40,6 +40,14 @@ class userModel extends Model
     public function findByEmail($email)
     {
         return DB::table('table_users')->where('email', $email)->first();
+    }
+
+    public function getAllUsers()
+    {
+        $data = DB::table('table_users')
+            ->get();
+        
+            return $data;
     }
 
     public function updateUser()
