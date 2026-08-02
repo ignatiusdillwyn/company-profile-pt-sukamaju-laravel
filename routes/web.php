@@ -5,6 +5,8 @@ use App\Http\Controllers\WebController;
 use App\Http\Controllers\AuthController;    
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ContactController;
 
 Route::get('/', [WebController::class, 'home'])->name('home');
 
@@ -41,10 +43,37 @@ Route::prefix(env('APP_ADMIN_SECTION', 'admin'))->name('admin.')->group(function
 
         Route::get('/users', [UserController::class, 'indexRender'])->name('user-index');
 
+        // Route Article list 
         Route::get('/article', [ArticleController::class, 'indexRender'])->name('article-index');
+        
+        // Route Create
         Route::get('/article/create', [ArticleController::class, 'createRender'])->name('article-create');
         Route::post('/article/save', [ArticleController::class, 'createHandle'])->name('article-save');
+
+        // Route Edit
         Route::get('/article/edit/{id}', [ArticleController::class, 'editRender'])->name('article-edit');
         Route::post('/article/update/{id}', [ArticleController::class, 'editHandle'])->name('article-update');
+
+        // Route Delete
+        Route::get('/article/delete/{id}', [ArticleController::class, 'deleteHandle'])->name('article-delete');
+
+        // Route Contacts list
+        Route::get('/contacts', [ContactController::class, 'contactList'])->name('contact-list');
+        Route::post('/contacts/{id}/read', [ContactController::class, 'markAsRead'])->name('contact-read');
+
+        // Route Users list
+        Route::get('/users', [UserController::class, 'indexRender'])->name('user-index-cms');
+
+        // Route Create User
+        Route::get('/users/create', [UserController::class, 'createRender'])->name('user-create');
+        Route::post('/users/save', [UserController::class, 'createHandle'])->name('user-save');
+
+        // Route Edit User
+        Route::get('/users/edit/{id}', [UserController::class, 'editRender'])->name('user-edit');
+        Route::post('/users/update/{id}', [UserController::class, 'editHandle'])->name('user-update');
+
+        // Route Delete User
+        Route::get('/users/delete/{id}', [UserController::class, 'deleteHandle'])->name('user-delete'); 
+
     });
 });
