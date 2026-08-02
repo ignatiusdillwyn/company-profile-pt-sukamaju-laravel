@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,7 @@
     <!-- AdminLTE 4 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.1.0/dist/css/adminlte.min.css">
 </head>
+
 <body class="register-page bg-body-secondary">
     <main class="register-box">
         <h1 class="register-logo">
@@ -25,17 +27,17 @@
                 <p class="register-box-msg">Register a new membership</p>
 
                 @if (session('success'))
-                    <div class="alert alert-success">{{ session('success') }}</div>
+                <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
 
                 @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul class="mb-0">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
                 @endif
 
                 <form action="{{ route('admin.register.handle') }}" method="POST">
@@ -48,7 +50,7 @@
                             <span class="bi bi-person"></span>
                         </div>
                         @error('name')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -59,7 +61,7 @@
                             <span class="bi bi-envelope"></span>
                         </div>
                         @error('email')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -70,7 +72,7 @@
                             <span class="bi bi-lock-fill"></span>
                         </div>
                         @error('password')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -82,8 +84,24 @@
                         </div>
                     </div>
 
+                    <!-- Role Selection -->
+                    <label class="visually-hidden" for="registerRole">Role</label>
+                    <div class="input-group mb-3">
+                        <select id="registerRole" name="role" class="form-control @error('role') is-invalid @enderror">
+                            <option value="">Select Role</option>
+                            <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+                            <option value="author" {{ old('role') == 'author' ? 'selected' : '' }}>Author</option>
+                        </select>
+                        <div class="input-group-text">
+                            <span class="bi bi-person-badge"></span>
+                        </div>
+                        @error('role')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                     <div class="row">
-                        
+
                         <div class="col-12">
                             <div class="d-grid gap-2">
                                 <button type="submit" class="btn btn-primary right">Register</button>
@@ -106,4 +124,5 @@
     <!-- AdminLTE 4 -->
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@4.1.0/dist/js/adminlte.min.js"></script>
 </body>
+
 </html>

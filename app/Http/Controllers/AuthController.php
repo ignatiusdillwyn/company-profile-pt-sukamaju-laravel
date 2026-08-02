@@ -29,8 +29,7 @@ class AuthController
         // dd($request->all());
         $data = $request->all();
         $this->userModel->createUser($data);
-        // return redirect()->intended(route('admin.login'));
-        return view('admin.login');
+        return redirect()->intended(route('admin.login'));
     }
 
     // GET /admin/login - menampilkan form login
