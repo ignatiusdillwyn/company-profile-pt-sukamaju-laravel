@@ -103,7 +103,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="card card-hover h-100 shadow-sm">
                     <div class="card-body text-center p-4">
-                        <img src="https://placehold.co/600x400"
+                        <img src="https://placehold.co/300x300"
                             alt="Web Development" class="mb-3 rounded-circle" />
                         <h5 class="card-title">Web Development</h5>
                         <p class="card-text text-muted">Custom websites built with modern technologies.</p>
@@ -114,7 +114,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="card card-hover h-100 shadow-sm">
                     <div class="card-body text-center p-4">
-                        <img src="https://placehold.co/600x400"
+                        <img src="https://placehold.co/300x300"
                             alt="Mobile App" class="mb-3 rounded-circle" />
                         <h5 class="card-title">Mobile App Development</h5>
                         <p class="card-text text-muted">Cross-platform mobile apps for iOS &amp; Android.</p>
@@ -125,7 +125,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="card card-hover h-100 shadow-sm">
                     <div class="card-body text-center p-4">
-                        <img src="https://placehold.co/600x400"
+                        <img src="https://placehold.co/300x300"
                             alt="AI Solutions" class="mb-3 rounded-circle" />
                         <h5 class="card-title">AI Solutions</h5>
                         <p class="card-text text-muted">Artificial intelligence &amp; machine learning integration.</p>

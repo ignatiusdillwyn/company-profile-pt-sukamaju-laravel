@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="col-lg-5 text-center d-none d-lg-block">
-                <img src="https://via.placeholder.com/400x300/ffffff/667eea?text=Contact+Us" 
+                <img src="https://placehold.co/300x300" 
                      alt="Contact Us" class="img-fluid" style="filter: drop-shadow(0 10px 40px rgba(0,0,0,0.2));" />
             </div>
         </div>
