@@ -33,30 +33,6 @@
     </div>
 </section>
 
-<!-- ========== STATS ========== -->
-<section class="stats-list py-4 bg-light">
-    <div class="container">
-        <div class="row text-center g-3">
-            <div class="col-6 col-md-3">
-                <div class="display-5 fw-bold text-primary">{{ count($data) }}</div>
-                <small class="text-muted">Total Posts</small>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="display-5 fw-bold text-primary">2</div>
-                <small class="text-muted">Categories</small>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="display-5 fw-bold text-primary">1</div>
-                <small class="text-muted">Authors</small>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="display-5 fw-bold text-primary">{{ count($data) * 5 }}</div>
-                <small class="text-muted">Comments</small>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- ========== BLOG CONTENT ========== -->
 <section class="blog-content-list py-5" id="posts">
     <div class="container">

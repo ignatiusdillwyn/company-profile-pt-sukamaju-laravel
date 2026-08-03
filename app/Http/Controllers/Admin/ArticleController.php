@@ -19,14 +19,14 @@ class ArticleController
   {
 
     $type = $request->query('article_type', false);
-    
+
     $articles = $this->article->getAllArticlesByArticleType($type);
-dd($articles);
+    // dd($articles);
     $data = [
       'type'      => $type,
       'articles'  => $articles
     ];
-    
+
     return view('admin.article.index', $data);
   }
 
