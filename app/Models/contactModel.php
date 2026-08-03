@@ -3,20 +3,38 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB; // Add this line
+use Illuminate\Http\Request; // Import the Request class
+use Illuminate\Support\Facades\DB; // Import the DB facade
+use Illuminate\Support\Str; // Import the Str facade
+use Carbon\Carbon; // Import the Carbon class
 
 class contactModel extends Model
 {
-    public function getAllContact()
+    public function createContact(Request $request)
     {
-        $data = DB::select('CALL _getAllContacts()');
+        // dd($request);
+        $data = DB::select('CALL _createContact(?,?,?,?,?,?,?)', [
+            $request['full_name'] ?? '',
+            $request['email'] ?? '',
+            $request['phone'] ?? '',
+            $request['notes'] ?? '',
+            false,
+            Carbon::now(),
+            Carbon::now()
+        ]);
         return $data;
     }
 
-    public function getContactById($id)
-    {
-        $contactId = (int) $id;
-        $data = DB::select('CALL _getContactbyId(?)', [$contactId]);
-        return $data;
-    }
+    // public function getAllContact()
+    // {
+    //     $data = DB::select('CALL _getAllContacts()');
+    //     return $data;
+    // }
+
+    // public function getContactById($id)
+    // {
+    //     $contactId = (int) $id;
+    //     $data = DB::select('CALL _getContactbyId(?)', [$contactId]);
+    //     return $data;
+    // }
 }

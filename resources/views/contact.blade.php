@@ -3,627 +3,400 @@
 @section('title', 'Contact Us - DummyCorp')
 
 @section('content')
-<!-- ========== HERO CONTACT ========== -->
-<section class="contact-hero">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-7">
-                <span class="badge bg-warning text-dark mb-3">
-                    <i class="fas fa-headset me-1"></i> Get in Touch
-                </span>
-                <h1>Contact <span style="color: #ffd700;">Us</span></h1>
-                <p class="lead">
-                    Have a question, project idea, or just want to say hello? 
-                    We'd love to hear from you. Fill out the form below and we'll get back to you soon.
-                </p>
-                <div class="d-flex gap-3 flex-wrap mt-3">
-                    <div class="contact-info-item">
-                        <i class="fas fa-envelope text-warning"></i>
-                        <span>info@dummycorp.com</span>
-                    </div>
-                    <div class="contact-info-item">
-                        <i class="fas fa-phone text-warning"></i>
-                        <span>+62 812 3456 7890</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5 text-center d-none d-lg-block">
-                <img src="https://placehold.co/300x300" 
-                     alt="Contact Us" class="img-fluid" style="filter: drop-shadow(0 10px 40px rgba(0,0,0,0.2));" />
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ========== CONTACT SECTION ========== -->
-<section class="py-5">
-    <div class="container">
-        <div class="row g-4">
-            <!-- ===== FORM ===== -->
-            <div class="col-lg-7">
-                <div class="contact-form-wrapper">
-                    <h3 class="fw-bold mb-4">
-                        <i class="fas fa-paper-plane text-primary me-2"></i>
-                        Send Us a Message
-                    </h3>
-                    <p class="text-muted mb-4">
-                        Fill in the form below and we will respond within 24 hours.
-                    </p>
-
-                    <form id="contactForm">
-                        <div class="row g-3">
-                            <!-- Nama Lengkap -->
-                            <div class="col-md-6">
-                                <label for="fullname" class="form-label fw-semibold">
-                                    <i class="fas fa-user text-primary me-1"></i> Full Name
-                                    <span class="text-danger">*</span>
-                                </label>
-                                <input type="text" 
-                                       class="form-control form-control-lg" 
-                                       id="fullname" 
-                                       placeholder="John Doe"
-                                       required />
-                                <div class="invalid-feedback">Please enter your full name.</div>
-                            </div>
-
-                            <!-- No Telepon -->
-                            <div class="col-md-6">
-                                <label for="phone" class="form-label fw-semibold">
-                                    <i class="fas fa-phone text-primary me-1"></i> Phone Number
-                                    <span class="text-danger">*</span>
-                                </label>
-                                <input type="tel" 
-                                       class="form-control form-control-lg" 
-                                       id="phone" 
-                                       placeholder="+62 812 3456 7890"
-                                       required />
-                                <div class="invalid-feedback">Please enter your phone number.</div>
-                            </div>
-
-                            <!-- Email -->
-                            <div class="col-md-12">
-                                <label for="email" class="form-label fw-semibold">
-                                    <i class="fas fa-envelope text-primary me-1"></i> Email Address
-                                    <span class="text-danger">*</span>
-                                </label>
-                                <input type="email" 
-                                       class="form-control form-control-lg" 
-                                       id="email" 
-                                       placeholder="john@example.com"
-                                       required />
-                                <div class="invalid-feedback">Please enter a valid email address.</div>
-                            </div>
-
-                            <!-- Alamat -->
-                            <div class="col-md-12">
-                                <label for="address" class="form-label fw-semibold">
-                                    <i class="fas fa-map-marker-alt text-primary me-1"></i> Address
-                                </label>
-                                <input type="text" 
-                                       class="form-control form-control-lg" 
-                                       id="address" 
-                                       placeholder="Jl. Sudirman No. 123, Jakarta" />
-                            </div>
-
-                            <!-- Subject -->
-                            <div class="col-md-12">
-                                <label for="subject" class="form-label fw-semibold">
-                                    <i class="fas fa-tag text-primary me-1"></i> Subject
-                                    <span class="text-danger">*</span>
-                                </label>
-                                <select class="form-select form-control-lg" id="subject" required>
-                                    <option value="">Select a subject...</option>
-                                    <option value="general">General Inquiry</option>
-                                    <option value="project">Project Discussion</option>
-                                    <option value="support">Technical Support</option>
-                                    <option value="partnership">Partnership</option>
-                                    <option value="career">Career / Job Application</option>
-                                    <option value="feedback">Feedback / Suggestion</option>
-                                    <option value="other">Other</option>
-                                </select>
-                                <div class="invalid-feedback">Please select a subject.</div>
-                            </div>
-
-                            <!-- Message -->
-                            <div class="col-md-12">
-                                <label for="message" class="form-label fw-semibold">
-                                    <i class="fas fa-comment text-primary me-1"></i> Message
-                                    <span class="text-danger">*</span>
-                                </label>
-                                <textarea class="form-control" 
-                                          id="message" 
-                                          rows="5" 
-                                          placeholder="Write your message here..."
-                                          required></textarea>
-                                <div class="invalid-feedback">Please enter your message.</div>
-                                <div class="text-end">
-                                    <small class="text-muted" id="charCount">0 / 500 characters</small>
-                                </div>
-                            </div>
-
-                            <!-- Submit Button -->
-                            <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary btn-lg w-100" id="submitBtn">
-                                    <i class="fas fa-paper-plane me-2"></i> Send Message
-                                </button>
-                                <div id="formMessage" class="mt-3"></div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <!-- ===== SIDEBAR INFO ===== -->
-            <div class="col-lg-5">
-                <!-- Contact Info Cards -->
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div>
-                        <h6>Our Office</h6>
-                        <p class="text-muted mb-0">
-                            Jl. Sudirman No. 123<br />
-                            Jakarta Selatan, 12345<br />
-                            Indonesia
-                        </p>
-                    </div>
-                </div>
-
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="fas fa-phone-alt"></i>
-                    </div>
-                    <div>
-                        <h6>Phone Number</h6>
-                        <p class="text-muted mb-0">
-                            <strong>Main:</strong> +62 21 1234 5678<br />
-                            <strong>Mobile:</strong> +62 812 3456 7890
-                        </p>
-                    </div>
-                </div>
-
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div>
-                        <h6>Email Address</h6>
-                        <p class="text-muted mb-0">
-                            <strong>Info:</strong> info@dummycorp.com<br />
-                            <strong>Support:</strong> support@dummycorp.com
-                        </p>
-                    </div>
-                </div>
-
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div>
-                        <h6>Working Hours</h6>
-                        <p class="text-muted mb-0">
-                            <strong>Mon - Fri:</strong> 09:00 - 18:00<br />
-                            <strong>Sat:</strong> 09:00 - 14:00<br />
-                            <strong>Sun:</strong> Closed
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Social Media -->
-                <div class="social-card">
-                    <h6 class="fw-bold mb-3">
-                        <i class="fas fa-share-alt text-primary me-2"></i>Follow Us
-                    </h6>
-                    <div class="d-flex gap-3">
-                        <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ========== MAP SECTION (DUMMY) ========== -->
-<section class="py-5 bg-light">
-    <div class="container">
-        <div class="text-center mb-4">
-            <h3 class="fw-bold">Find <span style="color: #667eea;">Us</span></h3>
-            <p class="text-muted">Visit our office location</p>
-        </div>
-        <div class="map-placeholder">
-            <i class="fas fa-map-marked-alt"></i>
-            <p>Google Map Location</p>
-            <small class="text-muted">Jl. Sudirman No. 123, Jakarta Selatan</small>
-        </div>
-    </div>
-</section>
-@endsection
-
-@push('styles')
 <style>
-/* ===== HERO ===== */
-.contact-hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 80px 0 70px;
-}
-
-.contact-hero h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-}
-
-.contact-hero .lead {
-    font-size: 1.15rem;
-    opacity: 0.9;
-}
-
-.contact-info-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(255, 255, 255, 0.15);
-    padding: 8px 18px;
-    border-radius: 30px;
-    font-size: 0.9rem;
-}
-
-.contact-info-item i {
-    font-size: 1.1rem;
-}
-
-/* ===== FORM WRAPPER ===== */
-.contact-form-wrapper {
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
-}
-
-.contact-form-wrapper .form-control,
-.contact-form-wrapper .form-select {
-    border: 2px solid #e8ecf1;
-    border-radius: 12px;
-    padding: 12px 18px;
-    transition: all 0.3s ease;
-}
-
-.contact-form-wrapper .form-control:focus,
-.contact-form-wrapper .form-select:focus {
-    border-color: #667eea;
-    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-}
-
-.contact-form-wrapper .form-control.is-valid,
-.contact-form-wrapper .form-select.is-valid {
-    border-color: #2ed573;
-}
-
-.contact-form-wrapper .form-control.is-invalid,
-.contact-form-wrapper .form-select.is-invalid {
-    border-color: #ff6b6b;
-}
-
-.contact-form-wrapper textarea.form-control {
-    resize: vertical;
-    min-height: 120px;
-}
-
-/* ===== INFO CARDS ===== */
-.info-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 18px;
-    background: white;
-    padding: 22px 25px;
-    border-radius: 16px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
-    margin-bottom: 18px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.info-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
-}
-
-.info-card .info-icon {
-    width: 50px;
-    height: 50px;
-    min-width: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-    border-radius: 12px;
-    font-size: 22px;
-    color: #667eea;
-}
-
-.info-card h6 {
-    font-weight: 700;
-    margin-bottom: 4px;
-}
-
-/* ===== SOCIAL CARD ===== */
-.social-card {
-    background: white;
-    padding: 22px 25px;
-    border-radius: 16px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
-}
-
-.social-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    color: white;
-    font-size: 1.1rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-decoration: none;
-}
-
-.social-icon:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-.social-icon.facebook {
-    background: #1877f2;
-}
-
-.social-icon.twitter {
-    background: #1da1f2;
-}
-
-.social-icon.instagram {
-    background: linear-gradient(135deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
-}
-
-.social-icon.linkedin {
-    background: #0077b5;
-}
-
-.social-icon.youtube {
-    background: #ff0000;
-}
-
-/* ===== MAP PLACEHOLDER ===== */
-.map-placeholder {
-    background: white;
-    border-radius: 16px;
-    padding: 60px 20px;
-    text-align: center;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
-    border: 2px dashed #dce0e5;
-}
-
-.map-placeholder i {
-    font-size: 3.5rem;
-    color: #667eea;
-    margin-bottom: 15px;
-    display: block;
-}
-
-.map-placeholder p {
-    font-weight: 600;
-    font-size: 1.1rem;
-    margin-bottom: 4px;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-    .contact-hero h1 {
-        font-size: 2.2rem;
+    /* ============================================
+       CONTACT PAGE STYLES
+    ============================================ */
+    .contact-page {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 20px;
     }
-    
+
+    /* Hero Section */
     .contact-hero {
-        padding: 50px 0 40px;
+        text-align: center;
+        padding: 60px 20px 40px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 12px;
+        color: white;
+        margin-bottom: 40px;
     }
-    
-    .contact-form-wrapper {
-        padding: 24px 18px;
+
+    .contact-hero h1 {
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin: 0 0 12px 0;
     }
-    
+
+    .contact-hero h1 span {
+        color: #ffd700;
+    }
+
+    .contact-hero .lead {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        max-width: 500px;
+        margin: 0 auto 20px;
+        line-height: 1.7;
+    }
+
+    .contact-hero .badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 6px 20px;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        margin-bottom: 16px;
+    }
+
+    .contact-hero .badge i {
+        margin-right: 8px;
+    }
+
+    .contact-info-items {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
     .contact-info-item {
-        font-size: 0.8rem;
-        padding: 6px 14px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 8px 18px;
+        border-radius: 50px;
+        font-size: 0.9rem;
     }
-    
-    .info-card {
-        padding: 18px 20px;
-    }
-}
 
-/* ===== LOADING SPINNER ===== */
-.spinner-border-sm {
-    width: 1.2rem;
-    height: 1.2rem;
-}
+    .contact-info-item i {
+        color: #ffd700;
+    }
+
+    /* Form Wrapper */
+    .form-wrapper {
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+        border: 1px solid #e8ecf1;
+    }
+
+    .form-wrapper h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0 0 8px 0;
+        color: #1a1a2e;
+    }
+
+    .form-wrapper h3 i {
+        color: #667eea;
+        margin-right: 10px;
+    }
+
+    .form-wrapper .subtitle {
+        color: #6c757d;
+        margin-bottom: 24px;
+        font-size: 0.95rem;
+    }
+
+    /* Alert Messages */
+    .alert {
+        padding: 14px 18px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 0.95rem;
+    }
+
+    .alert-danger {
+        background: #fff5f5;
+        color: #c62828;
+        border-left: 4px solid #ef5350;
+    }
+
+    .alert-danger ul {
+        margin: 8px 0 0 0;
+        padding-left: 20px;
+    }
+
+    .alert-success {
+        background: #f0fff4;
+        color: #2e7d32;
+        border-left: 4px solid #66bb6a;
+    }
+
+    .alert i {
+        margin-right: 8px;
+    }
+
+    /* Form Group */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: #1a1a2e;
+    }
+
+    .form-group label .text-danger {
+        color: #dc3545;
+    }
+
+    .form-group label i {
+        color: #667eea;
+        margin-right: 6px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid #e8ecf1;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+        font-family: inherit;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    }
+
+    .form-control.is-invalid {
+        border-color: #dc3545;
+    }
+
+    .form-control.is-invalid:focus {
+        box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.1);
+    }
+
+    .form-control.is-valid {
+        border-color: #28a745;
+    }
+
+    textarea.form-control {
+        resize: vertical;
+        min-height: 120px;
+    }
+
+    .invalid-feedback {
+        color: #dc3545;
+        font-size: 0.85rem;
+        margin-top: 4px;
+        display: block;
+    }
+
+    /* Submit Button */
+    .btn-submit {
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: inherit;
+    }
+
+    .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-submit i {
+        margin-right: 8px;
+    }
+
+    /* ============================================
+       RESPONSIVE
+    ============================================ */
+    @media (max-width: 768px) {
+        .contact-hero {
+            padding: 40px 16px 30px;
+        }
+
+        .contact-hero h1 {
+            font-size: 2rem;
+        }
+
+        .contact-hero .lead {
+            font-size: 1rem;
+        }
+
+        .form-wrapper {
+            padding: 24px 16px;
+        }
+
+        .contact-info-items {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-info-item {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .contact-hero h1 {
+            font-size: 1.7rem;
+        }
+
+        .form-wrapper {
+            padding: 16px 12px;
+        }
+
+        .form-control {
+            padding: 10px 14px;
+            font-size: 0.95rem;
+        }
+
+        .btn-submit {
+            padding: 12px;
+            font-size: 1rem;
+        }
+    }
 </style>
-@endpush
 
-@push('scripts')
-<script>
-$(document).ready(function() {
-    // ===== CHARACTER COUNTER =====
-    $('#message').on('input', function() {
-        var length = $(this).val().length;
-        var maxLength = 500;
-        $('#charCount').text(length + ' / ' + maxLength + ' characters');
-        
-        if (length > maxLength) {
-            $(this).val($(this).val().substring(0, maxLength));
-            $('#charCount').text(maxLength + ' / ' + maxLength + ' characters');
-        }
-        
-        if (length > maxLength * 0.9) {
-            $('#charCount').css('color', '#ff6b6b');
-        } else {
-            $('#charCount').css('color', '#6c757d');
-        }
-    });
+<!-- ========== CONTACT PAGE ========== -->
+<div class="contact-page">
+    <!-- HERO -->
+    <div class="contact-hero">
+        <div class="badge">
+            <i class="fas fa-headset"></i> Get in Touch
+        </div>
+        <h1>Contact <span>Us</span></h1>
+        <p class="lead">
+            Have a question or project idea? We'd love to hear from you.
+            Fill out the form below and we'll get back to you soon.
+        </p>
+        <div class="contact-info-items">
+            <div class="contact-info-item">
+                <i class="fas fa-envelope"></i>
+                <span>info@dummycorp.com</span>
+            </div>
+            <div class="contact-info-item">
+                <i class="fas fa-phone"></i>
+                <span>+62 812 3456 7890</span>
+            </div>
+        </div>
+    </div>
 
-    // ===== FORM VALIDATION & SUBMIT =====
-    $('#contactForm').on('submit', function(e) {
-        e.preventDefault();
-        
-        // Reset validation
-        $('.form-control, .form-select').removeClass('is-valid is-invalid');
-        $('#formMessage').html('');
-        
-        // Get form data
-        var fullname = $('#fullname').val().trim();
-        var phone = $('#phone').val().trim();
-        var email = $('#email').val().trim();
-        var address = $('#address').val().trim();
-        var subject = $('#subject').val();
-        var message = $('#message').val().trim();
-        
-        var isValid = true;
-        
-        // Validate Full Name
-        if (fullname === '') {
-            $('#fullname').addClass('is-invalid');
-            isValid = false;
-        } else {
-            $('#fullname').addClass('is-valid');
-        }
-        
-        // Validate Phone
-        if (phone === '') {
-            $('#phone').addClass('is-invalid');
-            isValid = false;
-        } else {
-            $('#phone').addClass('is-valid');
-        }
-        
-        // Validate Email
-        if (email === '' || !isValidEmail(email)) {
-            $('#email').addClass('is-invalid');
-            isValid = false;
-        } else {
-            $('#email').addClass('is-valid');
-        }
-        
-        // Validate Subject
-        if (subject === '') {
-            $('#subject').addClass('is-invalid');
-            isValid = false;
-        } else {
-            $('#subject').addClass('is-valid');
-        }
-        
-        // Validate Message
-        if (message === '') {
-            $('#message').addClass('is-invalid');
-            isValid = false;
-        } else {
-            $('#message').addClass('is-valid');
-        }
-        
-        if (!isValid) {
-            $('#formMessage').html(
-                '<div class="alert alert-danger">' +
-                    '<i class="fas fa-exclamation-circle me-2"></i> ' +
-                    'Please fill in all required fields correctly.' +
-                '</div>'
-            );
-            return;
-        }
-        
-        // ===== DUMMY DATA YANG DIKIRIM =====
-        var formData = {
-            fullname: fullname,
-            phone: phone,
-            email: email,
-            address: address || '-',
-            subject: subject,
-            message: message,
-            submitted_at: new Date().toLocaleString('id-ID')
-        };
-        
-        console.log('📨 Form Data Submitted:');
-        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-        console.log('👤 Nama Lengkap : ' + formData.fullname);
-        console.log('📞 No Telepon   : ' + formData.phone);
-        console.log('📧 Email       : ' + formData.email);
-        console.log('📍 Alamat      : ' + formData.address);
-        console.log('📌 Subject     : ' + formData.subject);
-        console.log('💬 Message     : ' + formData.message);
-        console.log('🕐 Waktu       : ' + formData.submitted_at);
-        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-        
-        // ===== SHOW LOADING =====
-        var btn = $('#submitBtn');
-        var originalText = btn.html();
-        btn.html('<span class="spinner-border spinner-border-sm me-2"></span> Sending...');
-        btn.prop('disabled', true);
-        
-        // ===== SIMULASI SEND =====
-        setTimeout(function() {
-            // Reset button
-            btn.html(originalText);
-            btn.prop('disabled', false);
-            
-            // Show success message
-            $('#formMessage').html(
-                '<div class="alert alert-success">' +
-                    '<i class="fas fa-check-circle me-2"></i> ' +
-                    '<strong>Message sent successfully!</strong> ' +
-                    'Thank you, ' + formData.fullname + '. We will get back to you soon.' +
-                '</div>'
-            );
-            
-            // Reset form after 3 seconds
-            setTimeout(function() {
-                $('#contactForm')[0].reset();
-                $('.form-control, .form-select').removeClass('is-valid is-invalid');
-                $('#charCount').text('0 / 500 characters');
-                $('#charCount').css('color', '#6c757d');
-            }, 3000);
-            
-        }, 1500);
-    });
+    <!-- FORM -->
+    <div class="form-wrapper">
+        <h3>
+            <i class="fas fa-paper-plane"></i>
+            Send Us a Message
+        </h3>
+        <p class="subtitle">Fill in the form below and we will respond within 24 hours.</p>
 
-    // ===== VALIDASI EMAIL =====
-    function isValidEmail(email) {
-        var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(email);
-    }
+        <!-- Display Validation Errors
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-circle"></i>
+                <strong>Please fix the following errors:</strong>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif -->
 
-    // ===== REAL-TIME VALIDATION =====
-    $('.form-control, .form-select').on('blur', function() {
-        if ($(this).val().trim() !== '') {
-            $(this).removeClass('is-invalid').addClass('is-valid');
-        }
-    });
+        <!-- Success Message -->
+        @if (session('success'))
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i>
+                {{ session('success') }}
+            </div>
+        @endif
 
-    // ===== PHONE FORMATING =====
-    $('#phone').on('input', function() {
-        var value = $(this).val().replace(/\D/g, '');
-        if (value.length > 0) {
-            var formatted = '';
-            if (value.length <= 3) {
-                formatted = value;
-            } else if (value.length <= 6) {
-                formatted = value.slice(0, 3) + '-' + value.slice(3);
-            } else {
-                formatted = value.slice(0, 3) + '-' + value.slice(3, 6) + '-' + value.slice(6, 10);
-            }
-            $(this).val(formatted);
-        }
-    });
+        <form action="{{ route('contact.save') }}" method="POST">
+            @csrf
 
-    console.log('✅ Contact page loaded successfully!');
-});
-</script>
-@endpush
+            <!-- Full Name -->
+            <div class="form-group">
+                <label for="full_name">
+                    <i class="fas fa-user"></i> Full Name
+                    <span class="text-danger">*</span>
+                </label>
+                <input type="text"
+                    class="form-control @error('full_name') is-invalid @enderror"
+                    id="full_name"
+                    name="full_name"
+                    value="{{ old('full_name') }}"
+                    placeholder="John Doe" />
+                @error('full_name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">
+                    <i class="fas fa-envelope"></i> Email Address
+                    <span class="text-danger">*</span>
+                </label>
+                <input type="text"
+                    class="form-control @error('email') is-invalid @enderror"
+                    id="email"
+                    name="email"
+                    value="{{ old('email') }}"
+                    placeholder="john@example.com" />
+                @error('email')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group">
+                <label for="phone">
+                    <i class="fas fa-phone"></i> Phone Number
+                    <span class="text-danger">*</span>
+                </label>
+                <input type="tel"
+                    class="form-control @error('phone') is-invalid @enderror"
+                    id="phone"
+                    name="phone"
+                    value="{{ old('phone') }}"
+                    placeholder="081234567890" />
+                @error('phone')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <!-- Notes -->
+            <div class="form-group">
+                <label for="notes">
+                    <i class="fas fa-comment"></i> Message
+                    <span class="text-danger">*</span>
+                </label>
+                <textarea class="form-control @error('notes') is-invalid @enderror"
+                    id="notes"
+                    name="notes"
+                    rows="5"
+                    placeholder="Write your message here...">{{ old('notes') }}</textarea>
+                @error('notes')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-submit">
+                <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+        </form>
+    </div>
+</div>
+@endsection

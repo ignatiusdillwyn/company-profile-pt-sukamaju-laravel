@@ -7,7 +7,7 @@ use App\Models\blogModel;
 use App\Models\contactModel;
 use App\Models\serviceModel;
 use App\Models\userModel;
-
+use App\Http\Requests\StoreFormRequest;
 
 class WebController
 {
@@ -16,48 +16,60 @@ class WebController
     protected $serviceModel;
     protected $userModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->blogModel = new blogModel();
         $this->contactModel = new contactModel();
         $this->serviceModel = new serviceModel();
         $this->userModel = new userModel();
-     }
-    
-    public function home() {
+    }
+
+    public function home()
+    {
         return view("home");
     }
 
-    public function contact() {
-        $data = $this->contactModel->getAllContact();
+    public function contact()
+    {
+        // $data = $this->contactModel->getAllContact();
         // dd($data);
         return view("contact");
     }
 
-    public function contactHandle(Request $request) {
-        $input = $request->all();
-        dd($input);
+    public function contactHandle(StoreFormRequest $request)
+    {
+        // dd('Masuk udah');
+        // dd($request->all());
+        $validated = $request->validated();
+
+        $this->contactModel->createContact($request);
+        return redirect()->route('contact')->with('success', 'Message Sent Successfully!');
     }
 
-    public function blog() {
+    public function blog()
+    {
         $data = $this->blogModel->getAllBlogs();
         return view("blog", compact('data'));
-
     }
 
-    public function blogDetail($slug) {
+    public function blogDetail($slug)
+    {
         return view("blog-detail");
     }
 
-    public function service() {
+    public function service()
+    {
         $data = $this->serviceModel->getAllServices();
         return view("service", compact('data'));
     }
 
-    public function serviceDetail($slug) {
+    public function serviceDetail($slug)
+    {
         return view("service-detail");
     }
 
-    public function about() {
+    public function about()
+    {
         // $data = $this->serviceModel->getAllAbout();
         return view("about");
     }
