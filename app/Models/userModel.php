@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash; // Add this line
 use Carbon\Carbon;
 
 class userModel extends Model
@@ -20,17 +21,19 @@ class userModel extends Model
         //     Carbon::now()
         // ]);
 
+        // Hash password sebelum dikirim ke stored procedure
+        $hashedPassword = Hash::make($request['password']);
+        dd($hashedPassword);
+        
         $data = DB::select('CALL _createUser(?,?,?,?,?,?,?)', [
             $request['name'],
             $request['email'],
-            $request['password'],
+            $hashedPassword, // Password sudah di-hash
             $request['role'],
-            true,
-            Carbon::now(),
-            Carbon::now()
+            true, // is_active
+            Carbon::now(), // created_at
+            Carbon::now() // updated_at
         ]);
-
-        // dd($data);
 
         return 'Success create user';
     }

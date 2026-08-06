@@ -30,7 +30,7 @@
                 <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
 
-                @if ($errors->any())
+                <!-- @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul class="mb-0">
                         @foreach ($errors->all() as $error)
@@ -38,7 +38,7 @@
                         @endforeach
                     </ul>
                 </div>
-                @endif
+                @endif -->
 
                 <form action="{{ route('admin.register.handle') }}" method="POST">
                     @csrf
@@ -65,23 +65,25 @@
                         @enderror
                     </div>
 
+                    <!-- Password dengan Show/Hide -->
                     <label class="visually-hidden" for="registerPassword">Password</label>
                     <div class="input-group mb-3">
                         <input id="registerPassword" type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password">
-                        <div class="input-group-text">
-                            <span class="bi bi-lock-fill"></span>
-                        </div>
+                        <button class="input-group-text password-toggle" type="button" data-target="registerPassword" style="cursor: pointer;">
+                            <span class="bi bi-eye-slash" id="registerPasswordIcon"></span>
+                        </button>
                         @error('password')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
+                    <!-- Confirm Password dengan Show/Hide -->
                     <label class="visually-hidden" for="registerConfirmPassword">Confirm Password</label>
                     <div class="input-group mb-3">
                         <input id="registerConfirmPassword" type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password">
-                        <div class="input-group-text">
-                            <span class="bi bi-lock-fill"></span>
-                        </div>
+                        <button class="input-group-text password-toggle" type="button" data-target="registerConfirmPassword" style="cursor: pointer;">
+                            <span class="bi bi-eye-slash" id="registerConfirmPasswordIcon"></span>
+                        </button>
                     </div>
 
                     <!-- Role Selection -->
@@ -101,7 +103,6 @@
                     </div>
 
                     <div class="row">
-
                         <div class="col-12">
                             <div class="d-grid gap-2">
                                 <button type="submit" class="btn btn-primary right">Register</button>
@@ -123,6 +124,31 @@
     <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.16.0/browser/overlayscrollbars.browser.es5.min.js"></script>
     <!-- AdminLTE 4 -->
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@4.1.0/dist/js/adminlte.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle password visibility
+            const toggleButtons = document.querySelectorAll('.password-toggle');
+
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetId = this.dataset.target;
+                    const input = document.getElementById(targetId);
+                    const icon = this.querySelector('span');
+
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        icon.classList.remove('bi-eye-slash');
+                        icon.classList.add('bi-eye');
+                    } else {
+                        input.type = 'password';
+                        icon.classList.remove('bi-eye');
+                        icon.classList.add('bi-eye-slash');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

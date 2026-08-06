@@ -28,6 +28,15 @@ class AuthController
     {
         // dd($request->all());
         $data = $request->all();
+
+        $credentials = $request->validate([
+            'name'    => 'required',
+            'email'    => 'required|email|unique:table_users,email',
+            'password' => 'required|string|min:8|confirmed',
+            // 'password_confirmation' => 'required|string|min:8|same:password',
+            'role' => 'required|in:admin,author',
+        ]);
+
         $this->userModel->createUser($data);
         return redirect()->intended(route('admin.login'));
     }

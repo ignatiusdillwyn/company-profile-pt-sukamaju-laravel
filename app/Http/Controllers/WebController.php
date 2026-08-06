@@ -58,6 +58,7 @@ class WebController
      */
     public function service(Request $request)
     {
+        // dd($request); // Debugging: tampilkan semua data request
         $search = $request->input('search');
         
         if ($search) {
