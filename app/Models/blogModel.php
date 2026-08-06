@@ -17,7 +17,22 @@ class blogModel extends Model
     public function getBlogbySlug($slug)
     {
         $articleSlug = (string) $slug;
-        $data = DB::select('CALL _getArticleBySlug(?)', [$articleSlug]);
+        $dataFromDB = DB::select('CALL _getArticleBySlug(?)', [$articleSlug]);
+
+        $data = [];
+
+        foreach ($dataFromDB as $index => $item) {
+            $data['id'] = $item->id;
+            $data['user_id'] = $item->user_id;
+            $data['article_type'] = $item->article_type;
+            $data['title'] = $item->title;
+            $data['slug'] = $item->slug;
+            $data['image'] = $item->image;
+            $data['content'] = $item->content;
+            $data['is_published'] = $item->is_published;
+            $data['created'] = $item->created;
+            $data['updated'] = $item->updated;
+        }
         return $data;
     }
 

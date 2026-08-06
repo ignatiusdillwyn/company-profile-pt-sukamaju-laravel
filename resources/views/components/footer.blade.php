@@ -36,7 +36,7 @@
                         <li><a href="#">Changelog</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                     <h6>Newsletter</h6>
                     <p class="text-muted small">Subscribe to get latest updates</p>
                     <div class="input-group">
@@ -46,7 +46,7 @@
                         </button>
                     </div>
                     <div id="newsletterMessage" class="mt-2 small"></div>
-                </div>
+                </div> -->
             </div>
             <hr class="my-4 bg-secondary" />
             <div class="text-center text-muted small">

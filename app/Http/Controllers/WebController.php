@@ -31,17 +31,12 @@ class WebController
 
     public function contact()
     {
-        // $data = $this->contactModel->getAllContact();
-        // dd($data);
         return view("contact");
     }
 
     public function contactHandle(StoreFormRequest $request)
     {
-        // dd('Masuk udah');
-        // dd($request->all());
         $validated = $request->validated();
-
         $this->contactModel->createContact($request);
         return redirect()->route('contact')->with('success', 'Message Sent Successfully!');
     }
@@ -54,23 +49,44 @@ class WebController
 
     public function blogDetail($slug)
     {
-        return view("blog-detail");
+        $data = $this->blogModel->getBlogbySlug($slug);
+        return view("blog-detail", compact('data'));
     }
 
-    public function service()
+    /**
+     * Display a listing of services with search functionality
+     */
+    public function service(Request $request)
     {
-        $data = $this->serviceModel->getAllServices();
-        return view("service", compact('data'));
+        $search = $request->input('search');
+        
+        if ($search) {
+            // Jika ada parameter search, panggil method search
+            $data = $this->serviceModel->getServicebyTitle($search);
+        } else {
+            // Jika tidak ada search, ambil semua data
+            $data = $this->serviceModel->getAllServices();
+        }
+        
+        // dd($data); // Debugging: tampilkan data yang diambil dari database
+        return view("service", compact('data', 'search'));
     }
 
     public function serviceDetail($slug)
     {
-        return view("service-detail");
+        $data = $this->serviceModel->getServicebySlug($slug);
+        return view("service-detail", compact('data'));
     }
+
+    // Method ini bisa dihapus karena sudah digabung dengan service()
+    // public function searchServiceHandle($serviceTitle)
+    // {
+    //     $data = $this->serviceModel->getServicebyTitle($serviceTitle);
+    //     return view("service-detail", compact('data'));
+    // }
 
     public function about()
     {
-        // $data = $this->serviceModel->getAllAbout();
         return view("about");
     }
 }

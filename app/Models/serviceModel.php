@@ -16,7 +16,26 @@ class serviceModel extends Model
     public function getServicebySlug($slug)
     {
         $serviceSlug = (string) $slug;
-        $data = DB::select('CALL _getArticleBySlug(?)', [$serviceSlug]);
+        $dataFromDB= DB::select('CALL _getArticleBySlug(?)', [$serviceSlug]);
+        // dd($dataFromDB);
+
+        $data = [];
+
+        foreach ($dataFromDB as $index => $item) {
+            $data['id'] = $item->id;
+            $data['user_id'] = $item->user_id;
+            $data['article_type'] = $item->article_type;
+            $data['title'] = $item->title;
+            $data['slug'] = $item->slug;
+            $data['image'] = $item->image;
+            $data['content'] = $item->content;
+            $data['is_published'] = $item->is_published;
+            $data['created'] = $item->created;
+            $data['updated'] = $item->updated;
+        }
+
+        // dd($data);
+
         return $data;
     }
 
@@ -24,6 +43,14 @@ class serviceModel extends Model
     {
         $serviceId = (int) $id;
         $data = DB::select('CALL _getArticleById(?)', [$serviceId]);
+        return $data;
+    }
+
+    public function getServicebyTitle($title)
+    {
+        $serviceTitle = (string) $title;
+
+        $data = DB::select('CALL _searchArticleByTitle(?,?)', [$serviceTitle, 'service']);
         return $data;
     }
 

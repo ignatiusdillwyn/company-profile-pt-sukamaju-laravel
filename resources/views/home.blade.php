@@ -10,14 +10,14 @@
                     Create stunning, responsive websites with modern technology.
                     Start building your next project today!
                 </p>
-                <div class="d-flex gap-3 mt-4 flex-wrap">
+                <!-- <div class="d-flex gap-3 mt-4 flex-wrap">
                     <a href="#" class="btn btn-primary btn-lg">
                         <i class="fas fa-rocket me-2"></i> Get Started
                     </a>
                     <a href="#" class="btn btn-outline-light btn-lg">
                         <i class="fas fa-play-circle me-2"></i> Watch Demo
                     </a>
-                </div>
+                </div> -->
             </div>
             <div class="col-lg-6 text-center mt-5 mt-lg-0">
                 <img src="https://placehold.co/600x400"

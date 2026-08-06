@@ -30,26 +30,26 @@
                     Building the Future <br /><span>With Passion</span>
                 </h2>
                 <p class="text-muted mb-4">
-                    Founded in 2020, DummyCorp has grown from a small startup to a trusted 
-                    digital partner for businesses worldwide. We combine creativity, technology, 
+                    Founded in 2020, DummyCorp has grown from a small startup to a trusted
+                    digital partner for businesses worldwide. We combine creativity, technology,
                     and strategy to deliver exceptional results.
                 </p>
-                
+
                 <ul class="about-list ps-0">
                     <li><i class="fas fa-check-circle"></i> <strong>100+</strong> Projects Delivered</li>
                     <li><i class="fas fa-check-circle"></i> <strong>50+</strong> Happy Clients</li>
                     <li><i class="fas fa-check-circle"></i> <strong>4.9</strong> Average Rating</li>
                     <li><i class="fas fa-check-circle"></i> <strong>10+</strong> Team Members</li>
                 </ul>
-                
+
                 <a href="{{ route('contact') }}" class="btn btn-primary mt-3">
                     <i class="fas fa-arrow-right me-2"></i> Contact Us
                 </a>
             </div>
             <div class="col-lg-6">
-                <img src="https://placehold.co/600x400" 
-                     alt="About Us" class="about-image img-fluid" 
-                     onerror="this.src='https://via.placeholder.com/600x400/667eea/FFFFFF?text=Our+Team'" />
+                <img src="https://placehold.co/600x400"
+                    alt="About Us" class="about-image img-fluid"
+                    onerror="this.src='https://via.placeholder.com/600x400/667eea/FFFFFF?text=Our+Team'" />
             </div>
         </div>
     </div>
@@ -97,8 +97,8 @@
                     </div>
                     <h4>Our Mission</h4>
                     <p class="text-muted">
-                        To empower businesses with innovative digital solutions that drive growth, 
-                        efficiency, and customer satisfaction. We believe in making technology 
+                        To empower businesses with innovative digital solutions that drive growth,
+                        efficiency, and customer satisfaction. We believe in making technology
                         accessible and impactful for everyone.
                     </p>
                 </div>
@@ -110,7 +110,7 @@
                     </div>
                     <h4>Our Vision</h4>
                     <p class="text-muted">
-                        To become a global leader in digital transformation, known for excellence, 
+                        To become a global leader in digital transformation, known for excellence,
                         innovation, and a commitment to creating a better future through technology.
                     </p>
                 </div>
@@ -131,7 +131,7 @@
                 These values guide everything we do and define who we are as a company.
             </p>
         </div>
-        
+
         <div class="row g-4">
             <div class="col-md-3 col-6">
                 <div class="value-card">
@@ -183,7 +183,7 @@
             <h2 class="section-title">Our <span>Milestones</span></h2>
             <p class="section-subtitle">The journey of DummyCorp so far</p>
         </div>
-        
+
         <div class="timeline">
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
@@ -239,13 +239,14 @@
             <h2 class="section-title">Meet Our <span>Team</span></h2>
             <p class="section-subtitle">The talented people behind our success</p>
         </div>
-        
+
         <div class="row g-4">
             <div class="col-lg-3 col-md-6">
                 <div class="team-card">
                     <div class="team-img-wrapper">
-                        <img src="https://placehold.co/600x400" 
-                             alt="John Doe" class="team-img" />
+                        <img src="https://placehold.co/300x300"
+                            class="team-img rounded"
+                            alt="John Doe" class="team-img" />
                         <div class="team-social">
                             <a href="#"><i class="fab fa-linkedin-in"></i></a>
                             <a href="#"><i class="fab fa-twitter"></i></a>
@@ -261,8 +262,9 @@
             <div class="col-lg-3 col-md-6">
                 <div class="team-card">
                     <div class="team-img-wrapper">
-                        <img src="https://placehold.co/600x400" 
-                             alt="Jane Smith" class="team-img" />
+                        <img src="https://placehold.co/300x300"
+                            class="team-img rounded"
+                            alt="Jane Smith" class="team-img" />
                         <div class="team-social">
                             <a href="#"><i class="fab fa-linkedin-in"></i></a>
                             <a href="#"><i class="fab fa-twitter"></i></a>
@@ -278,8 +280,9 @@
             <div class="col-lg-3 col-md-6">
                 <div class="team-card">
                     <div class="team-img-wrapper">
-                        <img src="https://placehold.co/600x400" 
-                             alt="Mike Johnson" class="team-img" />
+                        <img src="https://placehold.co/300x300"
+                            class="team-img rounded"
+                            alt="Mike Johnson" class="team-img" />
                         <div class="team-social">
                             <a href="#"><i class="fab fa-linkedin-in"></i></a>
                             <a href="#"><i class="fab fa-twitter"></i></a>
@@ -295,8 +298,9 @@
             <div class="col-lg-3 col-md-6">
                 <div class="team-card">
                     <div class="team-img-wrapper">
-                        <img src="https://placehold.co/600x400" 
-                             alt="Sarah Lee" class="team-img" />
+                        <img src="https://placehold.co/300x300"
+                            class="team-img rounded"
+                            alt="Sarah Lee" />
                         <div class="team-social">
                             <a href="#"><i class="fab fa-linkedin-in"></i></a>
                             <a href="#"><i class="fab fa-twitter"></i></a>
@@ -335,91 +339,91 @@
         position: relative;
         overflow: hidden;
     }
-    
+
     .page-header h1 {
         font-size: 3.5rem;
         font-weight: 700;
         position: relative;
         z-index: 1;
     }
-    
+
     .page-header .lead {
         font-size: 1.25rem;
         opacity: 0.9;
         position: relative;
         z-index: 1;
     }
-    
+
     .breadcrumb-custom {
         background: transparent;
         padding: 0;
         position: relative;
         z-index: 1;
     }
-    
+
     .breadcrumb-custom .breadcrumb-item a {
         color: rgba(255, 255, 255, 0.8);
         text-decoration: none;
     }
-    
+
     .breadcrumb-custom .breadcrumb-item a:hover {
         color: #fff;
     }
-    
+
     .breadcrumb-custom .breadcrumb-item.active {
         color: #fff;
     }
-    
-    .breadcrumb-custom .breadcrumb-item + .breadcrumb-item::before {
+
+    .breadcrumb-custom .breadcrumb-item+.breadcrumb-item::before {
         color: rgba(255, 255, 255, 0.6);
     }
-    
+
     /* ===== SECTION TITLE ===== */
     .section-title {
         font-size: 2.5rem;
         font-weight: 700;
         margin-bottom: 1rem;
     }
-    
+
     .section-title span {
         color: #667eea;
     }
-    
+
     .section-subtitle {
         color: #6c757d;
         font-size: 1.1rem;
         max-width: 600px;
         margin: 0 auto;
     }
-    
+
     /* ===== ABOUT LIST ===== */
     .about-list li {
         padding: 10px 0;
         border-bottom: 1px solid #f0f0f0;
         list-style: none;
     }
-    
+
     .about-list li:last-child {
         border-bottom: none;
     }
-    
+
     .about-list li i {
         color: #667eea;
         margin-right: 12px;
         width: 20px;
     }
-    
+
     /* ===== ABOUT IMAGE ===== */
     .about-image {
         border-radius: 20px;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease;
     }
-    
+
     .about-image:hover {
         transform: scale(1.02);
     }
-    
+
     /* ===== VALUE CARDS ===== */
     .value-card {
         border: none;
@@ -431,12 +435,12 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         height: 100%;
     }
-    
+
     .value-card:hover {
         transform: translateY(-8px);
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
     }
-    
+
     .value-card .value-icon {
         width: 80px;
         height: 80px;
@@ -449,13 +453,13 @@
         font-size: 32px;
         color: #667eea;
     }
-    
+
     /* ===== TIMELINE ===== */
     .timeline {
         position: relative;
         padding: 20px 0;
     }
-    
+
     .timeline::before {
         content: '';
         position: absolute;
@@ -466,7 +470,7 @@
         background: linear-gradient(to bottom, #667eea, #764ba2);
         transform: translateX(-50%);
     }
-    
+
     .timeline-item {
         position: relative;
         margin-bottom: 40px;
@@ -474,13 +478,13 @@
         justify-content: flex-end;
         padding-right: 30px;
     }
-    
+
     .timeline-item:nth-child(even) {
         justify-content: flex-start;
         padding-right: 0;
         padding-left: 30px;
     }
-    
+
     .timeline-item .timeline-content {
         background: white;
         padding: 20px 25px;
@@ -489,12 +493,12 @@
         width: 45%;
         transition: transform 0.3s ease;
     }
-    
+
     .timeline-item .timeline-content:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
     }
-    
+
     .timeline-item .timeline-year {
         display: inline-block;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -505,7 +509,7 @@
         font-size: 0.85rem;
         margin-bottom: 5px;
     }
-    
+
     .timeline-item .timeline-dot {
         position: absolute;
         left: 50%;
@@ -519,12 +523,12 @@
         transform: translateX(-50%);
         z-index: 1;
     }
-    
+
     .timeline-item:nth-child(even) .timeline-dot {
         background: #764ba2;
         box-shadow: 0 0 0 4px #764ba2;
     }
-    
+
     /* ===== TEAM CARDS ===== */
     .team-card {
         border: none;
@@ -534,23 +538,23 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         background: white;
     }
-    
+
     .team-card:hover {
         transform: translateY(-10px);
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
     }
-    
+
     .team-card .team-img {
         width: 100%;
         height: 250px;
         object-fit: cover;
     }
-    
+
     .team-card .team-img-wrapper {
         position: relative;
         overflow: hidden;
     }
-    
+
     .team-card .team-social {
         position: absolute;
         bottom: 0;
@@ -564,80 +568,80 @@
         opacity: 0;
         transition: opacity 0.3s ease;
     }
-    
+
     .team-card:hover .team-social {
         opacity: 1;
     }
-    
+
     .team-card .team-social a {
         color: white;
         font-size: 1.2rem;
         transition: transform 0.3s ease;
     }
-    
+
     .team-card .team-social a:hover {
         transform: scale(1.2);
     }
-    
+
     /* ===== CTA SECTION ===== */
     .cta-section {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
         padding: 80px 0;
     }
-    
+
     .cta-section .btn-light {
         border-radius: 30px;
         padding: 12px 35px;
         font-weight: 600;
     }
-    
+
     .cta-section .btn-light:hover {
         transform: translateY(-3px);
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
-    
+
     /* ===== COUNTER ===== */
     .counter-number {
         font-size: 3rem;
         font-weight: 700;
         color: #667eea;
     }
-    
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
         .page-header h1 {
             font-size: 2.2rem;
         }
-        
+
         .section-title {
             font-size: 2rem;
         }
-        
+
         .timeline::before {
             left: 20px;
         }
-        
+
         .timeline-item {
             padding-right: 0;
             padding-left: 50px;
             justify-content: flex-start;
         }
-        
+
         .timeline-item:nth-child(even) {
             padding-left: 50px;
             padding-right: 0;
         }
-        
+
         .timeline-item .timeline-content {
             width: 100%;
         }
-        
+
         .timeline-item .timeline-dot {
             left: 20px;
             transform: translateX(-50%);
         }
-        
+
         .counter-number {
             font-size: 2.2rem;
         }
@@ -647,55 +651,55 @@
 
 @push('scripts')
 <script>
-$(document).ready(function() {
-    // ===== COUNTER ANIMATION =====
-    function animateCounter(elementId, target, suffix) {
-        var current = 0;
-        var increment = Math.ceil(target / 60);
-        var element = $(elementId);
-        
-        var interval = setInterval(function() {
-            current += increment;
-            if (current >= target) {
-                current = target;
-                clearInterval(interval);
+    $(document).ready(function() {
+        // ===== COUNTER ANIMATION =====
+        function animateCounter(elementId, target, suffix) {
+            var current = 0;
+            var increment = Math.ceil(target / 60);
+            var element = $(elementId);
+
+            var interval = setInterval(function() {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(interval);
+                }
+                element.text(current + (suffix || ''));
+            }, 30);
+        }
+
+        function startCounters() {
+            if ($('#stats').is(':visible')) {
+                animateCounter('#counter1', 128, '+');
+                animateCounter('#counter2', 356, '+');
+                animateCounter('#counter3', 24, '+');
+                animateCounter('#counter4', 42, '+');
+                $(window).off('scroll', startCounters);
             }
-            element.text(current + (suffix || ''));
-        }, 30);
-    }
-    
-    function startCounters() {
+        }
+
+        // Jalankan counter
+        $(window).on('scroll', startCounters);
         if ($('#stats').is(':visible')) {
-            animateCounter('#counter1', 128, '+');
-            animateCounter('#counter2', 356, '+');
-            animateCounter('#counter3', 24, '+');
-            animateCounter('#counter4', 42, '+');
-            $(window).off('scroll', startCounters);
+            startCounters();
         }
-    }
-    
-    // Jalankan counter
-    $(window).on('scroll', startCounters);
-    if ($('#stats').is(':visible')) {
-        startCounters();
-    }
-    
-    // ===== SMOOTH SCROLL =====
-    $('a[href^="#"]').on('click', function(e) {
-        var target = $(this).attr('href');
-        if (target && target.startsWith('#')) {
-            e.preventDefault();
-            $('html, body').animate({
-                scrollTop: $(target).offset().top - 70
-            }, 600);
-        }
+
+        // ===== SMOOTH SCROLL =====
+        $('a[href^="#"]').on('click', function(e) {
+            var target = $(this).attr('href');
+            if (target && target.startsWith('#')) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: $(target).offset().top - 70
+                }, 600);
+            }
+        });
+
+        // ===== NAVBAR ACTIVE LINK =====
+        $('.navbar-nav .nav-link').on('click', function() {
+            $('.navbar-nav .nav-link').removeClass('active');
+            $(this).addClass('active');
+        });
     });
-    
-    // ===== NAVBAR ACTIVE LINK =====
-    $('.navbar-nav .nav-link').on('click', function() {
-        $('.navbar-nav .nav-link').removeClass('active');
-        $(this).addClass('active');
-    });
-});
 </script>
 @endpush

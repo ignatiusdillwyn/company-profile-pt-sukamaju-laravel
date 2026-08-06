@@ -7,8 +7,8 @@
                     <i class="fas fa-cube"></i>
                 </div>
                 <div class="brand-text">
-                    <span class="brand-name">Dummy<span>Corp</span></span>
-                    <span class="brand-tagline">Digital Solutions</span>
+                    <span class="brand-name">Sukamaju<span>Corp</span></span>
+                    <!-- <span class="brand-tagline">Digital Solutions</span> -->
                 </div>
             </div>
         </a>
@@ -52,11 +52,6 @@
                         <i class="fas fa-envelope nav-icon"></i>
                         <span>Contact</span>
                         <span class="nav-indicator"></span>
-                    </a>
-                </li>
-                <li class="nav-item ms-lg-2">
-                    <a class="btn btn-primary btn-nav-cta" href="{{ route('contact') }}">
-                        <i class="fas fa-rocket me-2"></i> Get Started
                     </a>
                 </li>
             </ul>
