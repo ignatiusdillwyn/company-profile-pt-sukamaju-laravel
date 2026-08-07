@@ -58,8 +58,9 @@ class WebController
      */
     public function service(Request $request)
     {
-        // dd($request); // Debugging: tampilkan semua data request
+        // dd($request['search']); // Debugging: tampilkan semua data request
         $search = $request->input('search');
+        // $search = $request['search'] ?? null; // Ambil parameter search dari request, jika tidak ada maka null
         
         if ($search) {
             // Jika ada parameter search, panggil method search
