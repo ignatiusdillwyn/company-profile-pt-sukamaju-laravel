@@ -38,6 +38,7 @@ class ArticleController
   public function createHandle(Request $request)
   {
     // dd($request->all());
+    $this->article->createArticle($request);
     return redirect()->intended(route('admin.article-index'));
   }
 
@@ -49,6 +50,7 @@ class ArticleController
   public function editHandle(Request $request, $id)
   {
     // dd($request->all());
+    $this->article->updateArticle($request);
     return redirect()->intended(route('admin.article-index'));
   }
 }
