@@ -57,20 +57,8 @@ class WebController
                 ->cc('gumilarlesmana@gmail.com')
                 ->send(new FormMail($data));
 
-            dd([
-                'step' => 'AFTER SEND',
-                'message' => 'EMAIL SENT SUCCESSFULLY',
-            ]);
-
         } catch (\Throwable $e) {
 
-            dd([
-                'step' => 'ERROR',
-                'message' => $e->getMessage(),
-                'file' => $e->getFile(),
-                'line' => $e->getLine(),
-                'trace' => $e->getTraceAsString(),
-            ]);
         } 
         
         return redirect()->route('contact')->with('success', 'Message Sent Successfully!');
