@@ -57,11 +57,19 @@ class WebController
                 ->cc('gumilarlesmana@gmail.com')
                 ->send(new FormMail($data));
 
-        } catch (\Throwable $e) {
             dd([
                 'step' => 'AFTER SEND',
-                'message' => 'EMAIL FAILED TO SEND',
-                'error' => $e->getMessage(),
+                'message' => 'EMAIL SENT SUCCESSFULLY',
+            ]);
+
+        } catch (\Throwable $e) {
+
+            dd([
+                'step' => 'ERROR',
+                'message' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString(),
             ]);
         } 
         
