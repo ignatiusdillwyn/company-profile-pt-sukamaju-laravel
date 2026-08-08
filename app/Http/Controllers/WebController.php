@@ -9,6 +9,9 @@ use App\Models\serviceModel;
 use App\Models\userModel;
 use App\Http\Requests\StoreFormRequest;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\FormMail;
+
 class WebController
 {
     protected $blogModel;
@@ -38,6 +41,7 @@ class WebController
     {
         $validated = $request->validated();
         $this->contactModel->createContact($request);
+        Mail::to('ignadillwyn2@gmail.com')->send(new FormMail());
         return redirect()->route('contact')->with('success', 'Message Sent Successfully!');
     }
 
