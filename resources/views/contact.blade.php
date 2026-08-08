@@ -322,7 +322,7 @@
             </div>
         @endif
 
-        <form action="{{ route('contact.save') }}" method="POST">
+        <form action="{{ route('contact.save') }}" id="form" method="POST">
             @csrf
 
             <!-- Full Name -->
@@ -393,10 +393,83 @@
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="btn-submit">
+            <button type="submit" id="saveButton" class="btn-submit">
                 <i class="fas fa-paper-plane"></i> Send Message
             </button>
         </form>
     </div>
 </div>
+
 @endsection
+
+<!-- ========== JQUERY ========== -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).ready(function() {
+        
+        $('#form').on('submit', function(e) {
+
+            let form = $(this);
+            let url = form.attr('action');
+            let button = $('#saveButton');
+
+            $.ajax({
+                url: url,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'POST',
+                data: form.serialize(),
+                beforeSend: function() {
+                    button.prop('disabled', true).text('Sending...');
+                },
+                success: function(response) {
+                    // Show success message
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: response.message ?? 'Your message has been sent successfully.',
+                        confirmButtonText: 'OK'
+                    });
+                    // Reset the form
+                    form[0].reset();
+                },
+                error: function(xhr) {
+                  // Show error messages
+                  if (xhr.status === 422) {
+                      var errors = xhr.responseJSON.errors;
+                      var errorMessages = '';
+                      $.each(errors, function(key, value) {
+                          errorMessages += value[0] + '\n';
+                      });
+
+                      Swal.fire({
+                        icon: 'error',
+                        title: 'Oops!',
+                        text: errorMessages,
+                        confirmButtonText: 'OK'
+                    });
+                  } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops!',
+                        text: 'An unexpected error occurred. Please try again later.',
+                        confirmButtonText: 'OK'
+                    });
+                  }
+                },
+                complete: function() {
+                
+                  // Re-enable the submit button
+                  $('#saveButton').prop('disabled', false).text('Send Message');
+                    
+
+                }
+            });
+
+            return false;
+        });
+
+    });
+</script>

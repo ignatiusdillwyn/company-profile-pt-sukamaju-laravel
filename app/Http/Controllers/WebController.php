@@ -40,7 +40,8 @@ class WebController
     public function contactHandle(StoreFormRequest $request)
     {
         $validated = $request->validated();
-        // dd($validated);
+        
+        // dd($validated); // Debugging: tampilkan data yang sudah divalidasi
         $this->contactModel->createContact($request);
 
         $data = [
@@ -49,26 +50,18 @@ class WebController
             'subject' => 'Contact Form Submission',
             'notes' => $validated['notes'],
         ];
-        
+
         try {
 
             Mail::to('ignadillwyn2@gmail.com')
                 ->cc('gumilarlesmana@gmail.com')
                 ->send(new FormMail($data));
 
+        } catch (\Throwable $e) {
             dd([
                 'step' => 'AFTER SEND',
-                'message' => 'EMAIL SENT SUCCESSFULLY',
-            ]);
-
-        } catch (\Throwable $e) {
-
-            dd([
-                'step' => 'ERROR',
-                'message' => $e->getMessage(),
-                'file' => $e->getFile(),
-                'line' => $e->getLine(),
-                'trace' => $e->getTraceAsString(),
+                'message' => 'EMAIL FAILED TO SEND',
+                'error' => $e->getMessage(),
             ]);
         } 
         
