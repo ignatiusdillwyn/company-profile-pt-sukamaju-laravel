@@ -10,10 +10,17 @@ class FormMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    protected $data;
+
+    public function __construct($data)
+    {
+        $this->data = $data;
+    }
+
     public function build()
     {
         return $this
-            ->subject('Test Email Laravel')
-            ->view('emails.email');
+            ->subject('Contact Form Submission')
+            ->view('emails.email', ['email' => $this->data]);
     }
 }
