@@ -83,7 +83,8 @@
               <label>Status</label>
               <div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input @error('is_published') is-invalid @enderror"
-                  id="is_published" name="is_published" value={{ $formType === 'edit' ? $article['is_published'] : "0" }}>
+                  id="is_published" name="is_published" value={{ !empty($article['is_published']) ? $article['is_published'] : "0" }} 
+                  {{ !empty($article['is_published']) && $article['is_published'] === 1 ? 'checked' : '' }}>
                   
                 <label class="custom-control-label" for="is_published">
                   <span id="statusLabel">Published</span>
