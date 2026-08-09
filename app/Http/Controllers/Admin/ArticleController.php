@@ -53,7 +53,12 @@ class ArticleController
   public function editHandle(Request $request)
   {
     // dd($request->all());
-    $id = $request->get('id');
+    $id = $request->get('id', false);
+    $article_type = $request->get('article_type', false);
+
+    $article = $this->article->getArticleById($id);
+    dd($article);
+
     $this->article->updateArticle($request);
     return redirect()->intended(route('admin.article-index'));
   }
