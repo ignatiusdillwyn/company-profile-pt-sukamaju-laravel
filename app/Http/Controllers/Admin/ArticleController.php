@@ -41,8 +41,6 @@ class ArticleController
 
   public function createHandle(Request $request)
   {
-    $request['image'] = $images;
-    dd($request);
     $this->article->createArticle($request);
     return redirect()->route('admin.article-index', ['article_type' => $request['article_type']]);
   }
@@ -59,12 +57,4 @@ class ArticleController
     return redirect()->intended(route('admin.article-index'));
   }
 
-  private function storeCoverImage(Request $request): string
-  {
-    $file = $request->file('image');
-    $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
-    $file->move(public_path('images/blog'), $filename);
-
-    return 'images/blog/' . $filename;
-  }
 }

@@ -8,9 +8,17 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
+use App\Http\Helpers\AppHelpers;
 
 class ArticleModel extends Model
 {
+  protected $helper;
+
+  public function __construct()
+  {
+    $this->helper = new AppHelpers();
+  }
+
   public function getAllArticlesByArticleType($articleType = null)
   {
     // $data = DB::table('table_articles')
@@ -23,19 +31,6 @@ class ArticleModel extends Model
     return $data;
   }
 
-  private function storeCoverImage(Request $request)
-  {
-    if ($request->hasFile('image')) {
-      
-      $image = $request->file('image');
-      $imageName = time() . '_' . $image->getClientOriginalName();
-      $image->move(public_path('uploads'), $imageName);
-      
-      return $imageName;
-    }
-    
-    return null;
-  }
 
   public function createArticle(Request $request)
   {
@@ -50,7 +45,7 @@ class ArticleModel extends Model
     }
 
     if ($request->hasFile('image')) {
-      $images = $this->storeCoverImage($request);
+      $images = $this->helper->_storeCoverImage($request);
     }
 
     $input['image'] = $images ?? null;
