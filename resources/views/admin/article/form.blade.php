@@ -76,7 +76,7 @@
 
               <!-- Image Preview -->
               <div id="imagePreview" class="mt-2" style="display: none;">
-                <img id="previewImg" src="#" alt="Image Preview" style="max-height: 200px; max-width: 100%;">
+                <img id="previewImg" src="{{ $article['image'] ?? '' }}" alt="Image Preview" style="max-height: 200px; max-width: 100%;">
                 <button type="button" class="btn btn-danger btn-sm ml-2" id="removeImageBtn">
                   <i class="fas fa-times"></i> Remove
                 </button>

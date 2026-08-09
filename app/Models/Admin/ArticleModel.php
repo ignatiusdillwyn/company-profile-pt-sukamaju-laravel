@@ -90,20 +90,28 @@ class ArticleModel extends Model
 
   public function updateArticle(Request $request)
   {
+    $input = $request->all();
+
     $slug = '';
-    if ($request['title']) {
-      $title = $request['title'];
+    if ($input['title']) {
+      $title = $input['title'];
       $slug = Str::slug($title); // "ini-judul-artikel"
     }
 
+    // upload image ketika ada file image yang diupload
+    if ($request->hasFile('image')) {
+      $images = $this->helper->_storeCoverImage($request);
+      $input['image'] = '/uploads/' . $images;
+    }
+
     $data = DB::select('CALL _updateArticle(?,?,?,?,?,?,?)', [
-      $request['article_id'],
+      $input['article_id'],
       // 'blog',
-      $request['article_type'] ?? '',
-      $request['title'],
+      $input['article_type'] ?? '',
+      $input['title'],
       $slug,
-      $request['content'],
-      $request['is_published'],
+      $input['content'],
+      $input['is_published'],
       Carbon::now()
     ]);
     return $data;
