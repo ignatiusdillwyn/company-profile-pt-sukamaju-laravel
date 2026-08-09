@@ -19,7 +19,7 @@
           <h3 class="card-title">Create New {{ $type === 'blog' ? 'Blog' : 'Service' }}</h3>
         </div>
         <!-- /.card-header -->
-        <form action="{{ route('admin.article-save') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ $action_path }}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="card-body">
             <!-- Hidden Fields -->
@@ -103,7 +103,7 @@
             <button type="submit" class="btn btn-primary">
               <i class="fas fa-save"></i> Save {{ $type === 'blog' ? 'Blog' : 'Service' }}
             </button>
-            <a href="{{ route('admin.article-save') }}" class="btn btn-secondary">
+            <a href="{{ $redirect_path }}" class="btn btn-secondary">
               <i class="fas fa-times"></i> Cancel
             </a>
           </div>

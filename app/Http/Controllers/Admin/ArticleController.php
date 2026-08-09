@@ -36,8 +36,10 @@ class ArticleController
   {
     $type = $request['type'];
     $formType = 'create';
+    $action_path = route('admin.article-save');
+    $redirect_path = route('admin.article-index', ['article_type' => $type]);
     // dd($article_type);  
-    return view('admin.article.form', compact('type', 'formType'));
+    return view('admin.article.form', compact('type', 'formType', 'action_path', 'redirect_path'));
   }
 
   public function createHandle(Request $request)
@@ -52,10 +54,12 @@ class ArticleController
     $id = $request->get('id', false);
 
     $formType = 'edit';
+    $action_path = route('admin.article-update');
+    $redirect_path = route('admin.article-index', ['article_type' => $type]);
 
     $article = $this->article->getArticlesById($id);
     // dd($article);
-    return view('admin.article.form', compact('type', 'article', 'formType'));
+    return view('admin.article.form', compact('type', 'article', 'formType', 'action_path', 'redirect_path'));
   }
 
   public function editHandle(Request $request)
