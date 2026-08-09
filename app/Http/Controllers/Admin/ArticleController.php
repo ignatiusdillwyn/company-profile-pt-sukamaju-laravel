@@ -48,8 +48,11 @@ class ArticleController
   public function editRender(Request $request)
   {
     $type = $request['type'];
+    $id = $request->get('id', false);
 
-    return view('admin.article.form', compact('type'));
+    $article = $this->article->getArticleById($id);
+
+    return view('admin.article.form', compact('type', 'article'));
   }
 
   public function editHandle(Request $request)

@@ -20,7 +20,7 @@
           <div class="card-body">
             <!-- Hidden Fields -->
             <input type="hidden" name="user_id" value="{{ auth()->id() ?? 1 }}">
-            <input type="hidden" name="article_type" value="{{ $type === 'blog' ? 'blog' : 'service' }}">
+            <input type="hidden" name="type" value="{{ $type === 'blog' ? 'blog' : 'service' }}">
 
             <!-- Title -->
             <div class="form-group">
@@ -28,7 +28,7 @@
                 {{-- <span class="text-danger">*</span> --}}
               </label>
               <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
-                placeholder="Enter {{ $type === 'blog' ? 'blog' : 'service' }} title" value="{{ old('title') }}"
+                placeholder="Enter {{ $type === 'blog' ? 'blog' : 'service' }} title" value="{{ $article->title ?? old('title') }}">
                 {{-- required --}}>
               @error('title')
                 <span class="invalid-feedback" role="alert">
@@ -44,7 +44,7 @@
               </label>
               <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="8"
                 placeholder="Write {{ $type === 'blog' ? 'blog' : 'service' }} content here..." {{-- required
-                --}}>{{ old('content') }}</textarea>
+                --}}>{{ $article->content ?? old('content') }}</textarea>
               @error('content')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
