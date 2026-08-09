@@ -35,8 +35,9 @@ class ArticleController
   public function createRender(Request $request)
   {
     $type = $request['type'];
+    $formType = 'create';
     // dd($article_type);  
-    return view('admin.article.form', compact('type'));
+    return view('admin.article.form', compact('type', 'formType'));
   }
 
   public function createHandle(Request $request)
@@ -50,9 +51,11 @@ class ArticleController
     $type = $request['type'];
     $id = $request->get('id', false);
 
-    $article = $this->article->getArticleById($id);
+    $formType = 'edit';
 
-    return view('admin.article.form', compact('type', 'article'));
+    $article = $this->article->getArticlesById($id);
+
+    return view('admin.article.form', compact('type', 'article', 'formType'));
   }
 
   public function editHandle(Request $request)

@@ -2,6 +2,10 @@
 
 @section('title', 'Article Form')
 
+@php
+  // dd($article);
+@endphp
+
 @section('breadcrumb')
   <li class="breadcrumb-item"><a href="{{ route('admin.article-index') }}">Article</a></li>
   <li class="breadcrumb-item active" aria-current="page">Form</li>
@@ -28,8 +32,8 @@
                 {{-- <span class="text-danger">*</span> --}}
               </label>
               <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
-                placeholder="Enter {{ $type === 'blog' ? 'blog' : 'service' }} title" value="{{ $article->title ?? old('title') }}">
-                {{-- required --}}>
+                placeholder="Enter {{ $type === 'blog' ? 'blog' : 'service' }} title"
+                value="{{ $formType === 'edit' ? $article['title'] : $article->title ?? old('title') }}">
               @error('title')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -43,8 +47,9 @@
                 {{-- <span class="text-danger">*</span> --}}
               </label>
               <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="8"
-                placeholder="Write {{ $type === 'blog' ? 'blog' : 'service' }} content here..." {{-- required
-                --}}>{{ $article->content ?? old('content') }}</textarea>
+                placeholder="Write {{ $type === 'blog' ? 'blog' : 'service' }} content here...">
+                  {{ $formType === 'edit' ? $article['content'] : $article->title ?? old('content') }}               
+                    </textarea>
               @error('content')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>

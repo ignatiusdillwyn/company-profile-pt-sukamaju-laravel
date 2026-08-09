@@ -31,12 +31,33 @@ class ArticleModel extends Model
     return $data;
   }
 
+  public function getArticlesById($id = null)
+  {
+    $articleId = (int) $id;
+    $dataFromDB = DB::select('CALL _getArticleById(?)', [$articleId]);
+
+    $data = [];
+
+    foreach ($dataFromDB as $index => $item) {
+      $data['id'] = $item->id;
+      $data['user_id'] = $item->user_id;
+      $data['article_type'] = $item->article_type;
+      $data['title'] = $item->title;
+      $data['slug'] = $item->slug;
+      $data['image'] = $item->image;
+      $data['content'] = $item->content;
+      $data['is_published'] = $item->is_published;
+      $data['created'] = $item->created;
+      $data['updated'] = $item->updated;
+    }
+    return $data;
+  }
 
   public function createArticle(Request $request)
   {
     // dd($request->all());
     $input = $request->all();
-    
+
 
     $slug = '';
     if ($input['title']) {
@@ -48,7 +69,7 @@ class ArticleModel extends Model
       $images = $this->helper->_storeCoverImage($request);
     }
 
-    $input['image'] = '/uploads/'. $images ?? null;
+    $input['image'] = '/uploads/' . $images ?? null;
 
     // dd($input);
 
