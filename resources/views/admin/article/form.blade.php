@@ -15,9 +15,9 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card card-primary">
-        <div class="card-header">
+        {{-- <div class="card-header">
           <h3 class="card-title">Create New {{ $type === 'blog' ? 'Blog' : 'Service' }}</h3>
-        </div>
+        </div> --}}
         <!-- /.card-header -->
         <form action="{{ $action_path }}" method="POST" enctype="multipart/form-data">
           @csrf
@@ -83,9 +83,10 @@
               <label>Status</label>
               <div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input @error('is_published') is-invalid @enderror"
-                  id="is_published" name="is_published" value="1" {{ old('is_published') ? 'checked' : '' }}>
+                  id="is_published" name="is_published" value={{ $formType === 'edit' ? $article['is_published'] : "0" }}>
+                  
                 <label class="custom-control-label" for="is_published">
-                  <span id="statusLabel">{{ old('is_published') ? 'Published' : 'Draft' }}</span>
+                  <span id="statusLabel">Published</span>
                 </label>
               </div>
               @error('is_published')

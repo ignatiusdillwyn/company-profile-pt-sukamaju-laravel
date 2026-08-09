@@ -67,20 +67,25 @@ class ArticleModel extends Model
 
     if ($request->hasFile('image')) {
       $images = $this->helper->_storeCoverImage($request);
+      $input['image'] = '/uploads/' . $images ?? null;
+    } else {
+      $input['image'] = null;
     }
+    
 
-    $input['image'] = '/uploads/' . $images ?? null;
+    // dd($input) ;
+    $is_published = isset($input['is_published']) ? (bool) $input['is_published'] : false;
 
     // dd($input);
-
+    // dd($input);
     $data = DB::select('CALL _createArticle(?,?,?,?,?,?,?,?,?)', [
       $input['user_id'] ?? '',
       // 'blog',
-      $input['article_type'] ?? '',
+      $input['type'] ?? '',
       $input['title'] ?? '',
       $slug ?? '',
       $input['content'] ?? '',
-      true,
+      $is_published ?? 0,
       $input['image'] ?? '',
       Carbon::now(),
       Carbon::now()
@@ -109,7 +114,7 @@ class ArticleModel extends Model
     $data = DB::select('CALL _updateArticle(?,?,?,?,?,?,?)', [
       $articleId,
       // 'blog',
-      $input['article_type'] ?? '',
+      $input['type'] ?? '',
       $input['title'],
       $slug,
       $input['content'],
