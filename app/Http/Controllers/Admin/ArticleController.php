@@ -54,7 +54,7 @@ class ArticleController
     $formType = 'edit';
 
     $article = $this->article->getArticlesById($id);
-
+    // dd($article);
     return view('admin.article.form', compact('type', 'article', 'formType'));
   }
 
