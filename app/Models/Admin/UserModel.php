@@ -15,7 +15,7 @@ class UserModel extends Model
         //     'ignatius dillwyn',
         //     'ignadillwyn@gmail.com',
         //     '123456',
-        //     'admin',
+        //     'admin', 
         //     true,
         //     Carbon::now(),
         //     Carbon::now()

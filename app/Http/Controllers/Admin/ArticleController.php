@@ -43,9 +43,11 @@ class ArticleController
   {
     // dd($request->all());
     if ($request->hasFile('image')) {
-      $data = $this->storeCoverImage($request);
+      $images = $this->storeCoverImage($request);
     }
-    dd($data);
+    // dd($images);
+    $request['image'] = $images;
+    dd($request);
     $this->article->createArticle($request);
     return redirect()->route('admin.article-index', ['article_type' => $request['article_type']]);
   }
