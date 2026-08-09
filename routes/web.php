@@ -51,8 +51,8 @@ Route::prefix(env('APP_ADMIN_SECTION', 'admin'))->name('admin.')->group(function
         Route::post('/article/save', [ArticleController::class, 'createHandle'])->name('article-save');
 
         // Route Edit
-        Route::get('/article/edit/{id}', [ArticleController::class, 'editRender'])->name('article-edit');
-        Route::post('/article/update/{id}', [ArticleController::class, 'editHandle'])->name('article-update');
+        Route::get('/article/edit', [ArticleController::class, 'editRender'])->name('article-edit');
+        Route::post('/article/update', [ArticleController::class, 'editHandle'])->name('article-update');
 
         // Route Delete
         Route::get('/article/delete/{id}', [ArticleController::class, 'deleteHandle'])->name('article-delete');

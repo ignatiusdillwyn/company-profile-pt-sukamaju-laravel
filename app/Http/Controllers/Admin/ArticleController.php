@@ -45,14 +45,15 @@ class ArticleController
     return redirect()->route('admin.article-index', ['article_type' => $request['article_type']]);
   }
 
-  public function editRender(Request $request, $id)
+  public function editRender(Request $request)
   {
     return view('admin.article.form');
   }
 
-  public function editHandle(Request $request, $id)
+  public function editHandle(Request $request)
   {
     // dd($request->all());
+    $id = $request->get('id');
     $this->article->updateArticle($request);
     return redirect()->intended(route('admin.article-index'));
   }

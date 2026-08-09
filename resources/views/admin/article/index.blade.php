@@ -69,10 +69,11 @@
                                     </td>
                                     <td>{{ date('j F Y', strtotime($article->created)) }}</td>
                                     <td>
-                                        <a href="{{ route('admin.article-edit', $article->id) }}"
+                                        <a href="{{ route('admin.article-edit', $article->id, ['type' => $type]) }}"
                                             class="btn btn-warning btn-sm">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
+                                        {{-- {{ route('admin.article-create', ['type' => $type]) }} --}}
                                         <button type="button" class="btn btn-danger btn-sm">
                                             <i class="bi bi-trash"></i>
                                         </button>
