@@ -24,6 +24,7 @@ class ArticleModel extends Model
 
   public function createArticle(Request $request)
   {
+    dd($request->all());
     $slug = '';
     if ($request['title']) {
       $title = $request['title'];

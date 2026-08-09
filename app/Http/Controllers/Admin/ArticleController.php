@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Admin\ArticleModel;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class ArticleController
 {
@@ -30,16 +32,22 @@ class ArticleController
     return view('admin.article.index', $data);
   }
 
-  public function createRender()
+  public function createRender(Request $request)
   {
-    return view('admin.article.form');
+    $article_type = $request['type'];
+    // dd($article_type);  
+    return view('admin.article.form', compact('article_type'));
   }
 
   public function createHandle(Request $request)
   {
     // dd($request->all());
+    if ($request->hasFile('image')) {
+      $data = $this->storeCoverImage($request);
+    }
+    dd($data);
     $this->article->createArticle($request);
-    return redirect()->intended(route('admin.article-index'));
+    return redirect()->route('admin.article-index', ['article_type' => $request['article_type']]);
   }
 
   public function editRender(Request $request, $id)
@@ -52,5 +60,14 @@ class ArticleController
     // dd($request->all());
     $this->article->updateArticle($request);
     return redirect()->intended(route('admin.article-index'));
+  }
+
+  private function storeCoverImage(Request $request): string
+  {
+    $file = $request->file('image');
+    $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+    $file->move(public_path('images/blog'), $filename);
+
+    return 'images/blog/' . $filename;
   }
 }
