@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\blogModel;
 use App\Models\contactModel;
 use App\Models\serviceModel;
-use App\Models\userModel;
+use App\Models\UserModel;
 use App\Http\Requests\StoreFormRequest;
 
 use Illuminate\Support\Facades\Mail;
@@ -24,7 +24,7 @@ class WebController
         $this->blogModel = new blogModel();
         $this->contactModel = new contactModel();
         $this->serviceModel = new serviceModel();
-        $this->userModel = new userModel();
+        $this->userModel = new UserModel();
     }
 
     public function home()
