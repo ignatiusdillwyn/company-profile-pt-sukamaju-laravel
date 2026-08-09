@@ -48,7 +48,7 @@ class ArticleModel extends Model
       $images = $this->helper->_storeCoverImage($request);
     }
 
-    $input['image'] = $images ?? null;
+    $input['image'] = '/uploads/'. $images ?? null;
 
     dd($input);
 
