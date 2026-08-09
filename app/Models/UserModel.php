@@ -23,7 +23,7 @@ class userModel extends Model
 
         // Hash password sebelum dikirim ke stored procedure
         $hashedPassword = Hash::make($request['password']);
-        dd($hashedPassword);
+        // dd($hashedPassword);
         
         $data = DB::select('CALL _createUser(?,?,?,?,?,?,?)', [
             $request['name'],

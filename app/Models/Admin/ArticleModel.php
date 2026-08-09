@@ -50,9 +50,9 @@ class ArticleModel extends Model
 
     $input['image'] = '/uploads/'. $images ?? null;
 
-    dd($input);
+    // dd($input);
 
-    $data = DB::select('CALL _createArticle(?,?,?,?,?,?,?,?)', [
+    $data = DB::select('CALL _createArticle(?,?,?,?,?,?,?,?,?)', [
       $input['user_id'] ?? '',
       // 'blog',
       $input['article_type'] ?? '',
@@ -60,6 +60,7 @@ class ArticleModel extends Model
       $slug ?? '',
       $input['content'] ?? '',
       true,
+      $input['image'] ?? '',
       Carbon::now(),
       Carbon::now()
     ]);
