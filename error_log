@@ -1,0 +1,2 @@
+[08-Aug-2026 09:05:19 UTC] PHP Fatal error:  Namespace declaration statement has to be the very first statement or after any declare call in the script in /home/dilt3754/public_html/demo-coursenet-laravel.dillwyn.my.id/coursenet/database/seeders/ArticleSeeder.php on line 4
+[08-Aug-2026 09:06:44 UTC] PHP Fatal error:  Namespace declaration statement has to be the very first statement or after any declare call in the script in /home/dilt3754/public_html/demo-coursenet-laravel.dillwyn.my.id/coursenet/database/seeders/ArticleSeeder.php on line 4
