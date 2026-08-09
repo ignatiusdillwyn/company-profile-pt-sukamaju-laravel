@@ -41,11 +41,6 @@ class ArticleController
 
   public function createHandle(Request $request)
   {
-    // dd($request->all());
-    if ($request->hasFile('image')) {
-      $images = $this->storeCoverImage($request);
-    }
-    // dd($images);
     $request['image'] = $images;
     dd($request);
     $this->article->createArticle($request);

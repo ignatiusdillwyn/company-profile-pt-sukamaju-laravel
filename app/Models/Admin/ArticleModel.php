@@ -3,10 +3,11 @@
 namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request; // Add this line
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str; // Add this line
-use Carbon\Carbon; // Add this line
+use Illuminate\Support\Str;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
 
 class ArticleModel extends Model
 {
@@ -22,22 +23,47 @@ class ArticleModel extends Model
     return $data;
   }
 
+  private function storeCoverImage(Request $request)
+  {
+    if ($request->hasFile('image')) {
+      
+      $image = $request->file('image');
+      $imageName = time() . '_' . $image->getClientOriginalName();
+      $image->move(public_path('uploads'), $imageName);
+      
+      return $imageName;
+    }
+    
+    return null;
+  }
+
   public function createArticle(Request $request)
   {
-    dd($request->all());
+    // dd($request->all());
+    $input = $request->all();
+    
+
     $slug = '';
-    if ($request['title']) {
-      $title = $request['title'];
+    if ($input['title']) {
+      $title = $input['title'];
       $slug = Str::slug($title); // "ini-judul-artikel"
     }
 
+    if ($request->hasFile('image')) {
+      $images = $this->storeCoverImage($request);
+    }
+
+    $input['image'] = $images ?? null;
+
+    dd($input);
+
     $data = DB::select('CALL _createArticle(?,?,?,?,?,?,?,?)', [
-      $request['user_id'] ?? '',
+      $input['user_id'] ?? '',
       // 'blog',
-      $request['article_type'] ?? '',
-      $request['title'] ?? '',
+      $input['article_type'] ?? '',
+      $input['title'] ?? '',
       $slug ?? '',
-      $request['content'] ?? '',
+      $input['content'] ?? '',
       true,
       Carbon::now(),
       Carbon::now()
