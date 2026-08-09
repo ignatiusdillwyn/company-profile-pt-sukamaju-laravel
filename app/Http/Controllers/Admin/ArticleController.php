@@ -64,7 +64,6 @@ class ArticleController
     $id = $request->get('id', false);
     $type = $request->get('type', false);
 
-
     $this->article->updateArticle($request);
     return redirect()->intended(route('admin.article-index'));
   }

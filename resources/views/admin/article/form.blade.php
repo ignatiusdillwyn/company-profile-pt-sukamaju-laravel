@@ -46,8 +46,7 @@
               <label for="content">Content
                 {{-- <span class="text-danger">*</span> --}}
               </label>
-              <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="8"
-                placeholder="Write {{ $type === 'blog' ? 'blog' : 'service' }} content here...">{{ $formType === 'edit' ? $article['content'] : $article->title ?? old('content') }}</textarea>
+              <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="8" placeholder="Write {{ $type === 'blog' ? 'blog' : 'service' }} content here...">{{ $formType === 'edit' ? $article['content'] : $article->title ?? old('content') }}</textarea>
               @error('content')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -60,9 +59,8 @@
               <label for="image">Image</label>
               <div class="input-group">
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input @error('image') is-invalid @enderror" id="image"
-                    name="image" accept="image/*">
-                  <label class="custom-file-label" for="image">Choose file</label>
+                  <input type="file" class="custom-file-input @error('image') is-invalid @enderror" id="image" name="image" accept="image/*">
+                  <input type="text" class="form-control mt-2 bg-body-secondary" id="imageName" name="imageName" value="{{ $formType === 'edit' ? $article['image'] : old('imageName') }}" readonly>
                 </div>
               </div>
               @error('image')
@@ -70,15 +68,14 @@
                   <strong>{{ $message }}</strong>
                 </span>
               @enderror
-              <small class="form-text text-muted">Supported formats: JPG, PNG, JPEG, GIF. Max size: 2MB</small>
-
               <!-- Image Preview -->
               <div id="imagePreview" class="mt-2">
-                <img id="previewImg" src="{{ asset($article['image'] ?? '') }}" alt="Image Preview" style="max-height: 200px; max-width: 100%;">
-                <button type="button" class="btn btn-danger btn-sm ml-2" id="removeImageBtn">
+                <img id="previewImg" src="{{ asset($article['image'] ?? '') }}" alt="Image Preview" style="max-height: 200px; width: 100%; max-width:300px; object-fit: cover; display: {{ isset($article['image']) ? 'block' : 'none' }};">
+                <button type="button" class="w-100 btn btn-danger btn-sm my-2 text-center" id="removeImageBtn">
                   <i class="fas fa-times"></i> Remove
                 </button>
               </div>
+              
             </div>
 
             <!-- Is Published -->

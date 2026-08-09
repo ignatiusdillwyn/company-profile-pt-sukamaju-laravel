@@ -112,6 +112,7 @@ class ArticleModel extends Model
       $slug,
       $input['content'],
       $input['is_published'],
+      $input['image'] ?? '',
       Carbon::now()
     ]);
     return $data;
