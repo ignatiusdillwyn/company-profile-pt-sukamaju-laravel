@@ -34,9 +34,9 @@ class ArticleController
 
   public function createRender(Request $request)
   {
-    $article_type = $request['type'];
+    $type = $request['type'];
     // dd($article_type);  
-    return view('admin.article.form', compact('article_type'));
+    return view('admin.article.form', compact('type'));
   }
 
   public function createHandle(Request $request)
@@ -54,7 +54,7 @@ class ArticleController
   {
     // dd($request->all());
     $id = $request->get('id', false);
-    $article_type = $request->get('article_type', false);
+    $type = $request->get('type', false);
 
     $article = $this->article->getArticleById($id);
     dd($article);

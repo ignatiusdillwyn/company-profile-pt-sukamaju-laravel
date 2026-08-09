@@ -12,7 +12,7 @@
     <div class="col-md-12">
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Create New {{ $article_type === 'blog' ? 'Blog' : 'Service' }}</h3>
+          <h3 class="card-title">Create New {{ $type === 'blog' ? 'Blog' : 'Service' }}</h3>
         </div>
         <!-- /.card-header -->
         <form action="{{ route('admin.article-save') }}" method="POST" enctype="multipart/form-data">
@@ -20,7 +20,7 @@
           <div class="card-body">
             <!-- Hidden Fields -->
             <input type="hidden" name="user_id" value="{{ auth()->id() ?? 1 }}">
-            <input type="hidden" name="article_type" value="{{ $article_type === 'blog' ? 'blog' : 'service' }}">
+            <input type="hidden" name="article_type" value="{{ $type === 'blog' ? 'blog' : 'service' }}">
 
             <!-- Title -->
             <div class="form-group">
@@ -28,7 +28,7 @@
                 {{-- <span class="text-danger">*</span> --}}
               </label>
               <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
-                placeholder="Enter {{ $article_type === 'blog' ? 'blog' : 'service' }} title" value="{{ old('title') }}"
+                placeholder="Enter {{ $type === 'blog' ? 'blog' : 'service' }} title" value="{{ old('title') }}"
                 {{-- required --}}>
               @error('title')
                 <span class="invalid-feedback" role="alert">
@@ -43,7 +43,7 @@
                 {{-- <span class="text-danger">*</span> --}}
               </label>
               <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="8"
-                placeholder="Write {{ $article_type === 'blog' ? 'blog' : 'service' }} content here..." {{-- required
+                placeholder="Write {{ $type === 'blog' ? 'blog' : 'service' }} content here..." {{-- required
                 --}}>{{ old('content') }}</textarea>
               @error('content')
                 <span class="invalid-feedback" role="alert">
@@ -94,14 +94,14 @@
                 </span>
               @enderror
               <small class="form-text text-muted">Toggle to publish the
-                {{ $article_type === 'blog' ? 'blog' : 'service' }} or keep it as draft.</small>
+                {{ $type === 'blog' ? 'blog' : 'service' }} or keep it as draft.</small>
             </div>
           </div>
           <!-- /.card-body -->
 
           <div class="card-footer">
             <button type="submit" class="btn btn-primary">
-              <i class="fas fa-save"></i> Save {{ $article_type === 'blog' ? 'Blog' : 'Service' }}
+              <i class="fas fa-save"></i> Save {{ $type === 'blog' ? 'Blog' : 'Service' }}
             </button>
             <a href="{{ route('admin.article-save') }}" class="btn btn-secondary">
               <i class="fas fa-times"></i> Cancel
