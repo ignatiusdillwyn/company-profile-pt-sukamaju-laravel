@@ -47,9 +47,7 @@
                 {{-- <span class="text-danger">*</span> --}}
               </label>
               <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="8"
-                placeholder="Write {{ $type === 'blog' ? 'blog' : 'service' }} content here...">
-                  {{ $formType === 'edit' ? $article['content'] : $article->title ?? old('content') }}               
-                    </textarea>
+                placeholder="Write {{ $type === 'blog' ? 'blog' : 'service' }} content here...">{{ $formType === 'edit' ? $article['content'] : $article->title ?? old('content') }}</textarea>
               @error('content')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -75,8 +73,8 @@
               <small class="form-text text-muted">Supported formats: JPG, PNG, JPEG, GIF. Max size: 2MB</small>
 
               <!-- Image Preview -->
-              <div id="imagePreview" class="mt-2" style="display: none;">
-                <img id="previewImg" src="{{ asset($article->image ?? '') }}" alt="Image Preview" style="max-height: 200px; max-width: 100%;">
+              <div id="imagePreview" class="mt-2">
+                <img id="previewImg" src="{{ asset($article['image'] ?? '') }}" alt="Image Preview" style="max-height: 200px; max-width: 100%;">
                 <button type="button" class="btn btn-danger btn-sm ml-2" id="removeImageBtn">
                   <i class="fas fa-times"></i> Remove
                 </button>
