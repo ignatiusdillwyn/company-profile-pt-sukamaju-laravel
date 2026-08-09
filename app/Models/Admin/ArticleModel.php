@@ -92,6 +92,8 @@ class ArticleModel extends Model
   {
     $input = $request->all();
 
+    $articleId = $request->get('id', false);
+
     $slug = '';
     if ($input['title']) {
       $title = $input['title'];
@@ -105,7 +107,7 @@ class ArticleModel extends Model
     }
 
     $data = DB::select('CALL _updateArticle(?,?,?,?,?,?,?)', [
-      $input['article_id'],
+      $articleId,
       // 'blog',
       $input['article_type'] ?? '',
       $input['title'],
