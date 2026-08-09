@@ -1,3 +1,8 @@
+@php
+
+$session = session('admin_user');
+
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -101,6 +106,8 @@
                             </ul>
                         </li>
 
+                        @if ($session['role'] === 'admin')
+
                         <li class="nav-item">
                             <a href="{{ route('admin.contact-list') }}" class="nav-link {{ request()->routeIs('admin.contact-list*') ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-envelope"></i>
@@ -108,12 +115,14 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item d-none">
                             <a href="{{ route('admin.user-index-cms') }}" class="nav-link {{ request()->routeIs('admin.user-index-cms*') ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-people"></i>
                                 <p>Users</p>
                             </a>
                         </li>
+
+                        @endif
 
                     </ul>
                 </nav>
