@@ -47,7 +47,9 @@ class ArticleController
 
   public function editRender(Request $request)
   {
-    return view('admin.article.form');
+    $type = $request['type'];
+
+    return view('admin.article.form', compact('type'));
   }
 
   public function editHandle(Request $request)
