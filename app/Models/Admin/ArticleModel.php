@@ -84,8 +84,7 @@ class ArticleModel extends Model
   public function updateArticle(Request $request)
   {
     $input = $request->all();
-
-    $articleId = $request->get('id', false);
+    $articleId = $request->get('article_id', false);
 
     $slug = '';
     if ($input['title']) {
@@ -101,22 +100,15 @@ class ArticleModel extends Model
       $input['image'] = null;
     }
 
-    $data = DB::select('CALL _updateArticle(?,?,?,?,?,?,?,?)', [
+    $is_published = isset($input['is_published']) ? (bool) $input['is_published'] : false;
+    $data = DB::select('CALL _updateArticle(?,?,?,?,?,?,?)', [
       $articleId,
-      // $input['type'] ?? '',
-      // $input['title'],
-      // $slug,
-      // $input['content'],
-      // $input['is_published'],
-      // $input['image'] ?? '',
-      // Carbon::now()
-      $input['type'] ?? '',
       $input['title'] ?? '',
       $slug ?? '',
       $input['content'] ?? '',
       $is_published ?? 0,
       $input['image'] ?? '',
-      Carbon::now(),
+      Carbon::now()
     ]);
     return $data;
   }

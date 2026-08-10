@@ -26,6 +26,10 @@
             <input type="hidden" name="user_id" value="{{ auth()->id() ?? 1 }}">
             <input type="hidden" name="type" value="{{ $type === 'blog' ? 'blog' : 'service' }}">
 
+            @if($formType === 'edit' && isset($article['id']))
+              <input type="hidden" name="article_id" value="{{ $article['id'] }}">
+            @endif
+
             <!-- Title -->
             <div class="form-group">
               <label for="title">Title
@@ -79,17 +83,15 @@
                   <i class="fas fa-times"></i> Remove
                 </button>
               </div>
-
             </div>
 
             <!-- Is Published -->
             <div class="form-group">
               <label>Status</label>
               <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input @error('is_published') is-invalid @enderror"
-                  id="is_published" name="is_published" value={{ !empty($article['is_published']) ? $article['is_published'] : "0" }} {{ !empty($article['is_published']) && $article['is_published'] === 1 ? 'checked' : '' }}>
-
-                <label class="custom-control-label" for="is_published">
+                  <input type="checkbox" class="custom-control-input @error('is_published') is-invalid @enderror"
+                    id="is_published" name="is_published" value="1" {{ !empty($article['is_published']) && $article['is_published'] === 1 ? 'checked' : '' }}>
+                  <label class="custom-control-label" for="is_published"></label>
                   <span id="statusLabel">Published</span>
                 </label>
               </div>
