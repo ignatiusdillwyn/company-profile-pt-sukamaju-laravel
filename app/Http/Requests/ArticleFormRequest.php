@@ -33,7 +33,7 @@ class ArticleFormRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'min:5', 'max:100'],
             'content' => ['nullable', 'string', 'min:10', 'max:2500'],
-            'imageName' => ['required', 'file', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'imageName' => ['nullable', 'file', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
         ];
     }
 
