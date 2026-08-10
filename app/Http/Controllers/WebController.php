@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\blogModel;
-use App\Models\contactModel;
+use App\Models\ContactModel;
 use App\Models\serviceModel;
 use App\Models\UserModel;
 use App\Http\Requests\StoreFormRequest;
@@ -22,7 +22,7 @@ class WebController
     public function __construct()
     {
         $this->blogModel = new blogModel();
-        $this->contactModel = new contactModel();
+        $this->contactModel = new ContactModel();
         $this->serviceModel = new serviceModel();
         $this->userModel = new UserModel();
     }
