@@ -19,11 +19,8 @@ class ArticleController
 
   public function indexRender(Request $request)
   {
-
     $type = $request->query('article_type', false);
-
     $articles = $this->article->getAllArticlesByArticleType($type);
-    // dd($articles);
     $data = [
       'type'      => $type,
       'articles'  => $articles
@@ -45,7 +42,8 @@ class ArticleController
   public function createHandle(Request $request)
   {
     $this->article->createArticle($request);
-    return redirect()->route('admin.article-index', ['article_type' => $request['article_type']]);
+    // dd($request->all());
+    return redirect()->route('admin.article-index', ['article_type' => $request['type']]);
   }
 
   public function editRender(Request $request)
@@ -69,7 +67,20 @@ class ArticleController
     $type = $request->get('type', false);
 
     $this->article->updateArticle($request);
-    return redirect()->intended(route('admin.article-index'));
+    // return redirect()->intended(route('admin.article-index'));
+    return redirect()->route('admin.article-index', ['article_type' => $type]);
+
+  }
+
+  public function deleteHandle(Request $request)
+  {
+    // dd($id);
+    $id = $request['id'];
+    $type = $request['type'];
+
+    $this->article->deleteArticlebyId($id);
+    // return redirect()->intended(route('admin.article-index'));
+    return redirect()->route('admin.article-index', ['article_type' => $type]);
   }
 
 }

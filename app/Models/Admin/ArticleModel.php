@@ -21,12 +21,6 @@ class ArticleModel extends Model
 
   public function getAllArticlesByArticleType($articleType = null)
   {
-    // $data = DB::table('table_articles')
-    //   ->where('article_type', $articleType)
-    //   ->get();
-
-    // return $data;
-
     $data = DB::select('CALL _getAllArticlesByType(?)', [$articleType]);
     return $data;
   }
@@ -58,7 +52,6 @@ class ArticleModel extends Model
     // dd($request->all());
     $input = $request->all();
 
-
     $slug = '';
     if ($input['title']) {
       $title = $input['title'];
@@ -71,16 +64,11 @@ class ArticleModel extends Model
     } else {
       $input['image'] = null;
     }
-    
 
-    // dd($input) ;
     $is_published = isset($input['is_published']) ? (bool) $input['is_published'] : false;
 
-    // dd($input);
-    // dd($input);
     $data = DB::select('CALL _createArticle(?,?,?,?,?,?,?,?,?)', [
       $input['user_id'] ?? '',
-      // 'blog',
       $input['type'] ?? '',
       $input['title'] ?? '',
       $slug ?? '',
@@ -108,27 +96,52 @@ class ArticleModel extends Model
     // upload image ketika ada file image yang diupload
     if ($request->hasFile('image')) {
       $images = $this->helper->_storeCoverImage($request);
-      $input['image'] = '/uploads/' . $images;
+      $input['image'] = '/uploads/' . $images ?? null;
+    } else {
+      $input['image'] = null;
     }
 
-    $data = DB::select('CALL _updateArticle(?,?,?,?,?,?,?)', [
+    $data = DB::select('CALL _updateArticle(?,?,?,?,?,?,?,?)', [
       $articleId,
-      // 'blog',
+      // $input['type'] ?? '',
+      // $input['title'],
+      // $slug,
+      // $input['content'],
+      // $input['is_published'],
+      // $input['image'] ?? '',
+      // Carbon::now()
       $input['type'] ?? '',
-      $input['title'],
-      $slug,
-      $input['content'],
-      $input['is_published'],
+      $input['title'] ?? '',
+      $slug ?? '',
+      $input['content'] ?? '',
+      $is_published ?? 0,
       $input['image'] ?? '',
-      Carbon::now()
+      Carbon::now(),
     ]);
     return $data;
   }
 
-  public function deleteService($id)
+  public function deleteArticlebyId($id)
   {
     $articleId = (int) $id;
     $data = DB::select('CALL _deleteArticleById(?)', [$articleId]);
     return $data;
   }
+
+  public function countTotalArticle()
+  {
+    $dataFromDB = DB::select('CALL _countTotalArticle()');
+    $data = $dataFromDB[0]->{'count(*)'}; // 16
+    // dd($data);
+    return $data;
+  }
+
+  public function countTotalArticleByType($article_type)
+  {
+    $dataFromDB = DB::select('CALL _countTotalArticleByType(?)', [(string)$article_type]);
+    $data = $dataFromDB[0]->{'count(*)'}; // 16
+    // dd($data); 
+    return $data;
+  }
+
 }

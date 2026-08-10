@@ -55,7 +55,8 @@ Route::prefix(env('APP_ADMIN_SECTION', 'admin'))->name('admin.')->group(function
         Route::post('/article/update', [ArticleController::class, 'editHandle'])->name('article-update');
 
         // Route Delete
-        Route::get('/article/delete/{id}', [ArticleController::class, 'deleteHandle'])->name('article-delete');
+        // Route::get('/article/delete/{id}', [ArticleController::class, 'deleteHandle'])->name('article-delete');
+        Route::get('/article/delete', [ArticleController::class, 'deleteHandle'])->name('article-delete');
 
         // Route Contacts list
         Route::get('/contacts', [ContactController::class, 'contactList'])->name('contact-list');

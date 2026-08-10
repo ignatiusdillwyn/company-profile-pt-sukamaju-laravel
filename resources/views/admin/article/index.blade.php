@@ -73,10 +73,11 @@
                                             class="btn btn-warning btn-sm">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
-                                        {{-- {{ route('admin.article-create', ['type' => $type]) }} --}}
-                                        <button type="button" class="btn btn-danger btn-sm">
+                                        <a href="{{ route('admin.article-delete', ['id' => $article->id, 'type' => $type]) }}"
+                                            class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Are you sure you want to delete this article?')">
                                             <i class="bi bi-trash"></i>
-                                        </button>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

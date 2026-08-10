@@ -19,7 +19,7 @@
         <div class="col-lg-3 col-6">
             <div class="small-box text-bg-primary">
                 <div class="inner">
-                    <h3>0</h3>
+                    <h3>{{ $totalService }}</h3>
                     <p>Total Service</p>
                 </div>
                 <i class="bi bi-gear small-box-icon"></i>
@@ -28,7 +28,7 @@
         <div class="col-lg-3 col-6">
             <div class="small-box text-bg-success">
                 <div class="inner">
-                    <h3>0</h3>
+                    <h3>{{ $totalBlog }}</h3>
                     <p>Total Blog</p>
                 </div>
                 <i class="bi bi-journal-text small-box-icon"></i>
@@ -37,7 +37,7 @@
         <div class="col-lg-3 col-6">
             <div class="small-box text-bg-warning">
                 <div class="inner">
-                    <h3>0</h3>
+                    <h3>{{ $totalArticle }}</h3>
                     <p>Total Article</p>
                 </div>
                 <i class="bi bi-file-earmark-text small-box-icon"></i>
@@ -46,7 +46,7 @@
         <div class="col-lg-3 col-6">
             <div class="small-box text-bg-danger">
                 <div class="inner">
-                    <h3>0</h3>
+                    <h3>{{ $unreadContact }}</h3>
                     <p>Pesan Masuk</p>
                 </div>
                 <i class="bi bi-envelope small-box-icon"></i>
@@ -60,7 +60,7 @@
         </div>
         <div class="card-body">
             <p class="mb-0">
-                Selamat datang, <b>{{ $user['fullname'] }}</b> ({{ $user['email'] }})! Anda berhasil melewati middleware 'admin'.
+                Selamat datang, <b>{{ $user['fullname'] }}</b> ({{ $user['email'] }})!
             </p>
         </div>
     </div>

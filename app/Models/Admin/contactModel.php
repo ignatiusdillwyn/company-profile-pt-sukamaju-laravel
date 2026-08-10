@@ -26,27 +26,24 @@ class ContactModel extends Model
 
     public function getAllContacts()
     {
-        // $data = DB::table('table_contacts')
-        //     ->get();
-        // return $data;
-
         $data = DB::select('CALL _getAllContacts');
         return $data;
     }
 
     public function markAsRead($id)
     {
-        // return DB::table('table_contacts')
-        //     ->where('id', $id)
-        //     ->update([
-        //         'is_read' => true,
-        //         'updated' => Carbon::now(),
-        //     ]);
-
         $data = DB::select('CALL markAsReadContact(?,?)', [
             $id,
             Carbon::now()
         ]);
+        return $data;
+    }
+
+    public function countUnreadContact()
+    {
+        $dataFromDB = DB::select('CALL _countUnreadContact()');
+        $data = $dataFromDB[0]->{'count(*)'}; // 16
+        // dd($data); 
         return $data;
     }
 }
