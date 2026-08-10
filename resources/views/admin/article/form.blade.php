@@ -29,7 +29,7 @@
             <!-- Title -->
             <div class="form-group">
               <label for="title">Title
-                {{-- <span class="text-danger">*</span> --}}
+                <span class="text-danger">*</span>
               </label>
               <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
                 placeholder="Enter {{ $type === 'blog' ? 'blog' : 'service' }} title"

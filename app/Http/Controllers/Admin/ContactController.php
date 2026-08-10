@@ -33,4 +33,14 @@ class ContactController
       ->route('admin.contact-list')
       ->with('success', 'Pesan berhasil ditandai sudah dibaca.');
   }
+
+  public function deleteContact($id)
+  {
+    // dd($id);
+    $this->contact->deleteContact($id);
+
+    return redirect()
+      ->route('admin.contact-list')
+      ->with('success', 'Pesan berhasil dihapus');
+  }
 }

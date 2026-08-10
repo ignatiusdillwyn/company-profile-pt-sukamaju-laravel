@@ -61,6 +61,7 @@ Route::prefix(env('APP_ADMIN_SECTION', 'admin'))->name('admin.')->group(function
         // Route Contacts list
         Route::get('/contacts', [ContactController::class, 'contactList'])->name('contact-list');
         Route::post('/contacts/{id}/read', [ContactController::class, 'markAsRead'])->name('contact-read');
+        Route::get('/contacts/delete/{id}', [ContactController::class, 'deleteContact'])->name('contact-delete');
 
         // Route Users list
         Route::get('/users', [UserController::class, 'indexRender'])->name('user-index-cms');

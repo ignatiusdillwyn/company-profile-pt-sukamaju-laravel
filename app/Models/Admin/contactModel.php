@@ -32,9 +32,17 @@ class ContactModel extends Model
 
     public function markAsRead($id)
     {
-        $data = DB::select('CALL markAsReadContact(?,?)', [
-            $id,
+        $data = DB::select('CALL _markAsReadContact(?,?)', [
+            (int) $id,
             Carbon::now()
+        ]);
+        return $data;
+    }
+
+    public function deleteContact($id)
+    {
+        $data = DB::select('CALL _deleteContact(?)', [
+            (int) $id,
         ]);
         return $data;
     }

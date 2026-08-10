@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\ArticleModel;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use App\Http\Requests\ArticleFormRequest;
 
 class ArticleController
 {
@@ -39,10 +40,18 @@ class ArticleController
     return view('admin.article.form', compact('type', 'formType', 'action_path', 'redirect_path'));
   }
 
-  public function createHandle(Request $request)
+  public function createHandle(ArticleFormRequest $request)
   {
-    $this->article->createArticle($request);
+    //     array:6 [▼ // app\Http\Controllers\Admin\ArticleController.php:45
+    //   "_token" => "fRzjt9xVqvPzzpENatJYsmid9wwq4fZRQXXPWxb7"
+    //   "user_id" => "1"
+    //   "type" => "service"
+    //   "title" => null
+    //   "content" => null
+    //   "imageName" => null
+    // ]
     // dd($request->all());
+    $this->article->createArticle($request);
     return redirect()->route('admin.article-index', ['article_type' => $request['type']]);
   }
 
@@ -69,7 +78,6 @@ class ArticleController
     $this->article->updateArticle($request);
     // return redirect()->intended(route('admin.article-index'));
     return redirect()->route('admin.article-index', ['article_type' => $type]);
-
   }
 
   public function deleteHandle(Request $request)
@@ -82,5 +90,4 @@ class ArticleController
     // return redirect()->intended(route('admin.article-index'));
     return redirect()->route('admin.article-index', ['article_type' => $type]);
   }
-
 }

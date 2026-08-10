@@ -59,13 +59,15 @@
                                 </td>
                                 <td>{{ date('j F Y', strtotime($value->created)) }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-info btn-sm text-white"
-                                            data-bs-toggle="modal" data-bs-target="#contactModal{{ $value->id }}">
+                                    <button type="button" class="btn btn-info btn-sm text-white" data-bs-toggle="modal"
+                                        data-bs-target="#contactModal{{ $value->id }}">
                                         <i class="bi bi-eye"></i>
                                     </button>
-                                    <button type="button" class="btn btn-danger btn-sm">
+                                    <a href="{{ route('admin.contact-delete', ['id' => $value->id]) }}"
+                                        class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Are you sure you want to delete this article?')">
                                         <i class="bi bi-trash"></i>
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -115,7 +117,7 @@
                         <p class="mb-0">{{ $value->notes }}</p>
                     </div>
                     <div class="modal-footer">
-                        @if (! $value->is_read)
+                        @if (!$value->is_read)
                             <form action="{{ route('admin.contact-read', $value->id) }}" method="POST" class="m-0">
                                 @csrf
                                 <button type="submit" class="btn btn-success btn-sm">
