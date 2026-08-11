@@ -40,7 +40,7 @@ class WebController
     public function contactHandle(StoreFormRequest $request)
     {
         $validated = $request->validated();
-        
+
         // dd($validated); // Debugging: tampilkan data yang sudah divalidasi
         $this->contactModel->createContact($request);
 
@@ -52,15 +52,13 @@ class WebController
         ];
 
         try {
-
-            Mail::to('ignadillwyn2@gmail.com')
+            Mail::to($validated['email'])
                 ->cc('gumilarlesmana@gmail.com')
                 ->send(new FormMail($data));
-
         } catch (\Throwable $e) {
+            
+        }
 
-        } 
-        
         return redirect()->route('contact')->with('success', 'Message Sent Successfully!');
     }
 
@@ -84,7 +82,7 @@ class WebController
         // dd($request['search']); // Debugging: tampilkan semua data request
         $search = $request->input('search');
         // $search = $request['search'] ?? null; // Ambil parameter search dari request, jika tidak ada maka null
-        
+
         if ($search) {
             // Jika ada parameter search, panggil method search
             $data = $this->serviceModel->getServicebyTitle($search);
@@ -92,7 +90,7 @@ class WebController
             // Jika tidak ada search, ambil semua data
             $data = $this->serviceModel->getAllServices();
         }
-        
+
         // dd($data); // Debugging: tampilkan data yang diambil dari database
         return view("service", compact('data', 'search'));
     }
