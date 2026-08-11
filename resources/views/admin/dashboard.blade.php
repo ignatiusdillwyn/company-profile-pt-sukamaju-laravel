@@ -43,6 +43,7 @@
                 <i class="bi bi-file-earmark-text small-box-icon"></i>
             </div>
         </div>
+        @if ($user['role'] === 'admin')
         <div class="col-lg-3 col-6">
             <div class="small-box text-bg-danger">
                 <div class="inner">
@@ -52,6 +53,7 @@
                 <i class="bi bi-envelope small-box-icon"></i>
             </div>
         </div>
+        @endif
     </div>
 
     <div class="card">

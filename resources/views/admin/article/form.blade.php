@@ -79,7 +79,8 @@
               <div id="imagePreview" class="mt-2">
                 <img id="previewImg" src="{{ asset($article['image'] ?? '') }}" alt="Image Preview"
                   style="max-height: 200px; width: 100%; max-width:300px; object-fit: cover; display: {{ isset($article['image']) ? 'block' : 'none' }};">
-                <button type="button" class="w-100 btn btn-danger btn-sm my-2 text-center" id="removeImageBtn">
+                <button id="btn-delete-image" name="btn-delete-image" type="button"
+                  class="w-100 btn btn-danger btn-sm my-2 text-center btn-delete-image" id="removeImageBtn">
                   <i class="fas fa-times"></i> Remove
                 </button>
               </div>
@@ -89,10 +90,10 @@
             <div class="form-group">
               <label>Status</label>
               <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input @error('is_published') is-invalid @enderror"
-                    id="is_published" name="is_published" value="1" {{ !empty($article['is_published']) && $article['is_published'] === 1 ? 'checked' : '' }}>
-                  <label class="custom-control-label" for="is_published"></label>
-                  <span id="statusLabel">Published</span>
+                <input type="checkbox" class="custom-control-input @error('is_published') is-invalid @enderror"
+                  id="is_published" name="is_published" value="1" {{ !empty($article['is_published']) && $article['is_published'] === 1 ? 'checked' : '' }}>
+                <label class="custom-control-label" for="is_published"></label>
+                <span id="statusLabel">Published</span>
                 </label>
               </div>
               @error('is_published')
@@ -157,121 +158,63 @@
   </style>
 @endpush
 
-@push('scripts')
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  $(document).ready(function () {
+
+    $('.btn-delete-image').on('click', function (e) {
+      console.log('delete')
+      const button = $(this);
+      const id = button.data('id');
+
+      //   if (!confirm('Yakin ingin menghapus image ini?')) {
+      //     return;
+      //   }
+
+      //   $.ajax({
+      //     url: /images/${ id },
+      //     type: 'DELETE',
+      //     headers: {
+      //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      //   },
+      //     success: function (response) {
+      //       if (response.success) {
+      //         $(#image - ${ id }).remove();
+      //       }
+      //     },
+      //     error: function (xhr) {
+      //       console.log(xhr.responseText);
+      //       alert('Gagal menghapus image.');
+      //     }
+      // });
+    });
+  });
+</script>
+
+<!-- Optional: Include TinyMCE or CKEditor for rich text editing -->
+@if(config('app.env') !== 'production')
+  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
-    // Auto-generate slug from title
-    document.getElementById('title').addEventListener('input', function () {
-      const title = this.value;
-      const slug = title
-        .toLowerCase()
-        .replace(/[^a-z0-9\s]/g, '')  // Remove special characters
-        .replace(/\s+/g, '-')          // Replace spaces with hyphens
-        .replace(/-+/g, '-')           // Remove multiple hyphens
-        .replace(/^-|-$/g, '');        // Remove leading/trailing hyphens
-
-      const slugInput = document.getElementById('slug');
-      if (!slugInput.dataset.manualEdit) {
-        slugInput.value = slug;
-      }
-    });
-
-    // Manual slug edit toggle
-    document.getElementById('slug').addEventListener('focus', function () {
-      this.dataset.manualEdit = 'true';
-    });
-
-    // Generate slug manually
-    document.getElementById('generateSlugBtn').addEventListener('click', function () {
-      const title = document.getElementById('title').value;
-      const slug = title
-        .toLowerCase()
-        .replace(/[^a-z0-9\s]/g, '')
-        .replace(/\s+/g, '-')
-        .replace(/-+/g, '-')
-        .replace(/^-|-$/g, '');
-
-      const slugInput = document.getElementById('slug');
-      slugInput.value = slug || 'untitled';
-      slugInput.dataset.manualEdit = 'true';
-    });
-
-    // Image preview
-    document.getElementById('image').addEventListener('change', function (e) {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function (event) {
-          const preview = document.getElementById('imagePreview');
-          const img = document.getElementById('previewImg');
-          img.src = event.target.result;
-          preview.style.display = 'block';
-        };
-        reader.readAsDataURL(file);
-
-        // Update file input label
-        const label = document.querySelector('.custom-file-label');
-        label.textContent = file.name;
-      }
-    });
-
-    // Remove image
-    document.getElementById('removeImageBtn').addEventListener('click', function () {
-      document.getElementById('image').value = '';
-      document.getElementById('imagePreview').style.display = 'none';
-      document.querySelector('.custom-file-label').textContent = 'Choose file';
-      document.getElementById('previewImg').src = '#';
-    });
-
-    // Toggle status label
-    document.getElementById('is_published').addEventListener('change', function () {
-      const label = document.getElementById('statusLabel');
-      if (this.checked) {
-        label.textContent = 'Published';
-        label.className = 'badge badge-success';
-      } else {
-        label.textContent = 'Draft';
-        label.className = 'badge badge-secondary';
-      }
-    });
-
-    // Set initial status label
     document.addEventListener('DOMContentLoaded', function () {
-      const statusCheckbox = document.getElementById('is_published');
-      const label = document.getElementById('statusLabel');
-      if (statusCheckbox.checked) {
-        label.textContent = 'Published';
-        label.className = 'badge badge-success';
-      } else {
-        label.textContent = 'Draft';
-        label.className = 'badge badge-secondary';
-      }
+      // Uncomment below if you have TinyMCE API key
+      /*
+      tinymce.init({
+          selector: '#content',
+          height: 400,
+          menubar: true,
+          plugins: [
+              'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+              'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+              'insertdatetime', 'media', 'table', 'help', 'wordcount'
+          ],
+          toolbar: 'undo redo | blocks | ' +
+              'bold italic backcolor | alignleft aligncenter ' +
+              'alignright alignjustify | bullist numlist outdent indent | ' +
+              'removeformat | help',
+          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+      });
+      */
     });
   </script>
-
-  <!-- Optional: Include TinyMCE or CKEditor for rich text editing -->
-  @if(config('app.env') !== 'production')
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        // Uncomment below if you have TinyMCE API key
-        /*
-        tinymce.init({
-            selector: '#content',
-            height: 400,
-            menubar: true,
-            plugins: [
-                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-                'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                'insertdatetime', 'media', 'table', 'help', 'wordcount'
-            ],
-            toolbar: 'undo redo | blocks | ' +
-                'bold italic backcolor | alignleft aligncenter ' +
-                'alignright alignjustify | bullist numlist outdent indent | ' +
-                'removeformat | help',
-            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-        });
-        */
-      });
-    </script>
-  @endif
-@endpush
+@endif

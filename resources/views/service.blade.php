@@ -25,12 +25,12 @@
                     </a>
                 </div>
             </div>
-            <div class="col-lg-5 text-center d-none d-lg-block">
+            <!-- <div class="col-lg-5 text-center d-none d-lg-block">
                 <div class="hero-illustration bg-black bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center"
                     style="width: 300px; height: 300px; backdrop-filter: blur(10px); border: 2px solid rgba(255,255,255,0.1);">
                     <i class="fas fa-cubes text-black-50" style="font-size: 8rem;"></i>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>

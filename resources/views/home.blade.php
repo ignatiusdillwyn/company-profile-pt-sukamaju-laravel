@@ -103,7 +103,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="card card-hover h-100 shadow-sm">
                     <div class="card-body text-center p-4">
-                        <img src="https://placehold.co/300x300"
+                        <img width="300" height="300" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeYiQaAak4RY_wCUNAnNQW50ibECVyte0c5PehQ8cO2136FbSrseU5RFB3&s=10"
                             alt="Web Development" class="mb-3 rounded-circle" />
                         <h5 class="card-title">Web Development</h5>
                         <p class="card-text text-muted">Enterprise-grade web applications built with Laravel, React, and modern PHP frameworks.</p>
@@ -114,7 +114,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="card card-hover h-100 shadow-sm">
                     <div class="card-body text-center p-4">
-                        <img src="https://placehold.co/300x300"
+                        <img width="300" height="300" src="https://www.braintechnosys.com/blog/wp-content/uploads/2022/03/app-developers-in-yamunanagar.png"
                             alt="Mobile App" class="mb-3 rounded-circle" />
                         <h5 class="card-title">Mobile App Development</h5>
                         <p class="card-text text-muted">Cross-platform mobile solutions using Flutter and React Native for iOS and Android.</p>
@@ -125,7 +125,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="card card-hover h-100 shadow-sm">
                     <div class="card-body text-center p-4">
-                        <img src="https://placehold.co/300x300"
+                        <img width="300" height="300" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSWnbz5b026taEo8sMKjf9-HZEKKcC30eDZNiUW3_ntA&s=10"
                             alt="AI Solutions" class="mb-3 rounded-circle" />
                         <h5 class="card-title">AI &amp; Automation</h5>
                         <p class="card-text text-muted">Intelligent automation and machine learning solutions to optimize business processes.</p>

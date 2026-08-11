@@ -107,7 +107,6 @@ $session = session('admin_user');
                         </li>
 
                         @if ($session['role'] === 'admin')
-
                         <li class="nav-item">
                             <a href="{{ route('admin.contact-list') }}" class="nav-link {{ request()->routeIs('admin.contact-list*') ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-envelope"></i>
@@ -121,7 +120,6 @@ $session = session('admin_user');
                                 <p>Users</p>
                             </a>
                         </li>
-
                         @endif
 
                     </ul>

@@ -42,14 +42,6 @@ class ArticleController
 
   public function createHandle(ArticleFormRequest $request)
   {
-    //     array:6 [▼ // app\Http\Controllers\Admin\ArticleController.php:45
-    //   "_token" => "fRzjt9xVqvPzzpENatJYsmid9wwq4fZRQXXPWxb7"
-    //   "user_id" => "1"
-    //   "type" => "service"
-    //   "title" => null
-    //   "content" => null
-    //   "imageName" => null
-    // ]
     // dd($request->all());
     $this->article->createArticle($request);
     return redirect()->route('admin.article-index', ['article_type' => $request['type']]);
@@ -93,6 +85,6 @@ class ArticleController
 
   public function removeImage(Request $request){
     dd($request->all());
-    
+
   }
 }
