@@ -5,10 +5,10 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6">
-                <h1 class="display-4 fw-bold">Build Amazing <br /><span style="color:#ffd700;">Websites</span> Faster</h1>
+                <h1 class="display-4 fw-bold">Delivering Digital <br /><span style="color:#ffd700;">Excellence</span> Worldwide</h1>
                 <p class="lead mt-3">
-                    Create stunning, responsive websites with modern technology.
-                    Start building your next project today!
+                    PT Sukamaju is a trusted technology partner committed to delivering innovative, 
+                    scalable, and high-quality digital solutions that drive business growth and operational efficiency.
                 </p>
                 <!-- <div class="d-flex gap-3 mt-4 flex-wrap">
                     <a href="#" class="btn btn-primary btn-lg">
@@ -19,10 +19,10 @@
                     </a>
                 </div> -->
             </div>
-            <div class="col-lg-6 text-center mt-5 mt-lg-0">
+            {{-- <div class="col-lg-6 text-center mt-5 mt-lg-0">
                 <img src="https://placehold.co/600x400"
                     alt="Hero Image" class="img-fluid rounded-4 shadow-lg" />
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>
@@ -33,30 +33,30 @@
         <div class="row text-center">
             <div class="col-6 col-md-3 mb-3 mb-md-0">
                 <div class="counter-number" id="counter1">0</div>
-                <p class="text-muted">Happy Clients</p>
+                <p class="text-muted">Clients Worldwide</p>
             </div>
             <div class="col-6 col-md-3 mb-3 mb-md-0">
                 <div class="counter-number" id="counter2">0</div>
-                <p class="text-muted">Projects Done</p>
+                <p class="text-muted">Projects Completed</p>
             </div>
             <div class="col-6 col-md-3 mb-3 mb-md-0">
                 <div class="counter-number" id="counter3">0</div>
-                <p class="text-muted">Awards Won</p>
+                <p class="text-muted">Industry Awards</p>
             </div>
             <div class="col-6 col-md-3">
                 <div class="counter-number" id="counter4">0</div>
-                <p class="text-muted">Team Members</p>
+                <p class="text-muted">Expert Team</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ========== FEATURES ========== -->
+<!-- ========== ABOUT / FEATURES ========== -->
 <section class="py-5" id="features">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="fw-bold">Why Choose <span style="color:#667eea;">Us?</span></h2>
-            <p class="text-muted">We provide the best solutions for your business needs</p>
+            <h2 class="fw-bold">Why Partner With <span style="color:#667eea;">PT Sukamaju?</span></h2>
+            <p class="text-muted">We combine technical expertise with business acumen to deliver exceptional results</p>
         </div>
 
         <div class="row g-4">
@@ -65,8 +65,8 @@
                     <div class="feature-icon">
                         <i class="fas fa-bolt"></i>
                     </div>
-                    <h5>Fast Performance</h5>
-                    <p class="text-muted">Optimized for speed and performance with the latest technology.</p>
+                    <h5>Cutting-Edge Technology</h5>
+                    <p class="text-muted">Leveraging the latest frameworks and tools to build high-performance, future-ready solutions.</p>
                 </div>
             </div>
             <div class="col-md-4">
@@ -74,8 +74,8 @@
                     <div class="feature-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h5>Secure &amp; Reliable</h5>
-                    <p class="text-muted">Built with security in mind to protect your data and privacy.</p>
+                    <h5>Enterprise-Grade Security</h5>
+                    <p class="text-muted">Implementing robust security protocols to safeguard your critical business data and intellectual property.</p>
                 </div>
             </div>
             <div class="col-md-4">
@@ -83,8 +83,8 @@
                     <div class="feature-icon">
                         <i class="fas fa-headset"></i>
                     </div>
-                    <h5>24/7 Support</h5>
-                    <p class="text-muted">Dedicated support team ready to help you anytime, anywhere.</p>
+                    <h5>Dedicated Support Excellence</h5>
+                    <p class="text-muted">Providing round-the-clock technical support and strategic guidance to ensure your success.</p>
                 </div>
             </div>
         </div>
@@ -95,8 +95,8 @@
 <section class="py-5 bg-light" id="services">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="fw-bold">Our <span style="color:#667eea;">Services</span></h2>
-            <p class="text-muted">We offer a wide range of services to help your business grow</p>
+            <h2 class="fw-bold">Our Core <span style="color:#667eea;">Services</span></h2>
+            <p class="text-muted">Comprehensive digital solutions tailored to meet your unique business requirements</p>
         </div>
 
         <div class="row g-4">
@@ -106,7 +106,7 @@
                         <img src="https://placehold.co/300x300"
                             alt="Web Development" class="mb-3 rounded-circle" />
                         <h5 class="card-title">Web Development</h5>
-                        <p class="card-text text-muted">Custom websites built with modern technologies.</p>
+                        <p class="card-text text-muted">Enterprise-grade web applications built with Laravel, React, and modern PHP frameworks.</p>
                         <a href="#" class="btn btn-outline-primary btn-sm">Learn More</a>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                         <img src="https://placehold.co/300x300"
                             alt="Mobile App" class="mb-3 rounded-circle" />
                         <h5 class="card-title">Mobile App Development</h5>
-                        <p class="card-text text-muted">Cross-platform mobile apps for iOS &amp; Android.</p>
+                        <p class="card-text text-muted">Cross-platform mobile solutions using Flutter and React Native for iOS and Android.</p>
                         <a href="#" class="btn btn-outline-primary btn-sm">Learn More</a>
                     </div>
                 </div>
@@ -127,8 +127,8 @@
                     <div class="card-body text-center p-4">
                         <img src="https://placehold.co/300x300"
                             alt="AI Solutions" class="mb-3 rounded-circle" />
-                        <h5 class="card-title">AI Solutions</h5>
-                        <p class="card-text text-muted">Artificial intelligence &amp; machine learning integration.</p>
+                        <h5 class="card-title">AI &amp; Automation</h5>
+                        <p class="card-text text-muted">Intelligent automation and machine learning solutions to optimize business processes.</p>
                         <a href="#" class="btn btn-outline-primary btn-sm">Learn More</a>
                     </div>
                 </div>
@@ -142,7 +142,7 @@
     <div class="container">
         <div class="text-center mb-5">
             <h2 class="fw-bold">What Our <span style="color:#667eea;">Clients Say</span></h2>
-            <p class="text-muted">Real feedback from our satisfied customers</p>
+            <p class="text-muted">Testimonials from business leaders who trust PT Sukamaju</p>
         </div>
 
         <div class="row g-4">
@@ -158,7 +158,8 @@
                     </div>
                     <p class="text-muted">
                         <i class="fas fa-quote-left text-primary me-1"></i>
-                        Amazing service! They delivered exactly what we needed, on time and on budget.
+                        PT Sukamaju has been instrumental in our digital transformation journey. 
+                        Their technical expertise and commitment to quality are truly exceptional.
                         <i class="fas fa-quote-right text-primary ms-1"></i>
                     </p>
                     <div class="text-warning">
@@ -182,7 +183,8 @@
                     </div>
                     <p class="text-muted">
                         <i class="fas fa-quote-left text-primary me-1"></i>
-                        The team was professional and responsive. Highly recommend their services!
+                        A reliable and innovative partner. The team delivered our platform ahead of schedule 
+                        with zero critical issues. Highly recommended.
                         <i class="fas fa-quote-right text-primary ms-1"></i>
                     </p>
                     <div class="text-warning">
@@ -197,7 +199,7 @@
             <div class="col-md-4">
                 <div class="card card-hover h-100 p-4 shadow-sm border-0">
                     <div class="d-flex align-items-center mb-3">
-                        <img src="hhttps://placehold.co/600x400"
+                        <img src="https://placehold.co/600x400"
                             alt="Mike Johnson" class="testimonial-img me-3" />
                         <div>
                             <h6 class="fw-bold mb-0">Mike Johnson</h6>
@@ -206,7 +208,8 @@
                     </div>
                     <p class="text-muted">
                         <i class="fas fa-quote-left text-primary me-1"></i>
-                        Great communication and excellent results. Will definitely work with them again.
+                        Partnering with PT Sukamaju was one of the best business decisions we've made. 
+                        Their strategic insights and technical execution are outstanding.
                         <i class="fas fa-quote-right text-primary ms-1"></i>
                     </p>
                     <div class="text-warning">
@@ -227,12 +230,12 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-8">
-                <h2 class="fw-bold">Ready to Get Started?</h2>
-                <p class="lead">Let's build something amazing together. Contact us today!</p>
+                <h2 class="fw-bold">Let's Build Your Future Together</h2>
+                <p class="lead">Partner with PT Sukamaju for innovative, results-driven solutions.</p>
             </div>
             <div class="col-lg-4 text-lg-end">
                 <a href="#" class="btn btn-light btn-lg">
-                    <i class="fas fa-envelope me-2"></i> Contact Us
+                    <i class="fas fa-envelope me-2"></i> Contact Our Team
                 </a>
             </div>
         </div>

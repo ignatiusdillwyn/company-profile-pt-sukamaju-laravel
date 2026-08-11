@@ -90,4 +90,9 @@ class ArticleController
     // return redirect()->intended(route('admin.article-index'));
     return redirect()->route('admin.article-index', ['article_type' => $type]);
   }
+
+  public function removeImage(Request $request){
+    dd($request->all());
+    
+  }
 }

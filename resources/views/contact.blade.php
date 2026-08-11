@@ -399,7 +399,6 @@
         </form>
     </div>
 </div>
-
 @endsection
 
 <!-- ========== JQUERY ========== -->
@@ -430,7 +429,7 @@
                         icon: 'success',
                         title: 'Success!',
                         text: response.message ?? 'Your message has been sent successfully.',
-                        confirmButtonText: 'OK'
+                        confirmButtonText: 'OK',
                     });
                     // Reset the form
                     form[0].reset();
@@ -463,13 +462,9 @@
                 
                   // Re-enable the submit button
                   $('#saveButton').prop('disabled', false).text('Send Message');
-                    
-
                 }
             });
-
             return false;
         });
-
     });
 </script>

@@ -56,36 +56,10 @@
                             <li>Memulai pemasaran dan promosi</li>
                         </ul> --}}
                     </div>
-
-                    <!-- Share & Navigation -->
-                    <hr class="my-4">
-                    
-                    <div class="row align-items-center">
-                        <div class="col-md-6 mb-3 mb-md-0">
-                            <span class="text-muted me-2">Bagikan:</span>
-                            <a href="#" class="btn btn-outline-primary btn-sm me-1">
-                                <i class="bi bi-facebook"></i>
-                            </a>
-                            <a href="#" class="btn btn-outline-info btn-sm me-1">
-                                <i class="bi bi-twitter"></i>
-                            </a>
-                            <a href="#" class="btn btn-outline-danger btn-sm me-1">
-                                <i class="bi bi-instagram"></i>
-                            </a>
-                            <a href="#" class="btn btn-outline-success btn-sm">
-                                <i class="bi bi-whatsapp"></i>
-                            </a>
-                        </div>
-                        <div class="col-md-6 text-md-end">
-                            <a href="{{ url('/blog') }}" class="btn btn-outline-secondary">
-                                <i class="bi bi-arrow-left me-1"></i> Kembali ke Blog
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </div>
 
-            <!-- Related Posts (Optional) -->
+            {{-- <!-- Related Posts (Optional) -->
             <div class="mt-5">
                 <h4 class="mb-4">Artikel Lainnya</h4>
                 <div class="row g-3">
@@ -117,7 +91,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

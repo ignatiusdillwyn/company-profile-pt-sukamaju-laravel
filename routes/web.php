@@ -77,5 +77,7 @@ Route::prefix(env('APP_ADMIN_SECTION', 'admin'))->name('admin.')->group(function
         // Route Delete User
         Route::get('/users/delete/{id}', [UserController::class, 'deleteHandle'])->name('user-delete'); 
 
+        Route::get('/article/remove-image', [ArticleController::class, 'removeImage'])->name('remove-image');
+
     });
 });
