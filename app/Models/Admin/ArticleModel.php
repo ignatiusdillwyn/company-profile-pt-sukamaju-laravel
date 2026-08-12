@@ -136,4 +136,11 @@ class ArticleModel extends Model
     return $data;
   }
 
+  public function removeArticleImage($article_id)
+  {
+    $data = DB::select('CALL _deleteImageArticle(?)', [
+      (int)$article_id
+    ]);
+    return $data;
+  }
 }

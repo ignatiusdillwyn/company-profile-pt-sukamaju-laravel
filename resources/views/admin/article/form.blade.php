@@ -76,14 +76,17 @@
                 </span>
               @enderror
               <!-- Image Preview -->
-              <div id="imagePreview" class="mt-2">
-                <img id="previewImg" src="{{ asset($article['image'] ?? '') }}" alt="Image Preview"
-                  style="max-height: 200px; width: 100%; max-width:300px; object-fit: cover; display: {{ isset($article['image']) ? 'block' : 'none' }};">
-                <button id="btn-delete-image" name="btn-delete-image" type="button"
-                  class="w-100 btn btn-danger btn-sm my-2 text-center btn-delete-image" id="removeImageBtn">
-                  <i class="fas fa-times"></i> Remove
-                </button>
-              </div>
+              @if($formType === 'edit' && isset($article['id']))
+                <div id="imagePreview" class="mt-2">
+                  <img id="previewImg" src="{{ asset($article['image'] ?? '') }}" alt="Image Preview"
+                    style="max-height: 200px; width: 100%; max-width:300px; object-fit: cover; display: {{ isset($article['image']) ? 'block' : 'none' }};">
+                  <button type="button" class="w-100 btn btn-danger btn-sm my-2 text-center btn-delete-image"
+                    id="removeImageBtn">
+                    Remove
+                    </a>
+                  </button>
+                </div>
+              @endif
             </div>
 
             <!-- Is Published -->
@@ -162,59 +165,125 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
   $(document).ready(function () {
+    console.log('Document ready!');
 
     $('.btn-delete-image').on('click', function (e) {
-      console.log('delete')
+      e.preventDefault();
+      console.log('Delete button clicked');
+
       const button = $(this);
       const id = button.data('id');
 
-      //   if (!confirm('Yakin ingin menghapus image ini?')) {
-      //     return;
-      //   }
+      let article_id = $('input[name="article_id"]').val();
+      console.log('article id:', article_id);
 
-      //   $.ajax({
-      //     url: /images/${ id },
-      //     type: 'DELETE',
-      //     headers: {
-      //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      //   },
-      //     success: function (response) {
-      //       if (response.success) {
-      //         $(#image - ${ id }).remove();
-      //       }
-      //     },
-      //     error: function (xhr) {
-      //       console.log(xhr.responseText);
-      //       alert('Gagal menghapus image.');
-      //     }
-      // });
+      let type = $('input[name="type"]').val();
+      console.log('type:', type);
+
+      if (!article_id) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'ID artikel tidak ditemukan!'
+        });
+        return;
+      }
+
+      if (!confirm('Yakin ingin menghapus image ini?')) {
+        return;
+      }
+
+      $.ajax({
+        url: `/admin/article/remove-image/${article_id}`,
+        type: 'POST',
+        data: {
+          article_id: article_id,
+          type: type
+        },
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function () {
+          button.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Deleting...');
+        },
+        success: function (response) {
+          console.log('response:', response);
+
+          if (response.success) {
+            console.log('sukses delete image');
+
+            // 🔥 ===== HILANGKAN PREVIEW IMAGE =====
+
+            // 1. Kosongkan src gambar
+            $('#previewImg').attr('src', '');
+
+            // 2. Sembunyikan container preview dengan animasi
+            $('#imagePreview').fadeOut(300, function () {
+              // Setelah animasi selesai, pastikan src kosong
+              $('#previewImg').attr('src', '');
+            });
+
+            // 3. Kosongkan input imageName
+            $('#imageName').val('');
+
+            // 4. Reset input file
+            $('#image').val('');
+            $('.custom-file-label').text('Choose file');
+
+            // 5. Set hidden field remove_image = 1 (jika ada)
+            if ($('#removeImage').length) {
+              $('#removeImage').val('1');
+            }
+
+            // 6. Tampilkan notifikasi sukses
+            Swal.fire({
+              icon: 'success',
+              title: 'Berhasil!',
+              text: response.message || 'Image berhasil dihapus.',
+              confirmButtonText: 'OK'
+            });
+          }
+        },
+        error: function (xhr) {
+          console.error('Error:', xhr);
+          console.error('Response Text:', xhr.responseText);
+
+          if (xhr.status === 419) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Session Expired',
+              text: 'Silakan refresh halaman dan coba lagi.',
+              confirmButtonText: 'Refresh'
+            }).then(() => window.location.reload());
+            return;
+          }
+
+          if (xhr.status === 422) {
+            var errors = xhr.responseJSON.errors;
+            var errorMessages = '';
+            $.each(errors, function (key, value) {
+              errorMessages += value[0] + '\n';
+            });
+
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops!',
+              text: errorMessages,
+              confirmButtonText: 'OK'
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops!',
+              text: xhr.responseJSON?.message || 'An unexpected error occurred. Please try again later.',
+              confirmButtonText: 'OK'
+            });
+          }
+        },
+        complete: function () {
+          button.prop('disabled', false).html('<i class="fas fa-times"></i> Remove');
+        }
+      });
     });
   });
 </script>
-
-<!-- Optional: Include TinyMCE or CKEditor for rich text editing -->
-@if(config('app.env') !== 'production')
-  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // Uncomment below if you have TinyMCE API key
-      /*
-      tinymce.init({
-          selector: '#content',
-          height: 400,
-          menubar: true,
-          plugins: [
-              'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-              'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-              'insertdatetime', 'media', 'table', 'help', 'wordcount'
-          ],
-          toolbar: 'undo redo | blocks | ' +
-              'bold italic backcolor | alignleft aligncenter ' +
-              'alignright alignjustify | bullist numlist outdent indent | ' +
-              'removeformat | help',
-          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-      });
-      */
-    });
-  </script>
-@endif

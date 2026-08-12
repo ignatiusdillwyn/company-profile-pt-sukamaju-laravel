@@ -7,6 +7,7 @@ use App\Models\Admin\ArticleModel;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\ArticleFormRequest;
+use Illuminate\Support\Facades\Log;
 
 class ArticleController
 {
@@ -36,13 +37,11 @@ class ArticleController
     $formType = 'create';
     $action_path = route('admin.article-save');
     $redirect_path = route('admin.article-index', ['article_type' => $type]);
-    // dd($article_type);  
     return view('admin.article.form', compact('type', 'formType', 'action_path', 'redirect_path'));
   }
 
   public function createHandle(ArticleFormRequest $request)
   {
-    // dd($request->all());
     $this->article->createArticle($request);
     return redirect()->route('admin.article-index', ['article_type' => $request['type']]);
   }
@@ -57,7 +56,6 @@ class ArticleController
     $redirect_path = route('admin.article-index', ['article_type' => $type]);
 
     $article = $this->article->getArticlesById($id);
-    // dd($article);
     return view('admin.article.form', compact('type', 'article', 'formType', 'action_path', 'redirect_path'));
   }
 
@@ -68,23 +66,36 @@ class ArticleController
     $type = $request->get('type', false);
 
     $this->article->updateArticle($request);
-    // return redirect()->intended(route('admin.article-index'));
     return redirect()->route('admin.article-index', ['article_type' => $type]);
   }
 
   public function deleteHandle(Request $request)
   {
-    // dd($id);
     $id = $request['id'];
     $type = $request['type'];
 
     $this->article->deleteArticlebyId($id);
-    // return redirect()->intended(route('admin.article-index'));
     return redirect()->route('admin.article-index', ['article_type' => $type]);
   }
 
-  public function removeImage(Request $request){
-    dd($request->all());
+  public function removeImage($article_id, Request $request)
+  {
+    Log::info('removeImage called', [
+      'article_id' => $request['article_id'],
+      'type' => $request['type'],
+      'article_id dari parameter' => $article_id,
+      'all' => $request->all()
+    ]);
 
+    $type = $request['type'];
+
+    $this->article->removeArticleImage($article_id);
+    $article = $this->article->getArticlesById($article_id);
+    Log::info('removeImage called', [
+      'data' => $article,
+    ]);
+
+    // Return success response
+    return redirect()->route('admin.article-edit', ['type' => $type, 'id' => $article_id])->with('success', 'Image removed successfully.');
   }
 }

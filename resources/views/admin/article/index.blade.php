@@ -1,7 +1,9 @@
 @extends('admin.layout')
 
 @section('title', 'Article - ' . ucfirst($type))
-
+@php
+    // dd($article_type);
+@endphp
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
     <li class="breadcrumb-item active" aria-current="page">Article</li>
