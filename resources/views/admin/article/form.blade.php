@@ -7,7 +7,9 @@
 @endphp
 
 @section('breadcrumb')
-  <li class="breadcrumb-item"><a href="{{ route('admin.article-index', ['article_type' => $type]) }}">Article</a></li>
+  <li class="breadcrumb-item"><a
+      href="{{ route('admin.article-index', ['article_type' => $type]) }}">{{ $type === 'service' ? 'Service' : 'Blog' }}</a>
+  </li>
   <li class="breadcrumb-item active" aria-current="page">Form</li>
 @endsection
 
@@ -24,10 +26,10 @@
           <div class="card-body">
             <!-- Hidden Fields -->
             <input type="hidden" name="user_id" value="{{ auth()->id() ?? 1 }}">
-            <input type="hidden" name="type" value="{{ $type === 'blog' ? 'blog' : 'service' }}">
+            <input type="hidden" id="type" name="type" value="{{ $type === 'blog' ? 'blog' : 'service' }}">
 
             @if($formType === 'edit' && isset($article['id']))
-              <input type="hidden" name="article_id" value="{{ $article['id'] }}">
+              <input type="hidden" id="article_id" name="article_id" value="{{ $article['id'] }}">
             @endif
 
             <!-- Title -->
@@ -78,12 +80,17 @@
               <!-- Image Preview -->
               @if($formType === 'edit' && isset($article['id']))
                 <div id="imagePreview" class="mt-2">
-                  <img id="previewImg" src="{{ asset($article['image'] ?? '') }}" alt="Image Preview"
-                    style="max-height: 200px; width: 100%; max-width:300px; object-fit: cover; display: {{ isset($article['image']) ? 'block' : 'none' }};">
-                  <button type="button" class="w-100 btn btn-danger btn-sm my-2 text-center btn-delete-image"
-                    id="removeImageBtn">
-                    Remove
-                    </a>
+                  <img id="previewImg" src="{{ !empty($article['image']) ? asset($article['image']) : '' }}"
+                    alt="Image Preview" style="
+                                    max-height: 200px;
+                                    width: 100%;
+                                    max-width: 300px;
+                                    object-fit: cover;
+                                    display: {{ !empty($article['image']) ? 'block' : 'none' }};
+                                ">
+                  <button id="btn-delete-image" name="btn-delete-image" type="button"
+                    class="w-100 btn btn-danger btn-sm my-2 text-center btn-delete-image">
+                    <i class="fas fa-times"></i> Remove
                   </button>
                 </div>
               @endif
@@ -172,12 +179,12 @@
       console.log('Delete button clicked');
 
       const button = $(this);
-      const id = button.data('id');
+      // const id = button.data('id');
 
-      let article_id = $('input[name="article_id"]').val();
+      let article_id = $('#article_id').val();
       console.log('article id:', article_id);
 
-      let type = $('input[name="type"]').val();
+      let type = $('#type').val();
       console.log('type:', type);
 
       if (!article_id) {
@@ -212,30 +219,39 @@
           if (response.success) {
             console.log('sukses delete image');
 
-            // 🔥 ===== HILANGKAN PREVIEW IMAGE =====
-
-            // 1. Kosongkan src gambar
-            $('#previewImg').attr('src', '');
-
-            // 2. Sembunyikan container preview dengan animasi
-            $('#imagePreview').fadeOut(300, function () {
-              // Setelah animasi selesai, pastikan src kosong
-              $('#previewImg').attr('src', '');
-            });
-
-            // 3. Kosongkan input imageName
+            // ==========================================
+            // 1. Kosongkan input imageName
+            // ==========================================
             $('#imageName').val('');
 
-            // 4. Reset input file
+            // ==========================================
+            // 2. Reset input file
+            // ==========================================
             $('#image').val('');
-            $('.custom-file-label').text('Choose file');
 
-            // 5. Set hidden field remove_image = 1 (jika ada)
-            if ($('#removeImage').length) {
-              $('#removeImage').val('1');
-            }
+            // ==========================================
+            // 3. Hapus source gambar
+            // ==========================================
+            $('#previewImg').removeAttr('src');
 
-            // 6. Tampilkan notifikasi sukses
+            // ==========================================
+            // 4. Sembunyikan preview image
+            // ==========================================
+            $('#previewImg').hide();
+
+            // ==========================================
+            // 5. Sembunyikan container preview
+            // ==========================================
+            $('#imagePreview').hide();
+
+            // ==========================================
+            // 6. Jika ada hidden input removeImage
+            // ==========================================
+            $('#removeImage').val('1');
+
+            // ==========================================
+            // 7. Notifikasi
+            // ==========================================
             Swal.fire({
               icon: 'success',
               title: 'Berhasil!',

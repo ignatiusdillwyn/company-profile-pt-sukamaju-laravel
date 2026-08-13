@@ -56,15 +56,22 @@ class WebController
                 ->cc('gumilarlesmana@gmail.com')
                 ->send(new FormMail($data));
         } catch (\Throwable $e) {
-            
         }
 
         return redirect()->route('contact')->with('success', 'Message Sent Successfully!');
     }
 
-    public function blog()
+    public function blog(Request $request)
     {
-        $data = $this->blogModel->getAllBlogs();
+        $search = $request['search'] ?? null; // Ambil parameter search dari request, jika tidak ada maka null
+
+        if ($search) {
+            // Jika ada parameter search, panggil method search
+            $data = $this->blogModel->getBlogbyTitle($search);
+        } else {
+            // Jika tidak ada search, ambil semua data
+            $data = $this->blogModel->getAllBlogs();
+        }
         return view("blog", compact('data'));
     }
 
@@ -79,9 +86,7 @@ class WebController
      */
     public function service(Request $request)
     {
-        // dd($request['search']); // Debugging: tampilkan semua data request
-        $search = $request->input('search');
-        // $search = $request['search'] ?? null; // Ambil parameter search dari request, jika tidak ada maka null
+        $search = $request['search'] ?? null; // Ambil parameter search dari request, jika tidak ada maka null
 
         if ($search) {
             // Jika ada parameter search, panggil method search
@@ -91,7 +96,6 @@ class WebController
             $data = $this->serviceModel->getAllServices();
         }
 
-        // dd($data); // Debugging: tampilkan data yang diambil dari database
         return view("service", compact('data', 'search'));
     }
 
@@ -100,13 +104,6 @@ class WebController
         $data = $this->serviceModel->getServicebySlug($slug);
         return view("service-detail", compact('data'));
     }
-
-    // Method ini bisa dihapus karena sudah digabung dengan service()
-    // public function searchServiceHandle($serviceTitle)
-    // {
-    //     $data = $this->serviceModel->getServicebyTitle($serviceTitle);
-    //     return view("service-detail", compact('data'));
-    // }
 
     public function about()
     {

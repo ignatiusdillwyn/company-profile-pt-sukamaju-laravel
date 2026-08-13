@@ -43,4 +43,12 @@ class blogModel extends Model
         return $data;
     }
 
+    public function getBlogbyTitle($title)
+    {
+        $blogTitle = (string) $title;
+
+        $data = DB::select('CALL _searchArticleByTitle(?,?)', [$blogTitle, 'blog']);
+        return $data;
+    }
+
 }

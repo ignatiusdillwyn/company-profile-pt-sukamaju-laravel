@@ -158,10 +158,6 @@
 
                         <!-- Footer -->
                         <div class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top">
-                            <span class="text-muted small">
-                                <i class="far fa-clock me-1"></i>
-                                {{ is_object($service) ? ($service->duration ?? 'Flexible') : ($service['duration'] ?? 'Flexible') }}
-                            </span>
                             <a href="{{ route('service.detail', ['slug' => is_object($service) ? $service->slug : $service['slug']]) }}"
                                 class="text-primary fw-semibold text-decoration-none d-inline-flex align-items-center gap-2 read-more">
                                 Learn More <i class="fas fa-arrow-right"></i>
