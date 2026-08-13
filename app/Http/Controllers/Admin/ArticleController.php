@@ -87,15 +87,22 @@ class ArticleController
       'all' => $request->all()
     ]);
 
-    $type = $request['type'];
-
     $this->article->removeArticleImage($article_id);
     $article = $this->article->getArticlesById($article_id);
     Log::info('removeImage called', [
       'data' => $article,
     ]);
 
-    // Return success response
-    return redirect()->route('admin.article-edit', ['type' => $type, 'id' => $article_id])->with('success', 'Image removed successfully.');
+    if (empty($article)) {
+      return response()->json([
+        'success' => false,
+        'message' => 'Artikel tidak ditemukan.',
+      ], 404);
+    }
+
+    return response()->json([
+      'success' => true,
+      'message' => 'Image removed successfully.',
+    ]);
   }
 }

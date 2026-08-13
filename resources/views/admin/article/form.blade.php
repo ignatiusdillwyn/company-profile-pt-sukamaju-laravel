@@ -196,10 +196,21 @@
         return;
       }
 
-      if (!confirm('Yakin ingin menghapus image ini?')) {
-        return;
-      }
+      Swal.fire({
+        icon: 'warning',
+        title: 'Yakin?',
+        text: 'Yakin ingin menghapus image ini?',
+        showCancelButton: true,
+        confirmButtonText: 'Ya, hapus',
+        cancelButtonText: 'Batal',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          deleteImage();
+        }
+      });
 
+      function deleteImage() {
       $.ajax({
         url: `/admin/article/remove-image/${article_id}`,
         type: 'POST',
@@ -300,6 +311,7 @@
           button.prop('disabled', false).html('<i class="fas fa-times"></i> Remove');
         }
       });
+      }
     });
   });
 </script>
