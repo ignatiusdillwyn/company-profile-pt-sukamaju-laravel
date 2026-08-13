@@ -82,12 +82,12 @@
                 <div id="imagePreview" class="mt-2">
                   <img id="previewImg" src="{{ !empty($article['image']) ? asset($article['image']) : '' }}"
                     alt="Image Preview" style="
-                                    max-height: 200px;
-                                    width: 100%;
-                                    max-width: 300px;
-                                    object-fit: cover;
-                                    display: {{ !empty($article['image']) ? 'block' : 'none' }};
-                                ">
+                                        max-height: 200px;
+                                        width: 100%;
+                                        max-width: 300px;
+                                        object-fit: cover;
+                                        display: {{ !empty($article['image']) ? 'block' : 'none' }};
+                                    ">
                   <button id="btn-delete-image" name="btn-delete-image" type="button"
                     class="w-100 btn btn-danger btn-sm my-2 text-center btn-delete-image">
                     <i class="fas fa-times"></i> Remove
@@ -211,106 +211,106 @@
       });
 
       function deleteImage() {
-      $.ajax({
-        url: `/admin/article/remove-image/${article_id}`,
-        type: 'POST',
-        data: {
-          article_id: article_id,
-          type: type
-        },
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        beforeSend: function () {
-          button.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Deleting...');
-        },
-        success: function (response) {
-          console.log('response:', response);
+        $.ajax({
+          url: `/admin/article/remove-image/${article_id}`,
+          type: 'POST',
+          data: {
+            article_id: article_id,
+            type: type
+          },
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          beforeSend: function () {
+            button.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Deleting...');
+          },
+          success: function (response) {
+            console.log('response:', response);
 
-          if (response.success) {
-            console.log('sukses delete image');
+            if (response.success) {
+              console.log('sukses delete image');
 
-            // ==========================================
-            // 1. Kosongkan input imageName
-            // ==========================================
-            $('#imageName').val('');
+              // ==========================================
+              // 1. Kosongkan input imageName
+              // ==========================================
+              $('#imageName').val('');
 
-            // ==========================================
-            // 2. Reset input file
-            // ==========================================
-            $('#image').val('');
+              // ==========================================
+              // 2. Reset input file
+              // ==========================================
+              $('#image').val('');
 
-            // ==========================================
-            // 3. Hapus source gambar
-            // ==========================================
-            $('#previewImg').removeAttr('src');
+              // ==========================================
+              // 3. Hapus source gambar
+              // ==========================================
+              $('#previewImg').removeAttr('src');
 
-            // ==========================================
-            // 4. Sembunyikan preview image
-            // ==========================================
-            $('#previewImg').hide();
+              // ==========================================
+              // 4. Sembunyikan preview image
+              // ==========================================
+              $('#previewImg').hide();
 
-            // ==========================================
-            // 5. Sembunyikan container preview
-            // ==========================================
-            $('#imagePreview').hide();
+              // ==========================================
+              // 5. Sembunyikan container preview
+              // ==========================================
+              $('#imagePreview').hide();
 
-            // ==========================================
-            // 6. Jika ada hidden input removeImage
-            // ==========================================
-            $('#removeImage').val('1');
+              // ==========================================
+              // 6. Jika ada hidden input removeImage
+              // ==========================================
+              $('#removeImage').val('1');
 
-            // ==========================================
-            // 7. Notifikasi
-            // ==========================================
-            Swal.fire({
-              icon: 'success',
-              title: 'Berhasil!',
-              text: response.message || 'Image berhasil dihapus.',
-              confirmButtonText: 'OK'
-            });
+              // ==========================================
+              // 7. Notifikasi
+              // ==========================================
+              Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: response.message || 'Gambar berhasil dihapus.',
+                confirmButtonText: 'OK'
+              });
+            }
+          },
+          error: function (xhr) {
+            console.error('Error:', xhr);
+            console.error('Response Text:', xhr.responseText);
+
+            if (xhr.status === 419) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Session Expired',
+                text: 'Silakan refresh halaman dan coba lagi.',
+                confirmButtonText: 'Refresh'
+              }).then(() => window.location.reload());
+              return;
+            }
+
+            if (xhr.status === 422) {
+              var errors = xhr.responseJSON.errors;
+              var errorMessages = '';
+              $.each(errors, function (key, value) {
+                errorMessages += value[0] + '\n';
+              });
+
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops!',
+                text: errorMessages,
+                confirmButtonText: 'OK'
+              });
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops!',
+                text: xhr.responseJSON?.message || 'An unexpected error occurred. Please try again later.',
+                confirmButtonText: 'OK'
+              });
+            }
+          },
+          complete: function () {
+            button.prop('disabled', false).html('<i class="fas fa-times"></i> Remove');
           }
-        },
-        error: function (xhr) {
-          console.error('Error:', xhr);
-          console.error('Response Text:', xhr.responseText);
-
-          if (xhr.status === 419) {
-            Swal.fire({
-              icon: 'error',
-              title: 'Session Expired',
-              text: 'Silakan refresh halaman dan coba lagi.',
-              confirmButtonText: 'Refresh'
-            }).then(() => window.location.reload());
-            return;
-          }
-
-          if (xhr.status === 422) {
-            var errors = xhr.responseJSON.errors;
-            var errorMessages = '';
-            $.each(errors, function (key, value) {
-              errorMessages += value[0] + '\n';
-            });
-
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops!',
-              text: errorMessages,
-              confirmButtonText: 'OK'
-            });
-          } else {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops!',
-              text: xhr.responseJSON?.message || 'An unexpected error occurred. Please try again later.',
-              confirmButtonText: 'OK'
-            });
-          }
-        },
-        complete: function () {
-          button.prop('disabled', false).html('<i class="fas fa-times"></i> Remove');
-        }
-      });
+        });
       }
     });
   });
