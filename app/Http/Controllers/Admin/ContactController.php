@@ -11,13 +11,13 @@ class ContactController
 
   public function __construct()
   {
-      $this->contact = new ContactModel();
+    $this->contact = new ContactModel();
   }
 
   public function contactList(Request $request)
   {
     $getContacts = $this->contact->getAllContacts();
-    
+
     $data = [
       'contacts' => $getContacts
     ];
@@ -36,11 +36,15 @@ class ContactController
 
   public function deleteContact($id)
   {
-    // dd($id);
     $this->contact->deleteContact($id);
 
-    return redirect()
-      ->route('admin.contact-list')
-      ->with('success', 'Pesan berhasil dihapus');
+    // return redirect()
+    //   ->route('admin.contact-list')
+    //   ->with('success', 'Pesan berhasil dihapus');
+    return response()->json([
+      'success' => true,
+      'message' => 'Pesan berhasil dihapus',
+      'redirect' => route('admin.contact-list')
+    ]);
   }
 }

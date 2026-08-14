@@ -75,7 +75,13 @@ class ArticleController
     $type = $request['type'];
 
     $this->article->deleteArticlebyId($id);
-    return redirect()->route('admin.article-index', ['article_type' => $type]);
+    // return redirect()->route('admin.article-index', ['article_type' => $type]);
+
+    return response()->json([
+      'success' => true,
+      'message' => 'Article deleted successfully.',
+      'redirect' => route('admin.article-index', ['article_type' => $type])
+    ]);
   }
 
   public function removeImage($article_id, Request $request)
