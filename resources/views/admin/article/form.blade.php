@@ -349,7 +349,7 @@
             Swal.fire({
               icon: 'success',
               title: 'Success!',
-              text: response.message ?? type === 'edit' ? 'Article updated successfully.' : 'Article created successfully.',
+              text: response.message ?? (type === 'edit' ? 'Article updated successfully.' : 'Article created successfully.'),
               confirmButtonText: 'OK',
             });
             // Reset the form
