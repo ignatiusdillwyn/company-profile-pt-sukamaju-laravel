@@ -43,7 +43,12 @@ class ArticleController
   public function createHandle(ArticleFormRequest $request)
   {
     $this->article->createArticle($request);
-    return redirect()->route('admin.article-index', ['article_type' => $request['type']]);
+
+    return response()->json([
+      'success' => true,
+      'message' => 'Article Created successfully.',
+      'redirect' => route('admin.article-index', ['article_type' => $request['type']])
+    ]);
   }
 
   public function editRender(Request $request)
@@ -66,7 +71,12 @@ class ArticleController
     $type = $request->get('type', false);
 
     $this->article->updateArticle($request);
-    return redirect()->route('admin.article-index', ['article_type' => $type]);
+
+    return response()->json([
+      'success' => true,
+      'message' => 'Article Updated successfully.',
+      'redirect' => route('admin.article-index', ['article_type' => $request['type']])
+    ]);
   }
 
   public function deleteHandle(Request $request)

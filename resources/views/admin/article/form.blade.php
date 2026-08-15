@@ -21,7 +21,7 @@
           <h3 class="card-title">Create New {{ $type === 'blog' ? 'Blog' : 'Service' }}</h3>
         </div> --}}
         <!-- /.card-header -->
-        <form action="{{ $action_path }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ $action_path }}" id="form" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="card-body">
             <!-- Hidden Fields -->
@@ -82,12 +82,12 @@
                 <div id="imagePreview" class="mt-2">
                   <img id="previewImg" src="{{ !empty($article['image']) ? asset($article['image']) : '' }}"
                     alt="Image Preview" style="
-                                        max-height: 200px;
-                                        width: 100%;
-                                        max-width: 300px;
-                                        object-fit: cover;
-                                        display: {{ !empty($article['image']) ? 'block' : 'none' }};
-                                    ">
+                                                        max-height: 200px;
+                                                        width: 100%;
+                                                        max-width: 300px;
+                                                        object-fit: cover;
+                                                        display: {{ !empty($article['image']) ? 'block' : 'none' }};
+                                                    ">
                   <button id="btn-delete-image" name="btn-delete-image" type="button"
                     class="w-100 btn btn-danger btn-sm my-2 text-center btn-delete-image">
                     <i class="fas fa-times"></i> Remove
@@ -118,7 +118,7 @@
           <!-- /.card-body -->
 
           <div class="card-footer">
-            <button type="submit" class="btn btn-primary">
+            <button id="saveButton" type="submit" class="btn btn-primary">
               <i class="fas fa-save"></i> Save {{ $type === 'blog' ? 'Blog' : 'Service' }}
             </button>
             <a href="{{ $redirect_path }}" class="btn btn-secondary">
@@ -174,6 +174,7 @@
   $(document).ready(function () {
     console.log('Document ready!');
 
+    //Button delete image
     $('.btn-delete-image').on('click', function (e) {
       e.preventDefault();
       console.log('Delete button clicked');
@@ -312,6 +313,97 @@
           }
         });
       }
+    });
+  });
+
+  //Create or Update Form
+  $(document).ready(function () {
+
+    $('#form').on('submit', function (e) {
+
+      let form = $(this);
+      let url = form.attr('action');
+      let button = $('#saveButton');
+
+      let type = $('#type').val();
+      console.log('type:', type);
+
+      let article_id = null
+      if (type === 'edit') {
+        article_id = $('#article_id').val();
+      }
+
+      $.ajax({
+        url: url,
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: 'POST',
+        data: form.serialize(),
+        beforeSend: function () {
+          button.prop('disabled', true).text('Sending...');
+        },
+        success: function (response) {
+          if (response.success) {
+            // Show success message
+            Swal.fire({
+              icon: 'success',
+              title: 'Success!',
+              text: response.message ?? type === 'edit' ? 'Article updated successfully.' : 'Article created successfully.',
+              confirmButtonText: 'OK',
+            });
+            // Reset the form
+            form[0].reset();
+
+            // Redirect to the index page after a short delay
+            setTimeout(function () {
+              window.location.href = response.redirect;
+            }, 1500);
+          } else {
+            // ==========================================
+            // ERROR: Tampilkan pesan error
+            // ==========================================
+            Swal.fire({
+              icon: 'error',
+              title: 'Error!',
+              text: response.message || 'An unexpected error occurred. Please try again later.',
+              confirmButtonText: 'OK'
+            });
+          }
+
+        },
+        error: function (xhr) {
+          // Show error messages
+          if (xhr.status === 422) {
+            var errors = xhr.responseJSON.errors;
+            var errorMessages = '';
+            $.each(errors, function (key, value) {
+              errorMessages += value[0] + '\n';
+            });
+
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops!',
+              text: errorMessages,
+              confirmButtonText: 'OK'
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops!',
+              text: 'An unexpected error occurred. Please try again later.',
+              confirmButtonText: 'OK'
+            });
+          }
+        },
+        complete: function () {
+
+          // Re-enable the submit button
+          $('#saveButton').prop('disabled', false).text('Send Message');
+        }
+      });
+
+      return false;
     });
   });
 </script>
