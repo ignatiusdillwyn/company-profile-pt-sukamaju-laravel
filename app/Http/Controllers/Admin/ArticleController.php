@@ -72,11 +72,12 @@ class ArticleController
 
     $this->article->updateArticle($request);
 
-    return response()->json([
-      'success' => true,
-      'message' => 'Article Updated successfully.',
-      'redirect' => route('admin.article-index', ['article_type' => $request['type']])
-    ]);
+    return redirect()->route('admin.article-index', ['article_type' => $type])->with('success', 'Article Updated successfully.');
+    // return response()->json([
+    //   'success' => true,
+    //   'message' => 'Article Updated successfully.',
+    //   // 'redirect' => route('admin.article-index', ['article_type' => $request['type']])
+    // ]);
   }
 
   public function deleteHandle(Request $request)

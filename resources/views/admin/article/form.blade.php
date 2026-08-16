@@ -317,93 +317,93 @@
   });
 
   //Create or Update Form
-  $(document).ready(function () {
+  // $(document).ready(function () {
 
-    $('#form').on('submit', function (e) {
+  //   $('#form').on('submit', function (e) {
 
-      let form = $(this);
-      let url = form.attr('action');
-      let button = $('#saveButton');
+  //     let form = $(this);
+  //     let url = form.attr('action');
+  //     let button = $('#saveButton');
 
-      let type = $('#type').val();
-      console.log('type:', type);
+  //     let type = $('#type').val();
+  //     console.log('type:', type);
 
-      let article_id = null
-      if (type === 'edit') {
-        article_id = $('#article_id').val();
-      }
+  //     let article_id = null
+  //     if (type === 'edit') {
+  //       article_id = $('#article_id').val();
+  //     }
 
-      $.ajax({
-        url: url,
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        type: 'POST',
-        data: form.serialize(),
-        beforeSend: function () {
-          button.prop('disabled', true).text('Sending...');
-        },
-        success: function (response) {
-          if (response.success) {
-            // Show success message
-            Swal.fire({
-              icon: 'success',
-              title: 'Success!',
-              text: response.message ?? (type === 'edit' ? 'Article updated successfully.' : 'Article created successfully.'),
-              confirmButtonText: 'OK',
-            });
-            // Reset the form
-            form[0].reset();
+  //     $.ajax({
+  //       url: url,
+  //       headers: {
+  //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  //       },
+  //       type: 'POST',
+  //       data: form.serialize(),
+  //       beforeSend: function () {
+  //         button.prop('disabled', true).text('Sending...');
+  //       },
+  //       success: function (response) {
+  //         if (response.success) {
+  //           // Show success message
+  //           Swal.fire({
+  //             icon: 'success',
+  //             title: 'Success!',
+  //             text: response.message ?? (type === 'edit' ? 'Article updated successfully.' : 'Article created successfully.'),
+  //             confirmButtonText: 'OK',
+  //           });
+  //           // Reset the form
+  //           form[0].reset();
 
-            // Redirect to the index page after a short delay
-            setTimeout(function () {
-              window.location.href = response.redirect;
-            }, 1500);
-          } else {
-            // ==========================================
-            // ERROR: Tampilkan pesan error
-            // ==========================================
-            Swal.fire({
-              icon: 'error',
-              title: 'Error!',
-              text: response.message || 'An unexpected error occurred. Please try again later.',
-              confirmButtonText: 'OK'
-            });
-          }
+  //           // Redirect to the index page after a short delay
+  //           setTimeout(function () {
+  //             window.location.href = response.redirect;
+  //           }, 1500);
+  //         } else {
+  //           // ==========================================
+  //           // ERROR: Tampilkan pesan error
+  //           // ==========================================
+  //           Swal.fire({
+  //             icon: 'error',
+  //             title: 'Error!',
+  //             text: response.message || 'An unexpected error occurred. Please try again later.',
+  //             confirmButtonText: 'OK'
+  //           });
+  //         }
 
-        },
-        error: function (xhr) {
-          // Show error messages
-          if (xhr.status === 422) {
-            var errors = xhr.responseJSON.errors;
-            var errorMessages = '';
-            $.each(errors, function (key, value) {
-              errorMessages += value[0] + '\n';
-            });
+  //       },
+  //       error: function (xhr) {
+  //         // Show error messages
+  //         if (xhr.status === 422) {
+  //           var errors = xhr.responseJSON.errors;
+  //           var errorMessages = '';
+  //           $.each(errors, function (key, value) {
+  //             errorMessages += value[0] + '\n';
+  //           });
 
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops!',
-              text: errorMessages,
-              confirmButtonText: 'OK'
-            });
-          } else {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops!',
-              text: 'An unexpected error occurred. Please try again later.',
-              confirmButtonText: 'OK'
-            });
-          }
-        },
-        complete: function () {
+  //           Swal.fire({
+  //             icon: 'error',
+  //             title: 'Oops!',
+  //             text: errorMessages,
+  //             confirmButtonText: 'OK'
+  //           });
+  //         } else {
+  //           Swal.fire({
+  //             icon: 'error',
+  //             title: 'Oops!',
+  //             text: 'An unexpected error occurred. Please try again later.',
+  //             confirmButtonText: 'OK'
+  //           });
+  //         }
+  //       },
+  //       complete: function () {
 
-          // Re-enable the submit button
-          $('#saveButton').prop('disabled', false).text('Send Message');
-        }
-      });
+  //         // Re-enable the submit button
+  //         $('#saveButton').prop('disabled', false).text('Send Message');
+  //       }
+  //     });
 
-      return false;
-    });
-  });
+  //     return false;
+  //   });
+  // });
 </script>
