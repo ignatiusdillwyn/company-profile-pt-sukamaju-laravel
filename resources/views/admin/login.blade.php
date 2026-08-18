@@ -64,12 +64,8 @@
                     </div>
                 </form>
 
-                <p class="mb-1">
-                    <a href="{{ route('admin.register') }}">Register</a>
-                </p>
-
                 <p class="text-center text-muted small mt-3 mb-0">
-                    Demo akun: <code>admin@course-net</code> / <code>test123</code>
+                    Demo akun: <code>andi@gmail.com</code> / <code>andi12345</code>
                 </p>
             </div>
         </div>

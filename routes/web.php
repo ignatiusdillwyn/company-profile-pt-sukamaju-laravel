@@ -28,8 +28,8 @@ Route::post('/contact/save', [WebController::class, 'contactHandle'])->name('con
 
 Route::prefix(env('APP_ADMIN_SECTION', 'admin'))->name('admin.')->group(function () {
 
-    Route::get('/register', [AuthController::class, 'registerRender'])->name('register');
-    Route::post('/register', [AuthController::class, 'registerHandle'])->name('register.handle');
+    // Route::get('/register', [AuthController::class, 'registerRender'])->name('register');
+    // Route::post('/register', [AuthController::class, 'registerHandle'])->name('register.handle');
 
     // Authentication - HARUS bisa diakses SEBELUM login, jadi TIDAK
     // dibungkus middleware 'admin'

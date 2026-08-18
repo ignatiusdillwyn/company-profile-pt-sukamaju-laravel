@@ -16,31 +16,6 @@ class AuthController
         $this->userModel = new UserModel();
     }
 
-    public function registerRender()
-    {
-        // $data = $this->userModel->createUser('halo');
-        // return redirect()->intended(route('admin.dashboard'));
-
-        return view('admin.register');
-    }
-
-    public function registerHandle(Request $request)
-    {
-        // dd($request->all());
-        $data = $request->all();
-
-        $credentials = $request->validate([
-            'name'    => 'required',
-            'email'    => 'required|email|unique:table_users,email',
-            'password' => 'required|string|min:8|confirmed',
-            // 'password_confirmation' => 'required|string|min:8|same:password',
-            'role' => 'required|in:admin,author',
-        ]);
-
-        $this->userModel->createUser($data);
-        return redirect()->intended(route('admin.login'));
-    }
-
     // GET /admin/login - menampilkan form login
     public function loginRender()
     {
