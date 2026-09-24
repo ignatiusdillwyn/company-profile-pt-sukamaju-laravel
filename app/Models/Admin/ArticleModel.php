@@ -100,6 +100,7 @@ class ArticleModel extends Model
       $input['image'] = null;
     }
 
+    //Cek apakah variabel is_published ada di dalam array $input, jika ada maka ubah menjadi boolean, jika tidak ada maka set ke false
     $is_published = isset($input['is_published']) ? (bool) $input['is_published'] : false;
     $data = DB::select('CALL _updateArticle(?,?,?,?,?,?,?)', [
       $articleId,

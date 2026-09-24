@@ -46,21 +46,61 @@ class UserModel extends Model
 
     public function getAllUsers()
     {
-        $data = DB::table('table_users')
-            ->get();
+        $data = DB::select('CALL _getAllUsers()');
 
         return $data;
     }
 
-    public function updateUser()
+    public function getUserById($id = null)
     {
-        $data = 'ini update user';
+        $userId = (int) $id;
+        $dataFromDB = DB::select('CALL _getUserById(?)', [$userId]);
+
+        $data = [];
+
+        foreach ($dataFromDB as $index => $item) {
+            $data['id'] = $item->id;
+            $data['fullname'] = $item->fullname;
+            $data['email'] = $item->email;
+            // $data['password'] = $item->title;
+            $data['role'] = $item->role;
+            $data['is_active'] = $item->is_active;
+            $data['created'] = $item->created;
+            $data['updated'] = $item->updated;
+        }
+        // dd($data);
         return $data;
     }
 
-    public function deleteUser()
+    public function updateUser($request)
     {
-        $data = 'ini delete user';
+        // dd($request);
+
+        $hashedPassword = null;
+        // Hash password sebelum dikirim ke stored procedure
+        if ($request['password'] != null) {
+            $hashedPassword = Hash::make($request['password']);
+        }
+
+        // dd($request, $hashedPassword);
+
+        $data = DB::select('CALL _updateUser(?,?,?,?,?,?,?)', [
+            $request['id'],
+            $request['email'] ?? null,
+            $hashedPassword ?? null, // Password sudah di-hash
+            $request['name'] ?? null,
+            $request['role'] ?? null,
+            true, // is_active
+            Carbon::now() // updated_at
+        ]);
+
+        return 'Success update user';
+    }
+
+    public function deleteUserById($id)
+    {
+        $userId = (int) $id;
+        $data = DB::select('CALL _deleteUser(?)', [$userId]);
         return $data;
     }
 }

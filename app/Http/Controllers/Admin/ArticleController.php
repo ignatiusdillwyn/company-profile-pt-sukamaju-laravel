@@ -72,12 +72,12 @@ class ArticleController
 
     $this->article->updateArticle($request);
 
-    return redirect()->route('admin.article-index', ['article_type' => $type])->with('success', 'Article Updated successfully.');
-    // return response()->json([
-    //   'success' => true,
-    //   'message' => 'Article Updated successfully.',
-    //   // 'redirect' => route('admin.article-index', ['article_type' => $request['type']])
-    // ]);
+    // return redirect()->route('admin.article-index', ['article_type' => $type])->with('success', 'Article Updated successfully.');
+    return response()->json([
+      'success' => true,
+      'message' => 'Article Updated successfully.',
+      'redirect' => route('admin.article-index', ['article_type' => $request['type']])
+    ]);
   }
 
   public function deleteHandle(Request $request)
@@ -104,7 +104,6 @@ class ArticleController
       'all' => $request->all()
     ]);
 
-    $this->article->removeArticleImage($article_id);
     $article = $this->article->getArticlesById($article_id);
     Log::info('removeImage called', [
       'data' => $article,
@@ -116,6 +115,8 @@ class ArticleController
         'message' => 'Artikel tidak ditemukan.',
       ], 404);
     }
+
+    $this->article->removeArticleImage($article_id);
 
     return response()->json([
       'success' => true,

@@ -115,7 +115,7 @@ $session = session('admin_user');
                             </a>
                         </li>
 
-                        <li class="nav-item d-none">
+                        <li class="nav-item">
                             <a href="{{ route('admin.user-index-cms') }}" class="nav-link {{ request()->routeIs('admin.user-index-cms*') ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-people"></i>
                                 <p>Users</p>

@@ -11,10 +11,25 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- OverlayScrollbars -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.16.0/styles/overlayscrollbars.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.16.0/styles/overlayscrollbars.min.css">
     <!-- AdminLTE 4 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.1.0/dist/css/adminlte.min.css">
 </head>
+
+@php
+    // dd($type)
+    // dd($user)
+    //     array:7 [▼ // resources\views/admin/users/form.blade.php
+    //   "id" => 18
+    //   "fullname" => "aman"
+    //   "email" => "aman@gmail.com"
+    //   "role" => "author"
+    //   "is_active" => 1
+    //   "created" => "2026-09-01 07:02:52"
+    //   "updated" => "2026-09-01 07:02:52"
+    // ]
+@endphp
 
 <body class="register-page bg-body-secondary">
     <main class="register-box">
@@ -27,7 +42,7 @@
                 <p class="register-box-msg">Register a new membership</p>
 
                 @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
+                    <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
 
                 <!-- @if ($errors->any())
@@ -40,48 +55,64 @@
                 </div>
                 @endif -->
 
-                <form action="{{ route('admin.user-save') }}" method="POST">
+                <form id="form" action="{{ $action_path }}" method="POST">
                     @csrf
+                    <!-- Hidden Fields -->
+                    {{-- <input type="hidden" name="user_id" value="{{ auth()->id() ?? 1 }}"> --}}
 
+                    @if($formType === 'edit' && isset($user['id']))
+                        <input type="hidden" id="id" name="id" value="{{ $user['id'] }}">
+                    @endif
+
+                    {{-- Full Name --}}
                     <label class="visually-hidden" for="registerName">Full Name</label>
                     <div class="input-group mb-3">
-                        <input id="registerName" type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Full Name">
+                        <input id="registerName" type="text" name="name"
+                            value="{{ $formType === 'edit' ? $user['fullname'] : old('name') }}"
+                            class="form-control @error('name') is-invalid @enderror" placeholder="Full Name">
                         <div class="input-group-text">
                             <span class="bi bi-person"></span>
                         </div>
                         @error('name')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
+                    {{-- Email --}}
                     <label class="visually-hidden" for="registerEmail">Email</label>
                     <div class="input-group mb-3">
-                        <input id="registerEmail" type="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="Email">
+                        <input id="registerEmail" type="email" name="email"
+                            value="{{ $formType === 'edit' ? $user['email'] : old('email') }}"
+                            class="form-control @error('email') is-invalid @enderror" placeholder="Email">
                         <div class="input-group-text">
                             <span class="bi bi-envelope"></span>
                         </div>
                         @error('email')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <!-- Password dengan Show/Hide -->
                     <label class="visually-hidden" for="registerPassword">Password</label>
                     <div class="input-group mb-3">
-                        <input id="registerPassword" type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password">
-                        <button class="input-group-text password-toggle" type="button" data-target="registerPassword" style="cursor: pointer;">
+                        <input id="registerPassword" type="password" name="password"
+                            class="form-control @error('password') is-invalid @enderror" placeholder="Password">
+                        <button class="input-group-text password-toggle" type="button" data-target="registerPassword"
+                            style="cursor: pointer;">
                             <span class="bi bi-eye-slash" id="registerPasswordIcon"></span>
                         </button>
                         @error('password')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <!-- Confirm Password dengan Show/Hide -->
                     <label class="visually-hidden" for="registerConfirmPassword">Confirm Password</label>
                     <div class="input-group mb-3">
-                        <input id="registerConfirmPassword" type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password">
-                        <button class="input-group-text password-toggle" type="button" data-target="registerConfirmPassword" style="cursor: pointer;">
+                        <input id="registerConfirmPassword" type="password" name="password_confirmation"
+                            class="form-control" placeholder="Confirm Password">
+                        <button class="input-group-text password-toggle" type="button"
+                            data-target="registerConfirmPassword" style="cursor: pointer;">
                             <span class="bi bi-eye-slash" id="registerConfirmPasswordIcon"></span>
                         </button>
                     </div>
@@ -91,21 +122,26 @@
                     <div class="input-group mb-3">
                         <select id="registerRole" name="role" class="form-control @error('role') is-invalid @enderror">
                             <option value="">Select Role</option>
-                            <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
-                            <option value="author" {{ old('role') == 'author' ? 'selected' : '' }}>Author</option>
+                            <option value="admin" {{ (old('role', $user['role'] ?? '') == 'admin') ? 'selected' : '' }}>
+                                Admin
+                            </option>
+                            <option value="author" {{ (old('role', $user['role'] ?? '') == 'author') ? 'selected' : '' }}>
+                                Author
+                            </option>
                         </select>
                         <div class="input-group-text">
                             <span class="bi bi-person-badge"></span>
                         </div>
                         @error('role')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="row">
                         <div class="col-12">
                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary right">Register</button>
+                                <button id="saveButton" type="submit"
+                                    class="btn btn-primary right">{{ $formType == 'edit' ? 'Update' : 'Register' }}</button>
                             </div>
                         </div>
                     </div>
@@ -121,17 +157,21 @@
     <!-- Bootstrap 5 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- OverlayScrollbars -->
-    <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.16.0/browser/overlayscrollbars.browser.es5.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.16.0/browser/overlayscrollbars.browser.es5.min.js"></script>
     <!-- AdminLTE 4 -->
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@4.1.0/dist/js/adminlte.min.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Toggle password visibility
             const toggleButtons = document.querySelectorAll('.password-toggle');
 
             toggleButtons.forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const targetId = this.dataset.target;
                     const input = document.getElementById(targetId);
                     const icon = this.querySelector('span');
@@ -148,6 +188,89 @@
                 });
             });
         });
+
+        $(document).ready(function () {
+            $('#form').on('submit', function (e) {
+                let form = $(this);
+                let url = form.attr('action');
+                let button = $('#saveButton');
+
+                console.log('Form submitted. URL:', url);
+
+                $.ajax({
+                    url: url,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'POST',
+                    data: form.serialize(),
+                    beforeSend: function () {
+                        button.prop('disabled', true).text('Sending...');
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            // Show success message
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                text: response.message ?? (type === 'edit' ? 'User updated successfully.' : 'User created successfully.'),
+                                confirmButtonText: 'OK',
+                            });
+                            // Reset the form
+                            form[0].reset();
+
+                            // Redirect to the index page after a short delay
+                            setTimeout(function () {
+                                window.location.href = response.redirect;
+                            }, 1500);
+                        } else {
+                            // ==========================================
+                            // ERROR: Tampilkan pesan error
+                            // ==========================================
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error!',
+                                text: response.message || 'An unexpected error occurred. Please try again later.',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+
+                    },
+                    error: function (xhr) {
+                        // Show error messages
+                        if (xhr.status === 422) {
+                            var errors = xhr.responseJSON.errors;
+                            var errorMessages = '';
+                            $.each(errors, function (key, value) {
+                                errorMessages += value[0] + '\n';
+                            });
+
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops!',
+                                text: errorMessages,
+                                confirmButtonText: 'OK'
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops!',
+                                text: 'An unexpected error occurred. Please try again later.',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    },
+                    complete: function () {
+
+                        // Re-enable the submit button
+                        $('#saveButton').prop('disabled', false).text('Send Message');
+                    }
+                });
+
+                return false;
+            });
+        });
+
     </script>
 </body>
 

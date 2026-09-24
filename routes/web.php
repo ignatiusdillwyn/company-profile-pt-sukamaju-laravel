@@ -71,11 +71,11 @@ Route::prefix(env('APP_ADMIN_SECTION', 'admin'))->name('admin.')->group(function
         Route::post('/users/save', [UserController::class, 'createHandle'])->name('user-save');
 
         // Route Edit User
-        Route::get('/users/edit/{id}', [UserController::class, 'editRender'])->name('user-edit');
-        Route::post('/users/update/{id}', [UserController::class, 'editHandle'])->name('user-update');
+        Route::get('/users/edit', [UserController::class, 'editRender'])->name('user-edit');
+        Route::post('/users/update', [UserController::class, 'editHandle'])->name('user-update');
 
         // Route Delete User
-        Route::get('/users/delete/{id}', [UserController::class, 'deleteHandle'])->name('user-delete'); 
+        Route::get('/users/delete', [UserController::class, 'deleteHandle'])->name('user-delete'); 
 
         Route::post('/article/remove-image/{article_id}', [ArticleController::class, 'removeImage'])->name('remove-image');
         
